@@ -1,0 +1,120 @@
+{
+  "routePerms":
+  [
+    {
+      "path":"/health",
+      "roles": ["*"]
+
+    },
+    {
+      "path":"/auth/in",
+      "roles": ["*"]
+
+    },
+    {
+      "path":"/api/config/dps.ga.tracking.enabled",
+      "roles": ["*"]
+    },
+    {
+      "path":"/api/identity",
+      "roles": ["*"]
+
+    },
+    {
+      "path":"/api/init",
+      "roles": ["*"]
+
+    },
+    {
+      "path":"/api/actions/clusters",
+      "roles": ["SUPERADMIN","INFRAADMIN","CURATOR"]
+
+    },
+    {
+      "path":"/api/datasets",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/query-assets",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/atlas-dataset",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/dataset-tag",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/dataset",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/dpProfiler",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/ranger",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/assets",
+      "roles": ["CURATOR"]
+
+    },
+    {
+      "path":"/api/knox/status",
+      "roles": ["SUPERADMIN"]
+
+    },
+    {
+      "path":"/api/locations/",
+      "roles": ["SUPERADMIN","INFRAADMIN"]
+
+    },
+    {
+      "path":"/api/clusters",
+      "roles": ["SUPERADMIN","INFRAADMIN"]
+
+    },
+    {
+      "path":"/api/lakes/",
+      "roles": ["SUPERADMIN","INFRAADMIN"]
+
+    },
+    {
+      "path":"/api/users",
+      "roles": ["SUPERADMIN"]
+
+    },
+    {
+      "path":"/api/knox/ldap",
+      "roles": ["SUPERADMIN"]
+
+    },
+    {
+      "path":"/api/roles",
+      "roles": ["SUPERADMIN"]
+
+    },
+    {
+      "path":"/api/groups",
+      "roles": ["SUPERADMIN"]
+
+    },
+    {
+      "path":"/api/services",
+      "roles": ["SUPERADMIN"]
+
+    }
+
+  ]
+}

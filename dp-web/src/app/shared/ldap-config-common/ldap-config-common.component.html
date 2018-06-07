@@ -1,0 +1,124 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="notification-bar line-height-1-5" *ngIf="showNotification" data-se="onboard__idp__notifications">
+  <i class="fa fa-times-circle red margin-right-10 text-medium"></i>
+  <span class="text-medium red">{{"pages.onboard.configure.labels.configError" | translate}}</span>
+  <i id="notification-close" class="fa fa-remove pull-right margin-all-3 pointer" (click)="closeNotification()"></i>
+  <ul id="errors">
+    <li class="red text-small" *ngFor="let message of notificationMessages">{{message}}</li>
+  </ul>
+</div>
+<div class="container line-height-1-5">
+  <div class="text-medium" *ngIf="!isInEditMode">
+    <i class="fa fa-lock green text-large pull-left"></i>
+    <div>
+      <div class="text-uppercase text-xsmall">{{("common.step" | translate).toUpperCase()}} 1</div>
+      <div class="">{{"pages.onboard.labels.setupAuth" | translate}}</div>
+    </div>
+  </div>
+  <div class="margin-top-bottom-20" *ngIf="!isInEditMode">
+    {{"pages.onboard.description.setupAuth" | translate}}
+  </div>
+  <form #configForm="ngForm" data-se="onboard__idp__form">
+    <div class="section margin-top-bottom-20">
+      <div class="text-bold text-medium">{{"pages.onboard.configure.labels.ldapConfiguration" | translate}}</div>
+      <div *ngIf="isInEditMode">{{"pages.onboard.description.ldapEditNote" | translate}}</div>
+    </div>
+    <div style="display: flex; align-items: flex-end;">
+      <div class="dp-input form-group">
+        <label class="required">{{"pages.onboard.configure.labels.url" | translate}}</label>
+        <input required name="ldap-url" type="text" [(ngModel)]="ldapProperties.ldapUrl" placeholder="e.g. ldap://localhost:33389" data-se="onboard__idp__uri"/>
+      </div>
+      <a *ngIf="cert" (click)="onShowCertificate()"  [routerLink]="" style="display: inline-block; margin: 15px 0; padding: 10px 20px;">
+        {{"pages.onboard.configure.labels.showCertificate" | translate}}
+      </a>
+    </div>
+    <div class="dp-input form-group">
+      <input name="show-cert-input" id="onboard__idp__upload_cert" type="checkbox" [(ngModel)]="showCertInput" data-se="onboard__idp__upload_cert"/>
+      <label for="onboard__idp__upload_cert" style="font-size: inherit;margin-bottom: 0;display: inline-block;">
+        {{(!cert ? "pages.onboard.configure.labels.uploadSecureLDAP" : "pages.onboard.configure.labels.editSecureLDAP") | translate}}
+      </label>
+      <div *ngIf="showCertInput" class="dp-input form-group">
+        <label class="required">{{"pages.settings.labels.certificateFile" | translate}}</label>
+        <label class="onboard__idp__upload_cert__label">
+          <div class="onboard__idp__upload_cert__view">
+            <div class="btn-hwx-default onboard__idp__upload_cert__btn">Choose <i class="fa fa-caret-down"></i></div>
+            <input class="onboard__idp__upload_cert__filename" name="file-name" [(ngModel)]="file.name" readonly/>
+          </div>
+          <input #fileInput required type="file" id="file-input" name="file-input" (change)="onFileChanged(fileInput.files)" placeholder="Upload File"/>
+        </label>
+      </div>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.adminBindDN" | translate}}</label>
+      <input required name="admin-bind-dn" type="text" [(ngModel)]="ldapProperties.bindDn" placeholder="e.g. uid=admin,ou=people,dc=hadoop,dc=apache,dc=org" data-se="onboard__idp__admin_bind_dn"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.adminPassword" | translate}}</label>
+      <input required name="admin-password" *ngIf="!showLdapPassword" [(ngModel)]="ldapProperties.password" type="password" placeholder="Administrator Password" data-se="onboard__idp__admin_password_masked"/>
+      <input required name="admin-password-plain" *ngIf="showLdapPassword" [(ngModel)]="ldapProperties.password" type="text" placeholder="Administrator Password" data-se="onboard__idp__admin_password_plain"/>
+      <div class="margin-top-bottom-3">
+        <input id="onboard__idp__admin_password_toggle" name="admin-password-toggle" type="checkbox" [(ngModel)]="showLdapPassword" data-se="onboard__idp__admin_password_toggle"/>
+        <label for="onboard__idp__admin_password_toggle" style="display: inline;"><span>{{"pages.onboard.configure.labels.showPassword" | translate}}</span></label>
+      </div>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.userSearchBase" | translate}}</label>
+      <input required name="user-search-base" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.userSearchBase" placeholder="e.g. ou=people,dc=hadoop,dc=apache,dc=org" data-se="onboard__idp__user_search_base"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.userSearchAttributeName" | translate}}</label>
+      <input required name="user-search-attr" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.userSearchAttributeName" placeholder="e.g. uid" data-se="onboard__idp__user_search_attr"/>
+    </div>
+    <div class="dp-input form-group">
+      <label>{{"pages.onboard.configure.labels.userObjectClass" | translate}}</label>
+      <input name="user-object-class" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.userObjectClass" placeholder="Defaults to 'person' if left empty" data-se="onboard__idp__user_object_class"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.groupSearchBase" | translate}}</label>
+      <input required name="group-search-base" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.groupSearchBase" placeholder="e.g. ou=groups,dc=hadoop,dc=apache,dc=org" data-se="onboard__idp__group_search_base"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.groupSearchAttributeName" | translate}}</label>
+      <input required name="group-search-attr" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.groupSearchAttributeName" placeholder="e.g. cn" data-se="onboard__idp__group_search_attr"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.groupObjectClass" | translate}}</label>
+      <input required name="group-object-class" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.groupObjectClass" placeholder="e.g. groupofnames" data-se="onboard__idp__group_object_class"/>
+    </div>
+    <div class="dp-input form-group">
+      <label class="required">{{"pages.onboard.configure.labels.groupMemberAttributeName" | translate}}</label>
+      <input required name="group-member-attr-name" type="text" [readonly]="isInEditMode" [ngClass]="{'edit-mode': isInEditMode}" [(ngModel)]="ldapProperties.groupMemberAttributeName" placeholder="e.g. member" data-se="onboard__idp__group_member_attr"/>
+    </div>
+
+    <div class="margin-top-30">
+      <button id="save-btn" name="save" class="mdl-button btn-hwx-primary margin-right-10" (click)="save()" data-se="onboard__idp__save">
+        {{"common.save" | translate}}
+      </button>
+      <button id="cancel-btn" name="cancel" class="mdl-button btn-hwx-default" [routerLink]="isInEditMode ? ['/infra/manage-access/users'] : ['/onboard/welcome']" data-se="onboard__idp__cancel">
+        {{"common.cancel" | translate}}
+      </button>
+    </div>
+  </form>
+
+</div>

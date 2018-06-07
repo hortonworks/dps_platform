@@ -1,0 +1,59 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="page-container">
+    <div class="add-assets" *ngIf="viewState === assetViewState.ADD_ASSETS">
+        <div class="hwx-title"> {{ "pages.analytics.workspace.assets.add-assets" | translate }} </div>
+        <div class="hwx-desc"> {{ "pages.analytics.workspace.assets.add-assets-desc" | translate }} </div>
+        <div class="spacer-15"> </div>
+        <button class="mdl-button btn-hwx-primary" (click)="showAssets=true"> {{ "pages.analytics.workspace.assets.add-assets" | translate }} </button>
+    </div>
+    <div class="edit-assets" *ngIf="viewState === assetViewState.EDIT_ASSETS">
+        <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button btn-hwx-primary" (click)="showAssets=true"> {{ "pages.analytics.workspace.assets.add-assets" | translate }} </button>
+        </div>
+        <div class="spacer-15"> </div>
+        <table class="mdl-data-table mdl-js-data-table" *ngIf="viewState === assetViewState.EDIT_ASSETS">
+            <thead>
+            <th class="mdl-data-table__cell--non-numeric">Source</th>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Description</th>
+            <th class="mdl-data-table__cell--non-numeric">Owner</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let asset of workspaceAssetServiceObservable | async ">
+                <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable"> {{ asset.assetType }} </td>
+                <td class="mdl-data-table__cell--non-numeric key-column mdl-data-table__cell--width15"> {{ asset.assetName }} </td>
+                <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">  {{ asset.description ? asset.description : '-' }} </td>
+                <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable"> {{ asset.assetProperties.owner }} </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="showAssets" class="popup borderBox">
+    <div class="opaque">
+        <!--<asset-search [saveButton]=true [clusterId]="cluster.id" (doneNotification)="saveSelectedAssets($event)" (cancelNotification)="showAssets=false"> </asset-search>-->
+    </div>
+</div>

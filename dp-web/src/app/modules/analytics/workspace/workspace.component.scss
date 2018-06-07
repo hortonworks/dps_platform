@@ -1,0 +1,168 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../styles/variables";
+
+.dp-input {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  width: 200px;
+  box-sizing: border-box;
+
+  input {
+    width: 100%;
+    padding-left: 30px;
+    box-sizing: border-box;
+  }
+
+  .dp-input__icon{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: #54646A;
+  }
+}
+
+.actions {
+  display: flex;
+
+  .buttons-bar {
+    display: inline;
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      display: inline;
+    }
+
+    .btn-hwx-default {
+      padding-left: 10px;
+      padding-right: 10px;
+      min-width: 45px;
+      float: left;
+    }
+  }
+
+  dp-tabs {
+    display: inline-block;
+  }
+}
+.table-container {
+  i {
+    font-size: 12px;
+  }
+  .mdl-button--icon {
+    height: 14px;
+    width: 14px;
+    min-width: 14px;
+
+    &:hover {
+      background-color: #E5F6FC;
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .mdl-card {
+    display: inline-block;
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 275px;
+    cursor: pointer;
+    margin: 0px 10px 10px 0px;
+    border: 1px solid #cccccc;
+  }
+
+  .mdl-card__supporting-text {
+    padding-bottom: 5px;
+    color: $dove-gray;
+  }
+
+  .mdl-card__title {
+    flex-direction: column;
+    align-items: flex-start;
+    color: $dove-gray;
+  }
+
+  .mdl-card__actions {
+    padding: 0px;
+  }
+
+  .mdl-card__menu {
+    i {
+      display: none;
+      font-size: 12px;
+    }
+
+    &:hover i {
+      display: block;
+      font-size: 12px;
+    }
+
+    .delete:before {
+      font-family: FontAwesome;
+      content: '\f00d';
+    }
+  }
+
+  .mdl-grid {
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 15px;
+    color: $dove-gray;
+  }
+
+  .card-title-sub {
+    font-size: 12px;
+  }
+
+  .card-owner {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .card-icons {
+    display: inline-block;
+  }
+
+  .card-count {
+    font-size: 11px;
+    padding: 10px;
+    background: $alabaster;
+  }
+
+  .border {
+    border-right: 1px solid #cccccc;
+  }
+}

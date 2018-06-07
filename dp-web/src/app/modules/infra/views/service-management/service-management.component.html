@@ -1,0 +1,139 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="container">
+  <div class="" *ngIf="enabledAppDetails.length > 0">
+    <div class="hwx-title-panel">
+      <span class="hwx-title">{{"pages.services.labels.enabledServices" | translate}}</span>
+    </div>
+    <div *ngIf="showNotification">
+      <div data-se="services__notificatiob-bar" id="success-notification-bar" class="notification-bar">
+        <i class="fa fa-check-circle pull-left"></i>
+        <div id="success-heading" class="hwx-subtitle title">{{"pages.services.labels.serviceEnabled" | translate}}</div>
+        <div id="success-message" class="message" [innerHTML]="'pages.services.description.serviceEnabled'| translate: serviceNameParams"></div>
+      </div>
+    </div>
+    <div class="services-table">
+      <div data-se-group="services__enabledServices" *ngFor="let enabledApp of enabledAppDetails">
+        <div class="row" (click)="getClusters(enabledApp)">
+          <span class="logo"><img class="logo-img" [attr.src]="'assets/images/' + + enabledApp.service.skuName +'-logo-blue.png'" alt=""/></span>
+          <span class="hwx-subtitle name" data-se="services__enabledServices-serviceName">{{ enabledApp.service.sku.description }}</span>
+          <span class="divider hwx-inline-desc"> | </span>
+          <span class="hwx-inline-desc">{{"pages.services.labels.smartSenseId" | translate}} - </span>
+          <span class="hwx-desc smart-sense">{{enabledApp.service.enabledSku.smartSenseId}}</span>
+          <span class="hwx-desc action pull-right" data-se="services__enabledServices_showClustersButton"><i class="fa fa-chevron-down"></i></span>
+          <span *ngIf="enabledApp.isOpen" (click)="getClusters(enabledApp)" class="hwx-desc action pull-right"><i class="fa fa-refresh"></i></span>
+        </div>
+        <div *ngIf="enabledApp.isOpen" data-se-group="services__enabledServices-clusterList" class="inner-list">
+          <div class="pull-right">
+            <input type="checkbox" class="cluster-check" name="show-all-clusters" [(ngModel)]="enabledApp.showAll"/> Show All Clusters
+          </div>
+          <table *ngIf="enabledApp.isOpen" class="mdl-data-table mdl-js-data-table" dp-config-table (onSort)="onSort($event)">
+            <thead>
+              <th class="mdl-data-table__cell--non-numeric"></th>
+              <th class="mdl-data-table__cell--non-numeric">
+                <dp-config-sorter [sortBy]="'name'">  {{"common.clusters" | translate}} </dp-config-sorter>
+              </th>
+              <th class="mdl-data-table__cell--non-numeric">
+                <dp-config-sorter [sortBy]="'name'">  {{"pages.services.labels.action" | translate}} </dp-config-sorter>
+              </th>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let cluster of enabledApp.clustersInfo">
+                <tr *ngIf="!cluster.dependenciesMet || enabledApp.showAll">
+                  <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable status-col">
+                    <i *ngIf="cluster.syncInProgress" class="fa fa-spinner fa-spin"></i>
+                    <i *ngIf="cluster.synced === false" title="{{'pages.services.labels.syncFailed' | translate}}" class="fa fa-exclamation-triangle"></i>
+                  </td>
+                  <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">{{cluster.name}}</td>
+                  <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">
+                    <button *ngIf="!cluster.dependenciesMet" id="enable-service-{{cluster.dpClusterId}}" class="mdl-button btn-hwx-primary enable-btn" (click)="enableServiceOnCluster(cluster.dpClusterId, enabledApp.service)">{{'pages.services.labels.enable' | translate}}</button>
+                    <span *ngIf="cluster.dependenciesMet">{{"pages.services.labels.enabled" | translate}}</span>
+                    <span *ngIf="cluster.dependenciesMet && cluster.optionalDependencies && cluster.optionalDependenciesMet === false">
+                      <button id="add-optional-service-{{cluster.dpClusterId}}" class="mdl-button btn-hwx-secondary additional-service-btn" (click)="enableServiceOnCluster(cluster.dpClusterId, enabledApp.service)">{{'pages.services.labels.addOptionalServices' | translate}}</button>
+                    </span>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="" *ngIf="availableServices.length > 0">
+    <div class="title-pane">
+      <span class="hwx-title">{{"pages.services.labels.availableServices" | translate}}</span>
+    </div>
+    <div class="content-pane">
+      <div class="services-list">
+        <div data-se-group="services__availableServices" *ngFor="let service of availableServices; let i = index" class="service-item pull-left">
+          <div class="logo-wrapper borderBox" title="{{ service.skuName }}">
+            <img class="logo-img" [attr.src]="'assets/images/' + service.skuName +'-logo-blue.png'" alt=""/>
+            <button *ngIf="!service.fetchingStatus && service.installed"
+              id="enable-{{service.skuName}}-btn"
+              data-se="services__availableServices-enable-button"
+              type="button"
+              class="btn-hwx-primary action-btn"
+              [routerLink]="['/infra/services', service.skuName, 'verify']">
+              {{"pages.services.labels.enable" | translate}}
+            </button>
+            <button *ngIf="!service.fetchingStatus && !service.installed"
+              id="enable-{{service.skuName}}-btn"
+              data-se="services__availableServices-enable-button"
+              type="button"
+              class="btn-hwx-primary action-btn not-installed-btn"
+              (click)="showMessage(service)">
+              <i class="fa fa-exclamation-triangle"></i>&nbsp;{{"pages.services.labels.notInstalled" | translate}}
+              <span class="know-more-link">{{"pages.services.labels.knowMore" | translate}}</span>
+            </button>
+            <button *ngIf="!service.fetchingStatus && service.installed && !service.healthy"
+              id="enable-{{service.skuName}}-btn"
+              data-se="services__availableServices-enable-button"
+              type="button"
+              class="btn-hwx-primary action-btn"
+              (click)="showWarning(service)">
+              {{"pages.services.labels.enable" | translate}}
+            </button>
+            <button *ngIf="service.fetchingStatus"
+              id="enable-{{service.skuName}}-btn"
+              data-se="services__availableServices-enable-button"
+              type="button"
+              class="btn-hwx-primary action-btn">
+              <i class="fa fa fa-spinner fa-spin"></i>
+            </button>
+          </div>
+          <div class="service-name hwx-desc"> {{ service.sku.description }}</div>
+          <div class="version hwx-inline-desc">v1.0.0
+            <span class="pull-right">
+              <i class="fa fa fa-spinner fa-spin" *ngIf="service.fetchingStatus" title="Fetching service status.."></i>
+              <i class="fa fa-circle not-installed" *ngIf="!service.fetchingStatus && !service.installed" title="Service is not yet installed"></i>
+              <i class="fa fa-exclamation-triangle unhealthy" *ngIf="!service.fetchingStatus && service.installed && !service.healthy" title="Service is installed but not healthy"></i>
+              <i class="fa fa-check-circle installed" *ngIf="!service.fetchingStatus && service.installed && service.healthy" title="Service is installed"></i>
+            </span>
+          </div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+

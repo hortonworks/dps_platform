@@ -1,0 +1,666 @@
+{
+  "href" : "http://104.196.95.2:8080/api/v1/clusters/c1/configurations/service_config_versions?service_name=HIVE&is_current=true",
+  "items" : [
+    {
+      "href" : "http://104.196.95.2:8080/api/v1/clusters/c1/configurations/service_config_versions?service_name=HIVE&service_config_version=1",
+      "cluster_name" : "c1",
+      "configurations" : [
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "beeline-log4j2",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\nstatus = INFO\nname = BeelineLog4j2\npackages = org.apache.hadoop.hive.ql.log\n\n# list of properties\nproperty.hive.log.level = {{hive_log_level}}\nproperty.hive.root.logger = console\n\n# list of all appenders\nappenders = console\n\n# console appender\nappender.console.type = Console\nappender.console.name = console\nappender.console.target = SYSTEM_ERR\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{yy/MM/dd HH:mm:ss} [%t]: %p %c{2}: %m%n\n\n# list of all loggers\nloggers = HiveConnection\n\n# HiveConnection logs useful info for dynamic service discovery\nlogger.HiveConnection.name = org.apache.hive.jdbc.HiveConnection\nlogger.HiveConnection.level = INFO\n\n# root logger\nrootLogger.level = ${sys:hive.log.level}\nrootLogger.appenderRefs = root\nrootLogger.appenderRef.root.ref = ${sys:hive.root.logger}"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hcat-env",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n      # Licensed to the Apache Software Foundation (ASF) under one\n      # or more contributor license agreements. See the NOTICE file\n      # distributed with this work for additional information\n      # regarding copyright ownership. The ASF licenses this file\n      # to you under the Apache License, Version 2.0 (the\n      # \"License\"); you may not use this file except in compliance\n      # with the License. You may obtain a copy of the License at\n      #\n      # http://www.apache.org/licenses/LICENSE-2.0\n      #\n      # Unless required by applicable law or agreed to in writing, software\n      # distributed under the License is distributed on an \"AS IS\" BASIS,\n      # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n      # See the License for the specific language governing permissions and\n      # limitations under the License.\n\n      JAVA_HOME={{java64_home}}\n      HCAT_PID_DIR={{hcat_pid_dir}}/\n      HCAT_LOG_DIR={{hcat_log_dir}}/\n      HCAT_CONF_DIR={{hcat_conf_dir}}\n      HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\n      #DBROOT is the path where the connector jars are downloaded\n      DBROOT={{hcat_dbroot}}\n      USER={{hcat_user}}\n      METASTORE_PORT={{hive_metastore_port}}"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-atlas-application.properties",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "atlas.hook.hive.keepAliveTime" : "10",
+            "atlas.hook.hive.maxThreads" : "5",
+            "atlas.hook.hive.minThreads" : "5",
+            "atlas.hook.hive.numRetries" : "3",
+            "atlas.hook.hive.queueSize" : "1000",
+            "atlas.hook.hive.synchronous" : "false"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-env",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "alert_ldap_password" : "",
+            "alert_ldap_username" : "",
+            "content" : "\n      export HADOOP_USER_CLASSPATH_FIRST=true  #this prevents old metrics libs from mapreduce lib from bringing in old jar deps overriding HIVE_LIB\n      if [ \"$SERVICE\" = \"cli\" ]; then\n      if [ -z \"$DEBUG\" ]; then\n      export HADOOP_OPTS=\"$HADOOP_OPTS -XX:NewRatio=12 -XX:MaxHeapFreeRatio=40 -XX:MinHeapFreeRatio=15 -XX:+UseNUMA -XX:+UseParallelGC -XX:-UseGCOverheadLimit\"\n      else\n      export HADOOP_OPTS=\"$HADOOP_OPTS -XX:NewRatio=12 -XX:MaxHeapFreeRatio=40 -XX:MinHeapFreeRatio=15 -XX:-UseGCOverheadLimit\"\n      fi\n      fi\n\n      # The heap size of the jvm stared by hive shell script can be controlled via:\n\n      if [ \"$SERVICE\" = \"metastore\" ]; then\n      export HADOOP_HEAPSIZE={{hive_metastore_heapsize}} # Setting for HiveMetastore\n      else\n      export HADOOP_HEAPSIZE={{hive_heapsize}} # Setting for HiveServer2 and Client\n      fi\n\n      export HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS  -Xmx${HADOOP_HEAPSIZE}m\"\n      export HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS{{heap_dump_opts}}\"\n\n      # Larger heap size may be required when running queries over large number of files or partitions.\n      # By default hive shell scripts use a heap size of 256 (MB).  Larger heap size would also be\n      # appropriate for hive server (hwi etc).\n\n\n      # Set HADOOP_HOME to point to a specific hadoop install directory\n      HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\n\n      export HIVE_HOME=${HIVE_HOME:-{{hive_home_dir}}}\n\n      # Hive Configuration Directory can be controlled by:\n      export HIVE_CONF_DIR=${HIVE_CONF_DIR:-{{hive_config_dir}}}\n\n      # Folder containing extra libraries required for hive compilation/execution can be controlled by:\n      if [ \"${HIVE_AUX_JARS_PATH}\" != \"\" ]; then\n        if [ -f \"${HIVE_AUX_JARS_PATH}\" ]; then\n          export HIVE_AUX_JARS_PATH=${HIVE_AUX_JARS_PATH}\n        elif [ -d \"/usr/hdp/current/hive-webhcat/share/hcatalog\" ]; then\n          export HIVE_AUX_JARS_PATH=/usr/hdp/current/hive-webhcat/share/hcatalog/hive-hcatalog-core.jar\n        fi\n      elif [ -d \"/usr/hdp/current/hive-webhcat/share/hcatalog\" ]; then\n        export HIVE_AUX_JARS_PATH=/usr/hdp/current/hive-webhcat/share/hcatalog/hive-hcatalog-core.jar\n      fi\n\n      export METASTORE_PORT={{hive_metastore_port}}\n\n      {% if sqla_db_used or lib_dir_available %}\n      export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:{{jdbc_libs_dir}}\"\n      export JAVA_LIBRARY_PATH=\"$JAVA_LIBRARY_PATH:{{jdbc_libs_dir}}\"\n      {% endif %}",
+            "enable_heap_dump" : "false",
+            "hcat_log_dir" : "/var/log/webhcat",
+            "hcat_pid_dir" : "/var/run/webhcat",
+            "hcat_user" : "hcat",
+            "heap_dump_location" : "/tmp",
+            "hive.atlas.hook" : "false",
+            "hive.client.heapsize" : "1024",
+            "hive.heapsize" : "2762",
+            "hive.log.level" : "INFO",
+            "hive.metastore.heapsize" : "920",
+            "hive_ambari_database" : "MySQL",
+            "hive_database" : "New MySQL Database",
+            "hive_database_name" : "hive",
+            "hive_database_type" : "mysql",
+            "hive_exec_orc_storage_strategy" : "SPEED",
+            "hive_log_dir" : "/var/log/hive",
+            "hive_pid_dir" : "/var/run/hive",
+            "hive_security_authorization" : "None",
+            "hive_timeline_logging_enabled" : "true",
+            "hive_txn_acid" : "off",
+            "hive_user" : "hive",
+            "hive_user_nofile_limit" : "32000",
+            "hive_user_nproc_limit" : "16000",
+            "webhcat_user" : "hcat"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-exec-log4j",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# Define some default values that can be overridden by system properties\n\nhive.log.threshold=ALL\nhive.root.logger={{hive_log_level}},FA\nhive.log.dir=${java.io.tmpdir}/${user.name}\nhive.query.id=hadoop\nhive.log.file=${hive.query.id}.log\n\n# Define the root logger to the system property \"hadoop.root.logger\".\nlog4j.rootLogger=${hive.root.logger}, EventCounter\n\n# Logging Threshold\nlog4j.threshhold=${hive.log.threshold}\n\n#\n# File Appender\n#\n\nlog4j.appender.FA=org.apache.log4j.FileAppender\nlog4j.appender.FA.File=${hive.log.dir}/${hive.log.file}\nlog4j.appender.FA.layout=org.apache.log4j.PatternLayout\n\n# Pattern format: Date LogLevel LoggerName LogMessage\n#log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %p %c: %m%n\n# Debugging Pattern format\nlog4j.appender.FA.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n\n\n\n#\n# console\n# Add \"console\" to rootlogger above if you want to use this\n#\n\nlog4j.appender.console=org.apache.log4j.ConsoleAppender\nlog4j.appender.console.target=System.err\nlog4j.appender.console.layout=org.apache.log4j.PatternLayout\nlog4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{2}: %m%n\n\n#custom logging levels\n#log4j.logger.xxx=DEBUG\n\n#\n# Event Counter Appender\n# Sends counts of logging messages at different severity levels to Hadoop Metrics.\n#\nlog4j.appender.EventCounter=org.apache.hadoop.hive.shims.HiveEventCounter\n\n\nlog4j.category.DataNucleus=ERROR,FA\nlog4j.category.Datastore=ERROR,FA\nlog4j.category.Datastore.Schema=ERROR,FA\nlog4j.category.JPOX.Datastore=ERROR,FA\nlog4j.category.JPOX.Plugin=ERROR,FA\nlog4j.category.JPOX.MetaData=ERROR,FA\nlog4j.category.JPOX.Query=ERROR,FA\nlog4j.category.JPOX.General=ERROR,FA\nlog4j.category.JPOX.Enhancer=ERROR,FA\n\n\n# Silence useless ZK logs\nlog4j.logger.org.apache.zookeeper.server.NIOServerCnxn=WARN,FA\nlog4j.logger.org.apache.zookeeper.ClientCnxnSocketNIO=WARN,FA"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-exec-log4j2",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\nstatus = INFO\nname = HiveExecLog4j2\npackages = org.apache.hadoop.hive.ql.log\n\n# list of properties\nproperty.hive.log.level = {{hive_log_level}}\nproperty.hive.root.logger = FA\nproperty.hive.query.id = hadoop\nproperty.hive.log.dir = ${sys:java.io.tmpdir}/${sys:user.name}\nproperty.hive.log.file = ${sys:hive.query.id}.log\n\n# list of all appenders\nappenders = console, FA\n\n# console appender\nappender.console.type = Console\nappender.console.name = console\nappender.console.target = SYSTEM_ERR\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{yy/MM/dd HH:mm:ss} [%t]: %p %c{2}: %m%n\n\n# simple file appender\nappender.FA.type = File\nappender.FA.name = FA\nappender.FA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}\nappender.FA.layout.type = PatternLayout\nappender.FA.layout.pattern = %d{ISO8601} %-5p [%t]: %c{2} (%F:%M(%L)) - %m%n\n\n# list of all loggers\nloggers = NIOServerCnxn, ClientCnxnSocketNIO, DataNucleus, Datastore, JPOX\n\nlogger.NIOServerCnxn.name = org.apache.zookeeper.server.NIOServerCnxn\nlogger.NIOServerCnxn.level = WARN\n\nlogger.ClientCnxnSocketNIO.name = org.apache.zookeeper.ClientCnxnSocketNIO\nlogger.ClientCnxnSocketNIO.level = WARN\n\nlogger.DataNucleus.name = DataNucleus\nlogger.DataNucleus.level = ERROR\n\nlogger.Datastore.name = Datastore\nlogger.Datastore.level = ERROR\n\nlogger.JPOX.name = JPOX\nlogger.JPOX.level = ERROR\n\n# root logger\nrootLogger.level = ${sys:hive.log.level}\nrootLogger.appenderRefs = root\nrootLogger.appenderRef.root.ref = ${sys:hive.root.logger}"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-interactive-env",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n      if [ \"$SERVICE\" = \"cli\" ]; then\n      if [ -z \"$DEBUG\" ]; then\n      export HADOOP_OPTS=\"$HADOOP_OPTS -XX:NewRatio=12 -XX:MaxHeapFreeRatio=40 -XX:MinHeapFreeRatio=15 -XX:+UseParNewGC -XX:-UseGCOverheadLimit\"\n      else\n      export HADOOP_OPTS=\"$HADOOP_OPTS -XX:NewRatio=12 -XX:MaxHeapFreeRatio=40 -XX:MinHeapFreeRatio=15 -XX:-UseGCOverheadLimit\"\n      fi\n      fi\n\n      # The heap size of the jvm stared by hive shell script can be controlled via:\n\n      if [ \"$SERVICE\" = \"metastore\" ]; then\n      export HADOOP_HEAPSIZE={{hive_metastore_heapsize}} # Setting for HiveMetastore\n      else\n      export HADOOP_HEAPSIZE={{hive_interactive_heapsize}} # Setting for HiveServer2 and Client\n      fi\n\n      export HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS  -Xmx${HADOOP_HEAPSIZE}m\"\n      export HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS{{heap_dump_opts}}\"\n\n      # Larger heap size may be required when running queries over large number of files or partitions.\n      # By default hive shell scripts use a heap size of 256 (MB).  Larger heap size would also be\n      # appropriate for hive server (hwi etc).\n\n\n      # Set HADOOP_HOME to point to a specific hadoop install directory\n      HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\n\n      # Hive Configuration Directory can be controlled by:\n      export HIVE_CONF_DIR={{hive_server_interactive_conf_dir}}\n\n      # Add additional hcatalog jars\n      if [ \"${HIVE_AUX_JARS_PATH}\" != \"\" ]; then\n        export HIVE_AUX_JARS_PATH=${HIVE_AUX_JARS_PATH}\n      else\n        export HIVE_AUX_JARS_PATH=/usr/hdp/current/hive-server2-hive2/lib/hive-hcatalog-core.jar\n      fi\n\n      export METASTORE_PORT={{hive_metastore_port}}\n\n      # Spark assembly contains a conflicting copy of HiveConf from hive-1.2\n      export HIVE_SKIP_SPARK_ASSEMBLY=true",
+            "enable_hive_interactive" : "false",
+            "hive_aux_jars" : "",
+            "hive_heapsize" : "512",
+            "llap_app_name" : "llap0",
+            "llap_extra_slider_opts" : "",
+            "llap_headroom_space" : "12288",
+            "llap_heap_size" : "0",
+            "llap_java_opts" : "-XX:+AlwaysPreTouch {% if java_version > 7 %}-XX:+UseG1GC -XX:TLABSize=8m -XX:+ResizeTLAB -XX:+UseNUMA -XX:+AggressiveOpts -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=200{% else %}-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseParallelGC{% endif %}{{heap_dump_opts}}",
+            "llap_log_level" : "INFO",
+            "num_llap_nodes" : "1",
+            "num_llap_nodes_for_llap_daemons" : "1",
+            "num_retries_for_checking_llap_status" : "20",
+            "slider_am_container_mb" : "341"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-interactive-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "hive.auto.convert.join.noconditionaltask.size" : "1000000000",
+            "hive.driver.parallel.compilation" : "true",
+            "hive.exec.orc.split.strategy" : "HYBRID",
+            "hive.execution.engine" : "tez",
+            "hive.execution.mode" : "llap",
+            "hive.llap.auto.allow.uber" : "false",
+            "hive.llap.client.consistent.splits" : "true",
+            "hive.llap.daemon.am.liveness.heartbeat.interval.ms" : "10000ms",
+            "hive.llap.daemon.logger" : "query-routing",
+            "hive.llap.daemon.num.executors" : "1",
+            "hive.llap.daemon.queue.name" : "default",
+            "hive.llap.daemon.rpc.port" : "0",
+            "hive.llap.daemon.service.hosts" : "@llap0",
+            "hive.llap.daemon.task.scheduler.enable.preemption" : "true",
+            "hive.llap.daemon.vcpus.per.instance" : "${hive.llap.daemon.num.executors}",
+            "hive.llap.daemon.yarn.container.mb" : "0",
+            "hive.llap.daemon.yarn.shuffle.port" : "15551",
+            "hive.llap.enable.grace.join.in.llap" : "false",
+            "hive.llap.execution.mode" : "only",
+            "hive.llap.io.enabled" : "true",
+            "hive.llap.io.memory.mode" : "",
+            "hive.llap.io.memory.size" : "0",
+            "hive.llap.io.threadpool.size" : "2",
+            "hive.llap.io.use.lrfu" : "true",
+            "hive.llap.management.rpc.port" : "15004",
+            "hive.llap.object.cache.enabled" : "true",
+            "hive.llap.task.scheduler.locality.delay" : "8000",
+            "hive.llap.zk.sm.connectionString" : "yusaku-beacon-3.c.pramod-thangali.internal:2181,yusaku-beacon-1.c.pramod-thangali.internal:2181,yusaku-beacon-2.c.pramod-thangali.internal:2181",
+            "hive.mapjoin.hybridgrace.hashtable" : "true",
+            "hive.metastore.event.listeners" : "",
+            "hive.metastore.uris" : "",
+            "hive.optimize.dynamic.partition.hashjoin" : "true",
+            "hive.prewarm.enabled" : "false",
+            "hive.server2.enable.doAs" : "false",
+            "hive.server2.tez.default.queues" : "default",
+            "hive.server2.tez.initialize.default.sessions" : "true",
+            "hive.server2.tez.sessions.custom.queue.allowed" : "ignore",
+            "hive.server2.tez.sessions.per.default.queue" : "1",
+            "hive.server2.tez.sessions.restricted.configs" : "hive.execution.mode,hive.execution.engine",
+            "hive.server2.thrift.http.port" : "10501",
+            "hive.server2.thrift.port" : "10500",
+            "hive.server2.webui.port" : "10502",
+            "hive.server2.webui.use.ssl" : "false",
+            "hive.server2.zookeeper.namespace" : "hiveserver2-hive2",
+            "hive.tez.bucket.pruning" : "true",
+            "hive.tez.cartesian-product.enabled" : "true",
+            "hive.tez.container.size" : "682",
+            "hive.tez.exec.print.summary" : "true",
+            "hive.tez.input.generate.consistent.splits" : "true",
+            "hive.vectorized.execution.mapjoin.minmax.enabled" : "true",
+            "hive.vectorized.execution.mapjoin.native.enabled" : "true",
+            "hive.vectorized.execution.mapjoin.native.fast.hashtable.enabled" : "true",
+            "hive.vectorized.execution.reduce.enabled" : "true",
+            "llap.shuffle.connection-keep-alive.enable" : "true",
+            "llap.shuffle.connection-keep-alive.timeout" : "60"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-log4j",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# Define some default values that can be overridden by system properties\nhive.log.threshold=ALL\nhive.root.logger={{hive_log_level}},DRFA\nhive.log.dir=${java.io.tmpdir}/${user.name}\nhive.log.file=hive.log\n\n# Define the root logger to the system property \"hadoop.root.logger\".\nlog4j.rootLogger=${hive.root.logger}, EventCounter\n\n# Logging Threshold\nlog4j.threshold=${hive.log.threshold}\n\n#\n# Daily Rolling File Appender\n#\n# Use the PidDailyerRollingFileAppend class instead if you want to use separate log files\n# for different CLI session.\n#\n# log4j.appender.DRFA=org.apache.hadoop.hive.ql.log.PidDailyRollingFileAppender\n\nlog4j.appender.DRFA=org.apache.log4j.DailyRollingFileAppender\n\nlog4j.appender.DRFA.File=${hive.log.dir}/${hive.log.file}\n\n# Rollver at midnight\nlog4j.appender.DRFA.DatePattern=.yyyy-MM-dd\n\n# 30-day backup\n#log4j.appender.DRFA.MaxBackupIndex= {{hive_log_maxbackupindex}}\nlog4j.appender.DRFA.MaxFileSize = {{hive_log_maxfilesize}}MB\nlog4j.appender.DRFA.layout=org.apache.log4j.PatternLayout\n\n\n# Pattern format: Date LogLevel LoggerName LogMessage\n#log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %p %c: %m%n\n# Debugging Pattern format\nlog4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %-5p [%t]: %c{2} (%F:%M(%L)) - %m%n\n\n\n#\n# console\n# Add \"console\" to rootlogger above if you want to use this\n#\n\nlog4j.appender.console=org.apache.log4j.ConsoleAppender\nlog4j.appender.console.target=System.err\nlog4j.appender.console.layout=org.apache.log4j.PatternLayout\nlog4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} [%t]: %p %c{2}: %m%n\nlog4j.appender.console.encoding=UTF-8\n\n#custom logging levels\n#log4j.logger.xxx=DEBUG\n\n#\n# Event Counter Appender\n# Sends counts of logging messages at different severity levels to Hadoop Metrics.\n#\nlog4j.appender.EventCounter=org.apache.hadoop.hive.shims.HiveEventCounter\n\n\nlog4j.category.DataNucleus=ERROR,DRFA\nlog4j.category.Datastore=ERROR,DRFA\nlog4j.category.Datastore.Schema=ERROR,DRFA\nlog4j.category.JPOX.Datastore=ERROR,DRFA\nlog4j.category.JPOX.Plugin=ERROR,DRFA\nlog4j.category.JPOX.MetaData=ERROR,DRFA\nlog4j.category.JPOX.Query=ERROR,DRFA\nlog4j.category.JPOX.General=ERROR,DRFA\nlog4j.category.JPOX.Enhancer=ERROR,DRFA\n\n\n# Silence useless ZK logs\nlog4j.logger.org.apache.zookeeper.server.NIOServerCnxn=WARN,DRFA\nlog4j.logger.org.apache.zookeeper.ClientCnxnSocketNIO=WARN,DRFA",
+            "hive_log_maxbackupindex" : "30",
+            "hive_log_maxfilesize" : "256"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-log4j2",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\nstatus = INFO\nname = HiveLog4j2\npackages = org.apache.hadoop.hive.ql.log\n\n# list of properties\nproperty.hive.log.level = {{hive_log_level}}\nproperty.hive.root.logger = DRFA\nproperty.hive.log.dir = ${sys:java.io.tmpdir}/${sys:user.name}\nproperty.hive.log.file = hive.log\n\n# list of all appenders\nappenders = console, DRFA\n\n# console appender\nappender.console.type = Console\nappender.console.name = console\nappender.console.target = SYSTEM_ERR\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{yy/MM/dd HH:mm:ss} [%t]: %p %c{2}: %m%n\n\n# daily rolling file appender\nappender.DRFA.type = RollingFile\nappender.DRFA.name = DRFA\nappender.DRFA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}\n# Use %pid in the filePattern to append process-id@host-name to the filename if you want separate log files for different CLI session\nappender.DRFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.%d{yyyy-MM-dd}_%i.gz\nappender.DRFA.layout.type = PatternLayout\nappender.DRFA.layout.pattern = %d{ISO8601} %-5p [%t]: %c{2} (%F:%M(%L)) - %m%n\nappender.DRFA.policies.type = Policies\nappender.DRFA.policies.time.type = TimeBasedTriggeringPolicy\nappender.DRFA.policies.time.interval = 1\nappender.DRFA.policies.time.modulate = true\nappender.DRFA.strategy.type = DefaultRolloverStrategy\nappender.DRFA.strategy.max = {{hive2_log_maxbackupindex}}\nappender.DRFA.policies.fsize.type = SizeBasedTriggeringPolicy\nappender.DRFA.policies.fsize.size = {{hive2_log_maxfilesize}}MB\n\n# list of all loggers\nloggers = NIOServerCnxn, ClientCnxnSocketNIO, DataNucleus, Datastore, JPOX\n\nlogger.NIOServerCnxn.name = org.apache.zookeeper.server.NIOServerCnxn\nlogger.NIOServerCnxn.level = WARN\n\nlogger.ClientCnxnSocketNIO.name = org.apache.zookeeper.ClientCnxnSocketNIO\nlogger.ClientCnxnSocketNIO.level = WARN\n\nlogger.DataNucleus.name = DataNucleus\nlogger.DataNucleus.level = ERROR\n\nlogger.Datastore.name = Datastore\nlogger.Datastore.level = ERROR\n\nlogger.JPOX.name = JPOX\nlogger.JPOX.level = ERROR\n\n# root logger\nrootLogger.level = ${sys:hive.log.level}\nrootLogger.appenderRefs = root\nrootLogger.appenderRef.root.ref = ${sys:hive.root.logger}",
+            "hive2_log_maxbackupindex" : "30",
+            "hive2_log_maxfilesize" : "256"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-logsearch-conf",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "component_mappings" : "HIVE_METASTORE:hive_metastore;HIVE_SERVER:hive_hiveserver2;WEBHCAT_SERVER:webhcat_server",
+            "content" : "\n{\n  \"input\":[\n    {\n      \"type\":\"hive_hiveserver2\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/hive-env/hive_log_dir', '/var/log/hive')}}/hiveserver2.log\"\n    },\n    {\n      \"type\":\"hive_metastore\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/hive-env/hive_log_dir', '/var/log/hive')}}/hivemetastore.log\"\n    },\n    {\n      \"type\": \"webhcat_server\",\n      \"rowntype\":\"service\",\n      \"path\":\"{{default('configurations/hive-env/hcat_log_dir', '/var/log/webhcat')}}/webhcat.log\"\n    }\n  ],\n  \"filter\":[\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"hive_hiveserver2\",\n            \"hive_metastore\"\n          ]\n         }\n       },\n      \"log4j_format\":\"%d{ISO8601} %-5p [%t]: %c{2} (%F:%M(%L)) - %m%n\",\n      \"multiline_pattern\":\"^(%{TIMESTAMP_ISO8601:logtime})\",\n      \"message_pattern\":\"(?m)^%{TIMESTAMP_ISO8601:logtime}%{SPACE}%{LOGLEVEL:level}%{SPACE}\\\\[%{DATA:thread_name}\\\\]:%{SPACE}%{JAVACLASS:logger_name}%{SPACE}\\\\(%{JAVAFILE:file}:%{JAVAMETHOD:method}\\\\(%{INT:line_number}\\\\)\\\\)%{SPACE}-%{SPACE}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"yyyy-MM-dd HH:mm:ss,SSS\"\n          }\n         }\n       }\n     },\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"webhcat_server\"\n          ]\n         }\n       },\n      \"log4j_format\":\" %-5p | %d{DATE} | %c | %m%n\",\n      \"multiline_pattern\":\"^(%{SPACE}%{LOGLEVEL:level}%{CUSTOM_SEPARATOR}%{CUSTOM_DATESTAMP:logtime})\",\n      \"message_pattern\":\"(?m)^%{SPACE}%{LOGLEVEL:level}%{CUSTOM_SEPARATOR}%{CUSTOM_DATESTAMP:logtime}%{CUSTOM_SEPARATOR}%{JAVACLASS:file}%{CUSTOM_SEPARATOR}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"dd MMM yyyy HH:mm:ss,SSS\"\n          }\n         },\n        \"level\":{\n           \"map_fieldvalue\":{\n             \"pre_value\":\"WARNING\",\n             \"post_value\":\"WARN\"\n            }\n        }\n       }\n     }\n   ]\n }",
+            "service_name" : "Hive"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hivemetastore-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "hive.metastore.metrics.enabled" : "true",
+            "hive.service.metrics.hadoop2.component" : "hivemetastore",
+            "hive.service.metrics.reporter" : "HADOOP2"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hiveserver2-interactive-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "hive.async.log.enabled" : "false",
+            "hive.metastore.metrics.enabled" : "true",
+            "hive.service.metrics.hadoop2.component" : "hiveserver2",
+            "hive.service.metrics.reporter" : "HADOOP2"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hiveserver2-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "hive.metastore.metrics.enabled" : "true",
+            "hive.security.authorization.enabled" : "false",
+            "hive.service.metrics.hadoop2.component" : "hiveserver2",
+            "hive.service.metrics.reporter" : "HADOOP2"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "hive-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "ambari.hive.db.schema.name" : "hive",
+            "atlas.hook.hive.maxThreads" : "1",
+            "atlas.hook.hive.minThreads" : "1",
+            "datanucleus.autoCreateSchema" : "false",
+            "datanucleus.cache.level2.type" : "none",
+            "datanucleus.fixedDatastore" : "true",
+            "hive.auto.convert.join" : "true",
+            "hive.auto.convert.join.noconditionaltask" : "true",
+            "hive.auto.convert.join.noconditionaltask.size" : "286331153",
+            "hive.auto.convert.sortmerge.join" : "true",
+            "hive.auto.convert.sortmerge.join.to.mapjoin" : "false",
+            "hive.cbo.enable" : "true",
+            "hive.cli.print.header" : "false",
+            "hive.cluster.delegation.token.store.class" : "org.apache.hadoop.hive.thrift.ZooKeeperTokenStore",
+            "hive.cluster.delegation.token.store.zookeeper.connectString" : "yusaku-beacon-3.c.pramod-thangali.internal:2181,yusaku-beacon-1.c.pramod-thangali.internal:2181,yusaku-beacon-2.c.pramod-thangali.internal:2181",
+            "hive.cluster.delegation.token.store.zookeeper.znode" : "/hive/cluster/delegation",
+            "hive.compactor.abortedtxn.threshold" : "1000",
+            "hive.compactor.check.interval" : "300L",
+            "hive.compactor.delta.num.threshold" : "10",
+            "hive.compactor.delta.pct.threshold" : "0.1f",
+            "hive.compactor.initiator.on" : "false",
+            "hive.compactor.worker.threads" : "0",
+            "hive.compactor.worker.timeout" : "86400L",
+            "hive.compute.query.using.stats" : "true",
+            "hive.conf.restricted.list" : "hive.security.authenticator.manager,hive.security.authorization.manager,hive.users.in.admin.role",
+            "hive.convert.join.bucket.mapjoin.tez" : "false",
+            "hive.default.fileformat" : "TextFile",
+            "hive.default.fileformat.managed" : "TextFile",
+            "hive.enforce.bucketing" : "true",
+            "hive.enforce.sorting" : "true",
+            "hive.enforce.sortmergebucketmapjoin" : "true",
+            "hive.exec.compress.intermediate" : "false",
+            "hive.exec.compress.output" : "false",
+            "hive.exec.dynamic.partition" : "true",
+            "hive.exec.dynamic.partition.mode" : "strict",
+            "hive.exec.failure.hooks" : "org.apache.hadoop.hive.ql.hooks.ATSHook",
+            "hive.exec.max.created.files" : "100000",
+            "hive.exec.max.dynamic.partitions" : "5000",
+            "hive.exec.max.dynamic.partitions.pernode" : "2000",
+            "hive.exec.orc.compression.strategy" : "SPEED",
+            "hive.exec.orc.default.compress" : "ZLIB",
+            "hive.exec.orc.default.stripe.size" : "67108864",
+            "hive.exec.orc.encoding.strategy" : "SPEED",
+            "hive.exec.parallel" : "false",
+            "hive.exec.parallel.thread.number" : "8",
+            "hive.exec.post.hooks" : "org.apache.hadoop.hive.ql.hooks.ATSHook",
+            "hive.exec.pre.hooks" : "org.apache.hadoop.hive.ql.hooks.ATSHook",
+            "hive.exec.reducers.bytes.per.reducer" : "67108864",
+            "hive.exec.reducers.max" : "1009",
+            "hive.exec.scratchdir" : "/tmp/hive",
+            "hive.exec.submit.local.task.via.child" : "true",
+            "hive.exec.submitviachild" : "false",
+            "hive.execution.engine" : "tez",
+            "hive.fetch.task.aggr" : "false",
+            "hive.fetch.task.conversion" : "more",
+            "hive.fetch.task.conversion.threshold" : "1073741824",
+            "hive.limit.optimize.enable" : "true",
+            "hive.limit.pushdown.memory.usage" : "0.04",
+            "hive.map.aggr" : "true",
+            "hive.map.aggr.hash.force.flush.memory.threshold" : "0.9",
+            "hive.map.aggr.hash.min.reduction" : "0.5",
+            "hive.map.aggr.hash.percentmemory" : "0.5",
+            "hive.mapjoin.bucket.cache.size" : "10000",
+            "hive.mapjoin.optimized.hashtable" : "true",
+            "hive.mapred.reduce.tasks.speculative.execution" : "false",
+            "hive.merge.mapfiles" : "true",
+            "hive.merge.mapredfiles" : "false",
+            "hive.merge.orcfile.stripe.level" : "true",
+            "hive.merge.rcfile.block.level" : "true",
+            "hive.merge.size.per.task" : "256000000",
+            "hive.merge.smallfiles.avgsize" : "16000000",
+            "hive.merge.tezfiles" : "false",
+            "hive.metastore.authorization.storage.checks" : "false",
+            "hive.metastore.cache.pinobjtypes" : "Table,Database,Type,FieldSchema,Order",
+            "hive.metastore.client.connect.retry.delay" : "5s",
+            "hive.metastore.client.socket.timeout" : "1800s",
+            "hive.metastore.connect.retries" : "24",
+            "hive.metastore.execute.setugi" : "true",
+            "hive.metastore.failure.retries" : "24",
+            "hive.metastore.kerberos.keytab.file" : "/etc/security/keytabs/hive.service.keytab",
+            "hive.metastore.kerberos.principal" : "hive/_HOST@EXAMPLE.COM",
+            "hive.metastore.pre.event.listeners" : "org.apache.hadoop.hive.ql.security.authorization.AuthorizationPreEventListener",
+            "hive.metastore.sasl.enabled" : "false",
+            "hive.metastore.server.max.threads" : "100000",
+            "hive.metastore.uris" : "thrift://yusaku-beacon-2.c.pramod-thangali.internal:9083",
+            "hive.metastore.warehouse.dir" : "/apps/hive/warehouse",
+            "hive.optimize.bucketmapjoin" : "true",
+            "hive.optimize.bucketmapjoin.sortedmerge" : "false",
+            "hive.optimize.constant.propagation" : "true",
+            "hive.optimize.index.filter" : "true",
+            "hive.optimize.metadataonly" : "true",
+            "hive.optimize.null.scan" : "true",
+            "hive.optimize.reducededuplication" : "true",
+            "hive.optimize.reducededuplication.min.reducer" : "4",
+            "hive.optimize.sort.dynamic.partition" : "false",
+            "hive.orc.compute.splits.num.threads" : "10",
+            "hive.orc.splits.include.file.footer" : "false",
+            "hive.prewarm.enabled" : "false",
+            "hive.prewarm.numcontainers" : "3",
+            "hive.security.authenticator.manager" : "org.apache.hadoop.hive.ql.security.ProxyUserAuthenticator",
+            "hive.security.authorization.enabled" : "false",
+            "hive.security.authorization.manager" : "org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory",
+            "hive.security.metastore.authenticator.manager" : "org.apache.hadoop.hive.ql.security.HadoopDefaultMetastoreAuthenticator",
+            "hive.security.metastore.authorization.auth.reads" : "true",
+            "hive.security.metastore.authorization.manager" : "org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider",
+            "hive.server2.allow.user.substitution" : "true",
+            "hive.server2.authentication" : "NONE",
+            "hive.server2.authentication.spnego.keytab" : "HTTP/_HOST@EXAMPLE.COM",
+            "hive.server2.authentication.spnego.principal" : "/etc/security/keytabs/spnego.service.keytab",
+            "hive.server2.enable.doAs" : "true",
+            "hive.server2.logging.operation.enabled" : "true",
+            "hive.server2.logging.operation.log.location" : "/tmp/hive/operation_logs",
+            "hive.server2.max.start.attempts" : "5",
+            "hive.server2.support.dynamic.service.discovery" : "true",
+            "hive.server2.table.type.mapping" : "CLASSIC",
+            "hive.server2.tez.default.queues" : "default",
+            "hive.server2.tez.initialize.default.sessions" : "false",
+            "hive.server2.tez.sessions.per.default.queue" : "1",
+            "hive.server2.thrift.http.path" : "cliservice",
+            "hive.server2.thrift.http.port" : "10001",
+            "hive.server2.thrift.max.worker.threads" : "500",
+            "hive.server2.thrift.port" : "10000",
+            "hive.server2.thrift.sasl.qop" : "auth",
+            "hive.server2.transport.mode" : "binary",
+            "hive.server2.use.SSL" : "false",
+            "hive.server2.zookeeper.namespace" : "hiveserver2",
+            "hive.smbjoin.cache.rows" : "10000",
+            "hive.stats.autogather" : "true",
+            "hive.stats.dbclass" : "fs",
+            "hive.stats.fetch.column.stats" : "true",
+            "hive.stats.fetch.partition.stats" : "true",
+            "hive.support.concurrency" : "false",
+            "hive.tez.auto.reducer.parallelism" : "true",
+            "hive.tez.container.size" : "1024",
+            "hive.tez.cpu.vcores" : "-1",
+            "hive.tez.dynamic.partition.pruning" : "true",
+            "hive.tez.dynamic.partition.pruning.max.data.size" : "104857600",
+            "hive.tez.dynamic.partition.pruning.max.event.size" : "1048576",
+            "hive.tez.input.format" : "org.apache.hadoop.hive.ql.io.HiveInputFormat",
+            "hive.tez.java.opts" : "-server -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseG1GC -XX:+ResizeTLAB -XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps",
+            "hive.tez.log.level" : "INFO",
+            "hive.tez.max.partition.factor" : "2.0",
+            "hive.tez.min.partition.factor" : "0.25",
+            "hive.tez.smb.number.waves" : "0.5",
+            "hive.txn.manager" : "org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager",
+            "hive.txn.max.open.batch" : "1000",
+            "hive.txn.timeout" : "300",
+            "hive.user.install.directory" : "/user/",
+            "hive.vectorized.execution.enabled" : "true",
+            "hive.vectorized.execution.reduce.enabled" : "false",
+            "hive.vectorized.groupby.checkinterval" : "4096",
+            "hive.vectorized.groupby.flush.percent" : "0.1",
+            "hive.vectorized.groupby.maxentries" : "100000",
+            "hive.zookeeper.client.port" : "2181",
+            "hive.zookeeper.namespace" : "hive_zookeeper_namespace",
+            "hive.zookeeper.quorum" : "yusaku-beacon-3.c.pramod-thangali.internal:2181,yusaku-beacon-1.c.pramod-thangali.internal:2181,yusaku-beacon-2.c.pramod-thangali.internal:2181",
+            "javax.jdo.option.ConnectionDriverName" : "com.mysql.jdbc.Driver",
+            "javax.jdo.option.ConnectionPassword" : "SECRET:hive-site:1:javax.jdo.option.ConnectionPassword",
+            "javax.jdo.option.ConnectionURL" : "jdbc:mysql://yusaku-beacon-2.c.pramod-thangali.internal/hive?createDatabaseIfNotExist=true",
+            "javax.jdo.option.ConnectionUserName" : "hive"
+          },
+          "properties_attributes" : {
+            "hidden" : {
+              "javax.jdo.option.ConnectionPassword" : "HIVE_CLIENT,WEBHCAT_SERVER,HCAT,CONFIG_DOWNLOAD"
+            }
+          }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "llap-cli-log4j2",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\nstatus = WARN\nname = LlapCliLog4j2\npackages = org.apache.hadoop.hive.ql.log\n\n# list of properties\nproperty.hive.log.level = WARN\nproperty.hive.root.logger = console\nproperty.hive.log.dir = ${sys:java.io.tmpdir}/${sys:user.name}\nproperty.hive.log.file = llap-cli.log\nproperty.hive.llapstatus.consolelogger.level = INFO\n\n# list of all appenders\nappenders = console, DRFA, llapstatusconsole\n\n# console appender\nappender.console.type = Console\nappender.console.name = console\nappender.console.target = SYSTEM_ERR\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %p %c{2}: %m%n\n\n# llapstatusconsole appender\nappender.llapstatusconsole.type = Console\nappender.llapstatusconsole.name = llapstatusconsole\nappender.llapstatusconsole.target = SYSTEM_OUT\nappender.llapstatusconsole.layout.type = PatternLayout\nappender.llapstatusconsole.layout.pattern = %m%n\n\n# daily rolling file appender\nappender.DRFA.type = RollingRandomAccessFile\nappender.DRFA.name = DRFA\nappender.DRFA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}\n# Use %pid in the filePattern to append process-id@host-name to the filename if you want separate log files for different CLI session\nappender.DRFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.%d{yyyy-MM-dd}_%i\nappender.DRFA.layout.type = PatternLayout\nappender.DRFA.layout.pattern = %d{ISO8601} %5p [%t] %c{2}: %m%n\nappender.DRFA.policies.type = Policies\nappender.DRFA.policies.time.type = TimeBasedTriggeringPolicy\nappender.DRFA.policies.time.interval = 1\nappender.DRFA.policies.time.modulate = true\nappender.DRFA.strategy.type = DefaultRolloverStrategy\nappender.DRFA.strategy.max = {{llap_cli_log_maxbackupindex}}\nappender.DRFA.policies.fsize.type = SizeBasedTriggeringPolicy\nappender.DRFA.policies.fsize.size = {{llap_cli_log_maxfilesize}}MB\n\n# list of all loggers\nloggers = ZooKeeper, DataNucleus, Datastore, JPOX, HadoopConf, LlapStatusServiceDriverConsole\n\nlogger.ZooKeeper.name = org.apache.zookeeper\nlogger.ZooKeeper.level = WARN\n\nlogger.DataNucleus.name = DataNucleus\nlogger.DataNucleus.level = ERROR\n\nlogger.Datastore.name = Datastore\nlogger.Datastore.level = ERROR\n\nlogger.JPOX.name = JPOX\nlogger.JPOX.level = ERROR\n\nlogger.HadoopConf.name = org.apache.hadoop.conf.Configuration\nlogger.HadoopConf.level = ERROR\n\nlogger.LlapStatusServiceDriverConsole.name = LlapStatusServiceDriverConsole\nlogger.LlapStatusServiceDriverConsole.additivity = false\nlogger.LlapStatusServiceDriverConsole.level = ${sys:hive.llapstatus.consolelogger.level}\n\n\n# root logger\nrootLogger.level = ${sys:hive.log.level}\nrootLogger.appenderRefs = root, DRFA\nrootLogger.appenderRef.root.ref = ${sys:hive.root.logger}\nrootLogger.appenderRef.DRFA.ref = DRFA\nlogger.LlapStatusServiceDriverConsole.appenderRefs = llapstatusconsole, DRFA\nlogger.LlapStatusServiceDriverConsole.appenderRef.llapstatusconsole.ref = llapstatusconsole\nlogger.LlapStatusServiceDriverConsole.appenderRef.DRFA.ref = DRFA",
+            "llap_cli_log_maxbackupindex" : "30",
+            "llap_cli_log_maxfilesize" : "256"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "llap-daemon-log4j",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n\n# This is the log4j2 properties file used by llap-daemons. There's several loggers defined, which\n# can be selected while configuring LLAP.\n# Based on the one selected - UI links etc need to be manipulated in the system.\n# Note: Some names and logic is common to this file and llap LogHelpers. Make sure to change that\n# as well, if changing this file.\n\nstatus = INFO\nname = LlapDaemonLog4j2\npackages = org.apache.hadoop.hive.ql.log\n\n# list of properties\nproperty.llap.daemon.log.level = {{hive_log_level}}\nproperty.llap.daemon.root.logger = console\nproperty.llap.daemon.log.dir = .\nproperty.llap.daemon.log.file = llapdaemon.log\nproperty.llap.daemon.historylog.file = llapdaemon_history.log\nproperty.llap.daemon.log.maxfilesize = {{hive_llap_log_maxfilesize}}MB\nproperty.llap.daemon.log.maxbackupindex = {{hive_llap_log_maxbackupindex}}\n\n# list of all appenders\nappenders = console, RFA, HISTORYAPPENDER, query-routing\n\n# console appender\nappender.console.type = Console\nappender.console.name = console\nappender.console.target = SYSTEM_ERR\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{ISO8601} %5p [%t (%X{fragmentId})] %c{2}: %m%n\n\n# rolling file appender\nappender.RFA.type = RollingRandomAccessFile\nappender.RFA.name = RFA\nappender.RFA.fileName = ${sys:llap.daemon.log.dir}/${sys:llap.daemon.log.file}\nappender.RFA.filePattern = ${sys:llap.daemon.log.dir}/${sys:llap.daemon.log.file}_%d{yyyy-MM-dd-HH}_%i.done\nappender.RFA.layout.type = PatternLayout\nappender.RFA.layout.pattern = %d{ISO8601} %-5p [%t (%X{fragmentId})] %c: %m%n\nappender.RFA.policies.type = Policies\nappender.RFA.policies.time.type = TimeBasedTriggeringPolicy\nappender.RFA.policies.time.interval = 1\nappender.RFA.policies.time.modulate = true\nappender.RFA.policies.size.type = SizeBasedTriggeringPolicy\nappender.RFA.policies.size.size = ${sys:llap.daemon.log.maxfilesize}\nappender.RFA.strategy.type = DefaultRolloverStrategy\nappender.RFA.strategy.max = ${sys:llap.daemon.log.maxbackupindex}\n\n# history file appender\nappender.HISTORYAPPENDER.type = RollingRandomAccessFile\nappender.HISTORYAPPENDER.name = HISTORYAPPENDER\nappender.HISTORYAPPENDER.fileName = ${sys:llap.daemon.log.dir}/${sys:llap.daemon.historylog.file}\nappender.HISTORYAPPENDER.filePattern = ${sys:llap.daemon.log.dir}/${sys:llap.daemon.historylog.file}_%d{yyyy-MM-dd}_%i.done\nappender.HISTORYAPPENDER.layout.type = PatternLayout\nappender.HISTORYAPPENDER.layout.pattern = %m%n\nappender.HISTORYAPPENDER.policies.type = Policies\nappender.HISTORYAPPENDER.policies.size.type = SizeBasedTriggeringPolicy\nappender.HISTORYAPPENDER.policies.size.size = ${sys:llap.daemon.log.maxfilesize}\nappender.HISTORYAPPENDER.policies.time.type = TimeBasedTriggeringPolicy\nappender.HISTORYAPPENDER.policies.time.interval = 1\nappender.HISTORYAPPENDER.policies.time.modulate = true\nappender.HISTORYAPPENDER.strategy.type = DefaultRolloverStrategy\nappender.HISTORYAPPENDER.strategy.max = ${sys:llap.daemon.log.maxbackupindex}\n\n# queryId based routing file appender\nappender.query-routing.type = Routing\nappender.query-routing.name = query-routing\nappender.query-routing.routes.type = Routes\nappender.query-routing.routes.pattern = $${ctx:queryId}\n#Purge polciy for query-based Routing Appender\nappender.query-routing.purgePolicy.type = LlapRoutingAppenderPurgePolicy\n# Note: Do not change this name without changing the corresponding entry in LlapConstants\nappender.query-routing.purgePolicy.name = llapLogPurgerQueryRouting\n# default route\nappender.query-routing.routes.route-default.type = Route\nappender.query-routing.routes.route-default.key = $${ctx:queryId}\nappender.query-routing.routes.route-default.ref = RFA\n# queryId based route\nappender.query-routing.routes.route-mdc.type = Route\nappender.query-routing.routes.route-mdc.file-mdc.type = LlapWrappedAppender\nappender.query-routing.routes.route-mdc.file-mdc.name = IrrelevantName-query-routing\nappender.query-routing.routes.route-mdc.file-mdc.app.type = RandomAccessFile\nappender.query-routing.routes.route-mdc.file-mdc.app.name = file-mdc\nappender.query-routing.routes.route-mdc.file-mdc.app.fileName = ${sys:llap.daemon.log.dir}/${ctx:queryId}-${ctx:dagId}.log\nappender.query-routing.routes.route-mdc.file-mdc.app.layout.type = PatternLayout\nappender.query-routing.routes.route-mdc.file-mdc.app.layout.pattern = %d{ISO8601} %5p [%t (%X{fragmentId})] %c{2}: %m%n\n\n# list of all loggers\nloggers = PerfLogger, EncodedReader, NIOServerCnxn, ClientCnxnSocketNIO, DataNucleus, Datastore, JPOX, HistoryLogger, LlapIoImpl, LlapIoOrc, LlapIoCache, LlapIoLocking, TezSM, TezSS, TezHC\n\nlogger.TezSM.name = org.apache.tez.runtime.library.common.shuffle.impl.ShuffleManager.fetch\nlogger.TezSM.level = WARN\nlogger.TezSS.name = org.apache.tez.runtime.library.common.shuffle.orderedgrouped.ShuffleScheduler.fetch\nlogger.TezSS.level = WARN\nlogger.TezHC.name = org.apache.tez.http.HttpConnection.url\nlogger.TezHC.level = WARN\n\nlogger.PerfLogger.name = org.apache.hadoop.hive.ql.log.PerfLogger\nlogger.PerfLogger.level = DEBUG\n\nlogger.EncodedReader.name = org.apache.hadoop.hive.ql.io.orc.encoded.EncodedReaderImpl\nlogger.EncodedReader.level = INFO\n\nlogger.LlapIoImpl.name = LlapIoImpl\nlogger.LlapIoImpl.level = INFO\n\nlogger.LlapIoOrc.name = LlapIoOrc\nlogger.LlapIoOrc.level = WARN\n\nlogger.LlapIoCache.name = LlapIoCache\nlogger.LlapIoCache.level = WARN\n\nlogger.LlapIoLocking.name = LlapIoLocking\nlogger.LlapIoLocking.level = WARN\n\nlogger.NIOServerCnxn.name = org.apache.zookeeper.server.NIOServerCnxn\nlogger.NIOServerCnxn.level = WARN\n\nlogger.ClientCnxnSocketNIO.name = org.apache.zookeeper.ClientCnxnSocketNIO\nlogger.ClientCnxnSocketNIO.level = WARN\n\nlogger.DataNucleus.name = DataNucleus\nlogger.DataNucleus.level = ERROR\n\nlogger.Datastore.name = Datastore\nlogger.Datastore.level = ERROR\n\nlogger.JPOX.name = JPOX\nlogger.JPOX.level = ERROR\n\nlogger.HistoryLogger.name = org.apache.hadoop.hive.llap.daemon.HistoryLogger\nlogger.HistoryLogger.level = INFO\nlogger.HistoryLogger.additivity = false\nlogger.HistoryLogger.appenderRefs = HistoryAppender\nlogger.HistoryLogger.appenderRef.HistoryAppender.ref = HISTORYAPPENDER\n\n# root logger\nrootLogger.level = ${sys:llap.daemon.log.level}\nrootLogger.appenderRefs = root\nrootLogger.appenderRef.root.ref = ${sys:llap.daemon.root.logger}",
+            "hive_llap_log_maxbackupindex" : "240",
+            "hive_llap_log_maxfilesize" : "256"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "ranger-hive-audit",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : { },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "ranger-hive-plugin-properties",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : { },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "ranger-hive-policymgr-ssl",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : { },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "ranger-hive-security",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : { },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "tez-interactive-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "tez.am.client.heartbeat.poll.interval.millis" : "6000",
+            "tez.am.client.heartbeat.timeout.secs" : "90",
+            "tez.am.node-blacklisting.enabled" : "false",
+            "tez.am.resource.memory.mb" : "1536",
+            "tez.am.task.listener.thread-count" : "1",
+            "tez.container.max.java.heap.fraction" : "-1",
+            "tez.dag.recovery.enabled" : "false",
+            "tez.grouping.node.local.only" : "true",
+            "tez.history.logging.taskattempt-filters" : "SERVICE_BUSY,EXTERNAL_PREEMPTION",
+            "tez.history.logging.timeline.num-dags-per-group" : "5",
+            "tez.lib.uris" : "/hdp/apps/${hdp.version}/tez_hive2/tez.tar.gz",
+            "tez.runtime.io.sort.mb" : "512",
+            "tez.runtime.pipelined-shuffle.enabled" : "false",
+            "tez.runtime.pipelined.sorter.lazy-allocate.memory" : "true",
+            "tez.runtime.report.partition.stats" : "true",
+            "tez.runtime.shuffle.fetch.buffer.percent" : "0.6",
+            "tez.runtime.shuffle.fetch.verify-disk-checksum" : "false",
+            "tez.runtime.shuffle.memory.limit.percent" : "0.25",
+            "tez.runtime.unordered.output.buffer.size-mb" : "100",
+            "tez.session.am.dag.submit.timeout.secs" : "1209600",
+            "tez.task.heartbeat.timeout.check-ms" : "15000",
+            "tez.task.timeout-ms" : "90000"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "webhcat-env",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# The file containing the running pid\nPID_FILE={{webhcat_pid_file}}\n\nTEMPLETON_LOG_DIR={{templeton_log_dir}}/\n\n\nWEBHCAT_LOG_DIR={{templeton_log_dir}}/\n\n# The console error log\nERROR_LOG={{templeton_log_dir}}/webhcat-console-error.log\n\n# The console log\nCONSOLE_LOG={{templeton_log_dir}}/webhcat-console.log\n\n#TEMPLETON_JAR=templeton_jar_name\n\n#HADOOP_PREFIX=hadoop_prefix\n\n#HCAT_PREFIX=hive_prefix\n\n# Set HADOOP_HOME to point to a specific hadoop install directory\nexport HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "webhcat-log4j",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing,\n# software distributed under the License is distributed on an\n# \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n# KIND, either express or implied.  See the License for the\n# specific language governing permissions and limitations\n# under the License.\n\n# Define some default values that can be overridden by system properties\nwebhcat.root.logger = {{hive_log_level}}, standard\nwebhcat.log.dir = .\nwebhcat.log.file = webhcat.log\n\nlog4j.rootLogger = ${webhcat.root.logger}\n\n# Logging Threshold\nlog4j.threshhold = DEBUG\n\nlog4j.appender.standard  =  org.apache.log4j.DailyRollingFileAppender\nlog4j.appender.standard.File = ${webhcat.log.dir}/${webhcat.log.file}\nlog4j.appender.standard.MaxFileSize = {{webhcat_log_maxfilesize}}MB\nlog4j.appender.standard.MaxBackupIndex = {{webhcat_log_maxbackupindex}}\n\n# Rollver at midnight\nlog4j.appender.DRFA.DatePattern = .yyyy-MM-dd\n\nlog4j.appender.DRFA.layout = org.apache.log4j.PatternLayout\n\nlog4j.appender.standard.layout = org.apache.log4j.PatternLayout\nlog4j.appender.standard.layout.conversionPattern = %-5p | %d{DATE} | %c | %m%n\n\n# Class logging settings\nlog4j.logger.com.sun.jersey = DEBUG\nlog4j.logger.com.sun.jersey.spi.container.servlet.WebComponent = ERROR\nlog4j.logger.org.apache.hadoop = INFO\nlog4j.logger.org.apache.hadoop.conf = WARN\nlog4j.logger.org.apache.zookeeper = WARN\nlog4j.logger.org.eclipse.jetty = INFO",
+            "webhcat_log_maxbackupindex" : "20",
+            "webhcat_log_maxfilesize" : "256"
+          },
+          "properties_attributes" : { }
+        },
+        {
+          "Config" : {
+            "cluster_name" : "c1",
+            "stack_id" : "HDP-2.6"
+          },
+          "type" : "webhcat-site",
+          "tag" : "version1",
+          "version" : 1,
+          "properties" : {
+            "templeton.exec.timeout" : "60000",
+            "templeton.hadoop" : "/usr/hdp/${hdp.version}/hadoop/bin/hadoop",
+            "templeton.hadoop.conf.dir" : "/etc/hadoop/conf",
+            "templeton.hadoop.queue.name" : "default",
+            "templeton.hcat" : "/usr/hdp/${hdp.version}/hive/bin/hcat",
+            "templeton.hcat.home" : "hive.tar.gz/hive/hcatalog",
+            "templeton.hive.archive" : "hdfs:///hdp/apps/${hdp.version}/hive/hive.tar.gz",
+            "templeton.hive.extra.files" : "/usr/hdp/${hdp.version}/tez/conf/tez-site.xml,/usr/hdp/${hdp.version}/tez,/usr/hdp/${hdp.version}/tez/lib",
+            "templeton.hive.home" : "hive.tar.gz/hive",
+            "templeton.hive.path" : "hive.tar.gz/hive/bin/hive",
+            "templeton.hive.properties" : "hive.metastore.local=false,hive.metastore.uris=thrift://yusaku-beacon-2.c.pramod-thangali.internal:9083,hive.metastore.sasl.enabled=false,hive.metastore.execute.setugi=true",
+            "templeton.jar" : "/usr/hdp/${hdp.version}/hive/share/webhcat/svr/lib/hive-webhcat-*.jar",
+            "templeton.libjars" : "/usr/hdp/${hdp.version}/zookeeper/zookeeper.jar,/usr/hdp/${hdp.version}/hive/lib/hive-common.jar",
+            "templeton.override.enabled" : "false",
+            "templeton.pig.archive" : "hdfs:///hdp/apps/${hdp.version}/pig/pig.tar.gz",
+            "templeton.pig.path" : "pig.tar.gz/pig/bin/pig",
+            "templeton.port" : "50111",
+            "templeton.python" : "${env.PYTHON_CMD}",
+            "templeton.sqoop.archive" : "hdfs:///hdp/apps/${hdp.version}/sqoop/sqoop.tar.gz",
+            "templeton.sqoop.home" : "sqoop.tar.gz/sqoop",
+            "templeton.sqoop.path" : "sqoop.tar.gz/sqoop/bin/sqoop",
+            "templeton.storage.class" : "org.apache.hive.hcatalog.templeton.tool.ZooKeeperStorage",
+            "templeton.streaming.jar" : "hdfs:///hdp/apps/${hdp.version}/mapreduce/hadoop-streaming.jar",
+            "templeton.zookeeper.hosts" : "yusaku-beacon-3.c.pramod-thangali.internal:2181,yusaku-beacon-1.c.pramod-thangali.internal:2181,yusaku-beacon-2.c.pramod-thangali.internal:2181",
+            "webhcat.proxyuser.root.groups" : "*",
+            "webhcat.proxyuser.root.hosts" : "yusaku-beacon-1.c.pramod-thangali.internal"
+          },
+          "properties_attributes" : { }
+        }
+      ],
+      "createtime" : 1489535656201,
+      "group_id" : -1,
+      "group_name" : "Default",
+      "hosts" : [ ],
+      "is_cluster_compatible" : true,
+      "is_current" : true,
+      "service_config_version" : 1,
+      "service_config_version_note" : "Initial configurations for Hive",
+      "service_name" : "HIVE",
+      "stack_id" : "HDP-2.6",
+      "user" : "admin"
+    }
+  ]
+}

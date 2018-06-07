@@ -1,0 +1,10 @@
+{
+  "routePerms":
+  [
+    {
+      "path":"/",
+      "roles": ["INFRAADMIN"]
+
+    }
+  ]
+}

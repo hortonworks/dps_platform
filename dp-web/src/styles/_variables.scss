@@ -1,0 +1,120 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+/* MDL overrides */
+$layout-header-desktop-row-height: 60px;
+//$layout-drawer-narrow: 175px;
+//$layout-drawer-width: 175px;
+$layout-header-desktop-baseline: 0px;
+$layout-header-bg-color: #FFFFFF;
+$layout-text-color: #848484 !important;
+$layout-header-desktop-indent: 10px;
+$button-height: 34px;
+$data-table-row-height: auto;
+$data-table-hover-color: #E7f6FC;
+/* DP Variables */
+$disabled-opacity: 0.6;
+$page-margins: 10px;
+$side-nav-width: 200px;
+$side-nav-minimised-width: 50px;
+
+$alto: #D3D3D3;
+$alto-1: #DDDDDD;
+$concrete: #F2F2F2;
+$oxford-blue: #313D54;
+$mine-shaft: #333333;
+$fruit-salad: #4AAB52;
+$apple-green: #60A947;
+$dhuttle-gray: #54646A;
+$shuttle-gray: #54646A;
+$shuttle-gray-1: #646977;
+$white: #FFFFFF;
+$forest-green-1: #3FAE2A;
+$forest-green-2: #429929;
+$iron: #CFD3D7;
+$oslo-gray: #808793;
+$dove-gray: #666666;
+$dusty-gray : #999999;
+$text-grey: rgba(255,255,255,0.6);
+$bon-jour: #EDECED;
+$eastern-blue: #1491C1;
+$blizzard-blue: #A7DFF2;
+$silver: #CDCDCD;
+$gallery: #eeeeee;
+$burnt-sienna: #EF6162;
+$submarine: #B8BEC4;
+$bright-gray: #404351;
+$mako: #40424F;
+$alabaster: #FAFAFA;
+$tuna: #323544;
+$tuna-1: #373B44;
+$pickled-bluewood: #303D54;
+$willow-brook-green : #E5F0E3;
+$moss-green: #C0E2BA;
+$mercury: #E3E3E3;
+$wild-sand: #F4F4F4;
+$iron: #D1D2D4;
+$jaffa: #E98A40;
+
+/****** These are picked from atlas ********/
+$font_1: Roboto;
+$steel_blue: steelblue;
+$color_mountain_mist_approx: #999;
+$color_suva_gray_approx: #868686;
+$color_celeste_approx: #ccc;
+$black_80: rgba(0, 0, 0, 0.8);
+$color_bright_turquoise_approx: #00ffd0;
+$transparent:transparent;
+$color_keppel_approx: #37bb9b;
+
+/*******************************************/
+
+$header-height: $layout-header-desktop-row-height;
+$logo-background: $oxford-blue;
+
+$gallery-gray : #EEEEEE;
+$iron-gray : #dcdee1;
+$albaster-gray : #F9F9F9;
+/*$eastern-blue : #2192bf;*/
+$polar-blue: #f2f7fc;
+$polar-blue-1: #E7F4F9;
+$roman-red : #d65758;
+$spindle-blue: #BCD6EE;
+$burnt-cienna-red : #EF6162;
+$silver-chalice-gray: #ABABAB;
+
+/* Dataset-flow Variables */
+$bgGray : #d0d3d7;
+
+$color_text_blue: #66A4C8;
+$color_text_gray: #677378;
+$color_green: #60AA5A;
+$color-border: #D0D3D7;
+$font_size_title: 22px;
+
+$mountain_meadow: #1EB475;
+
+.borderBox, .borderBox * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

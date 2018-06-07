@@ -1,0 +1,39 @@
+# IntelliJ
+*.iml
+**/.idea
+
+# Visual Studio Code
+**/.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings
+
+# NPM
+**/node_modules
+**/npm-debug.log
+
+# Build
+**/build/*
+**/target/*
+**/logs/*
+**/scala-logging.log
+
+# Typesafe Activator
+**/project/*-shim.sbt
+**/project/project/
+
+# Binaries
+**/bin/
+**/libexec/
+*.jar
+*.gz
+
+**/.gradle/**
+# Generated
+**/RUNNING_PID
+**/install.log
+
+# Mac OS Stuff
+**/.DS_Store

@@ -1,0 +1,194 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../styles/_variables.scss";
+
+.lineage-wrapper {
+  position: relative;
+  height: 508px;
+}
+.fontLoader {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.btn-atlasAction {
+  background-color: $transparent;
+  color: $color_keppel_approx;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: $color_keppel_approx;
+    color: $white;
+  }
+  &:focus {
+    background-color: $transparent;
+    color: $color_keppel_approx;
+  }
+}
+.panel-body {
+  padding: 0px 0px 15px 15px;
+  border: 1px solid $iron;
+  background: $white;
+  min-height: 518px;
+}
+.load-right-to-left,
+.load-right-to-left-slider {
+  -webkit-animation: keyframe-dialog-rtl 0.2s linear;
+  animation: keyframe-dialog-rtl 0.2s linear;
+}
+
+/deep/ {
+  .node {
+    cursor: pointer;
+    text {
+      font-size: 10px;
+      font-family: $font_1;
+    }
+    rect {
+      stroke: $color_mountain_mist_approx;
+      fill: $white;
+      stroke-width: 1.5px;
+    }
+    .label {
+      fill: $color_suva_gray_approx;
+    }
+    circle {
+      -moz-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      stroke-width: 1.5px;
+      &.nodeImage {
+        &.green:hover {
+          stroke: #8bc152;
+        }
+        &.blue:hover {
+          stroke: #4b91e2;
+        }
+        &.currentNode {
+          stroke: #fb4200;
+        }
+        &:hover {
+          -moz-transform: scale(1.4);
+          -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+        }
+      }
+    }
+    &.active {
+      circle {
+        -moz-transform: scale(1.4);
+        -webkit-transform: scale(1.4);
+        transform: scale(1.4);
+        &.nodeImage {
+          &.green {
+            stroke: #8bc152;
+          }
+          &.blue {
+            stroke: #4b91e2;
+          }
+        }
+      }
+    }
+  }
+
+  .overlay {
+  }
+
+  .link {
+    fill: none;
+    stroke: $color_celeste_approx;
+    stroke-width: 1.5px;
+  }
+
+  .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: $black_80;
+    color: $white;
+    z-index: 999;
+    max-width: 300px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 2px;
+    .tip-inner-scroll {
+      overflow: auto;
+      max-height: 300px;
+    }
+    &.n:after {
+      margin: -1px 0 0;
+      top: 100%;
+      left: 0;
+    }
+  }
+
+  .d3-tip.n:after {
+    margin: -1px 0 0;
+    top: 100%;
+    left: 0;
+  }
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+
+  g.type-TK > rect {
+    fill: $color_bright_turquoise_approx;
+  }
+
+  .zoomButtonGroup {
+    background-color: $white;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .legends {
+    > i {
+      > span {
+        font-family: 'Roboto', sans-serif;
+        font-size: inherit;
+      }
+    }
+  }
+
+  h5 {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}

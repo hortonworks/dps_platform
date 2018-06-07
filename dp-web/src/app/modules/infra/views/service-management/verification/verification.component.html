@@ -1,0 +1,66 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div>
+  <div class="title-pane">
+    <span class="hwx-title">{{"pages.services.labels.verify" | translate}}</span>
+  </div>
+  <div class="content-pane">
+    <div class="hwx-inline-desc" [innerHTML]="'pages.services.description.verificationWelcome'| translate: descriptionParams"></div>
+    <div class="spacer-15"></div>
+    <div *ngIf="showError">
+    <div data-se="services__verification-error-notification" class="error-notification-bar">
+      <i class="fa fa-times-circle pull-left"></i>
+      <div class="hwx-desc">{{"common.failed" | translate}}</div>
+      <div class="hwx-desc">{{errorMessage}} </div>
+    </div>
+    </div>
+    <div class="hwx-subtitle">{{"pages.services.labels.verifySmartSenseId" | translate}}</div>
+    <div class="spacer-15"></div>
+    <form #smartSenseForm="ngForm">
+      <div class="form-group" [ngClass]="{'error':isInvalid}">
+        <label class="required">{{"pages.services.labels.smartSenseId" | translate}}</label>
+        <div class="mdl-grid mdl-grid--no-spacing">
+          <div class="input-group">
+            <input data-se="services__verification-smart-sense-id" required class="dp-input" name="smartsense-id" type="text" [(ngModel)]="smartSenseId"/>
+            <div *ngIf="isInvalid" class="validation-error"><i class="fa fa-times"></i></div>
+          </div>
+          <div class="padding-left-12">
+            <button id="verify-btn" data-se="services__verification-verify-button" *ngIf="!verified" type="button" (click)="verifySmartSenseId()" class="btn btn-hwx-primary width-90">
+              <span *ngIf="verificationInProgress"><i class="fa fa-spinner fa-spin"></i></span>
+              <span *ngIf="!verificationInProgress">{{"pages.services.labels.verify" | translate}}</span>
+            </button>
+            <button data-se="services__verification-verified-button" *ngIf="verified" type="button" class="btn btn-hwx-secondary verified-button">
+              <span>{{"pages.services.labels.verified" | translate}}</span>
+            </button>
+          </div>
+        </div>
+        <div class="error-message" data-se="services__verification-incorrect-smart-sense-id" *ngIf="isInvalid">{{"pages.services.description.verificationError" | translate}}</div>
+      </div>
+    </form>
+    <div class="spacer-15"></div>
+    <div class="button-container">
+      <button id="next-btn" data-se="services__verification-next-button" class="btn btn-hwx-primary" (click)="next()">{{"pages.services.labels.next" | translate}}</button>
+      <button id="cancel-btn" data-se="services__verification-cancel-button" class="btn btn-hwx-default" [routerLink]="['/infra', 'services']">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+</div>

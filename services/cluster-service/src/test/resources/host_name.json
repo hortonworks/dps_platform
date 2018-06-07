@@ -1,0 +1,1621 @@
+{
+  "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal",
+  "Hosts" : {
+    "cluster_name" : "test",
+    "cpu_count" : 8,
+    "disk_info" : [
+      {
+        "available" : "153175652",
+        "device" : "/dev/vda1",
+        "used" : "3440416",
+        "percent" : "3%",
+        "size" : "165002356",
+        "type" : "ext4",
+        "mountpoint" : "/"
+      },
+      {
+        "available" : "244732204",
+        "device" : "/dev/vdb",
+        "used" : "60504",
+        "percent" : "1%",
+        "size" : "257899908",
+        "type" : "ext4",
+        "mountpoint" : "/grid/0"
+      }
+    ],
+    "host_health_report" : "",
+    "host_name" : "ashwin-dp-knox-test-1.novalocal",
+    "host_state" : "HEALTHY",
+    "host_status" : "UNHEALTHY",
+    "ip" : "172.22.72.9",
+    "last_agent_env" : {
+      "stackFoldersAndFiles" : [ ],
+      "alternatives" : [ ],
+      "existingUsers" : [ ],
+      "existingRepos" : [ ],
+      "installedPackages" : [ ],
+      "hostHealth" : {
+        "activeJavaProcs" : [
+          {
+            "user" : "infra-solr",
+            "pid" : 11612,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -server -Xms1024m -Xmx2048m -XX:NewRatio=3 -XX:SurvivorRatio=4 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=8 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ConcGCThreads=4 -XX:ParallelGCThreads=4 -XX:+CMSScavengeBeforeRemark -XX:PretenureSizeThreshold=64m -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=50 -XX:CMSMaxAbortablePrecleanTime=6000 -XX:+CMSParallelRemarkEnabled -XX:+ParallelRefProcEnabled -verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:/var/log/ambari-infra-solr/solr_gc.log -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=18886 -Dcom.sun.management.jmxremote.rmi.port=18886 -DzkClientTimeout=60000 -DzkHost=ashwin-dp-knox-test-1.novalocal:2181/infra-solr -Djetty.port=8886 -DSTOP.PORT=7886 -DSTOP.KEY=solrrocks -Duser.timezone=UTC -Djetty.home=/usr/lib/ambari-infra-solr/server -Dsolr.solr.home=/opt/ambari_infra_solr/data -Dsolr.install.dir=/usr/lib/ambari-infra-solr -Dlog4j.configuration=file:/etc/ambari-infra-solr/conf/log4j.properties -Dsolr.kerberos.name.rules= -XX:OnOutOfMemoryError=/usr/lib/ambari-infra-solr/bin/oom_solr.sh 8886 /var/log/ambari-infra-solr -jar start.jar --module=http",
+            "hadoop" : false
+          },
+          {
+            "user" : "root",
+            "pid" : 12156,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -server -XX:NewRatio=3 -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -XX:CMSInitiatingOccupancyFraction=60 -Djava.io.tmpdir=/var/lib/smartsense/hst-server/tmp -Dlog.file.name=hst-server.log -Xms1024m -Xmx2048m -cp /etc/hst/conf:/usr/hdp/share/hst/hst-common/lib/* com.hortonworks.support.tools.server.SupportToolServer",
+            "hadoop" : false
+          },
+          {
+            "user" : "kafka",
+            "pid" : 12212,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Xmx1G -Xms1G -server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+DisableExplicitGC -Djava.awt.headless=true -Xloggc:/var/log/kafka/kafkaServer-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dkafka.logs.dir=/var/log/kafka -Dlog4j.configuration=file:/usr/hdp/2.6.0.0-598/kafka/bin/../config/log4j.properties -cp :/usr/lib/ambari-metrics-kafka-sink/ambari-metrics-kafka-sink.jar:/usr/lib/ambari-metrics-kafka-sink/lib/*:/usr/lib/ambari-metrics-kafka-sink/ambari-metrics-kafka-sink.jar:/usr/lib/ambari-metrics-kafka-sink/lib/*:/usr/lib/ambari-metrics-kafka-sink/ambari-metrics-kafka-sink.jar:/usr/lib/ambari-metrics-kafka-sink/lib/*:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/aopalliance-repackaged-2.4.0-b34.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/argparse4j-0.5.0.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/connect-api-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/connect-file-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/connect-json-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/connect-runtime-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/guava-18.0.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/hk2-api-2.4.0-b34.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/hk2-locator-2.4.0-b34.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/hk2-utils-2.4.0-b34.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-annotations-2.6.0.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-core-2.6.3.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-databind-2.6.3.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-jaxrs-base-2.6.3.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-jaxrs-json-provider-2.6.3.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jackson-module-jaxb-annotations-2.6.3.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javassist-3.18.2-GA.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javax.annotation-api-1.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javax.inject-1.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javax.inject-2.4.0-b34.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javax.servlet-api-3.1.0.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/javax.ws.rs-api-2.0.1.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-client-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-common-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-container-servlet-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-container-servlet-core-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-guava-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-media-jaxb-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jersey-server-2.22.2.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-continuation-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-http-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-io-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-security-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-server-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-servlet-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-servlets-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jetty-util-9.2.15.v20160210.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/jopt-simple-4.9.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka_2.10-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka_2.10-0.10.0.2.6.0.0-598-sources.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka_2.10-0.10.0.2.6.0.0-598-test-sources.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka-clients-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka-ganglia-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka-log4j-appender-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka-streams-0.10.0.2.6.0.0-598.jar:/usr/hdp/2.6.0.0-598/kafka/bin/../libs/kafka-streams-examples-0.10.0.2",
+            "hadoop" : false
+          },
+          {
+            "user" : "zookeeper",
+            "pid" : 12586,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dzookeeper.log.dir=/var/log/zookeeper -Dzookeeper.log.file=zookeeper-zookeeper-server-ashwin-dp-knox-test-1.log -Dzookeeper.root.logger=INFO,ROLLINGFILE -cp /usr/hdp/current/zookeeper-server/bin/../build/classes:/usr/hdp/current/zookeeper-server/bin/../build/lib/*.jar:/usr/hdp/current/zookeeper-server/bin/../lib/xercesMinimal-1.9.6.2.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-provider-api-2.4.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-http-shared4-2.4.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-http-shared-1.0-beta-6.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-http-lightweight-1.0-beta-6.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-http-2.4.jar:/usr/hdp/current/zookeeper-server/bin/../lib/wagon-file-1.0-beta-6.jar:/usr/hdp/current/zookeeper-server/bin/../lib/slf4j-log4j12-1.6.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/slf4j-api-1.6.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/plexus-utils-3.0.8.jar:/usr/hdp/current/zookeeper-server/bin/../lib/plexus-interpolation-1.11.jar:/usr/hdp/current/zookeeper-server/bin/../lib/plexus-container-default-1.0-alpha-9-stable-1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/netty-3.7.0.Final.jar:/usr/hdp/current/zookeeper-server/bin/../lib/nekohtml-1.9.6.2.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-settings-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-repository-metadata-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-project-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-profile-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-plugin-registry-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-model-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-error-diagnostics-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-artifact-manager-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-artifact-2.2.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/maven-ant-tasks-2.1.3.jar:/usr/hdp/current/zookeeper-server/bin/../lib/log4j-1.2.16.jar:/usr/hdp/current/zookeeper-server/bin/../lib/jsoup-1.7.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/jline-0.9.94.jar:/usr/hdp/current/zookeeper-server/bin/../lib/commons-logging-1.1.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/commons-io-2.2.jar:/usr/hdp/current/zookeeper-server/bin/../lib/commons-codec-1.6.jar:/usr/hdp/current/zookeeper-server/bin/../lib/classworlds-1.1-alpha-2.jar:/usr/hdp/current/zookeeper-server/bin/../lib/backport-util-concurrent-3.1.jar:/usr/hdp/current/zookeeper-server/bin/../lib/ant-launcher-1.8.0.jar:/usr/hdp/current/zookeeper-server/bin/../lib/ant-1.8.0.jar:/usr/hdp/current/zookeeper-server/bin/../zookeeper-3.4.6.2.6.0.0-598.jar:/usr/hdp/current/zookeeper-server/bin/../src/java/lib/*.jar:/usr/hdp/current/zookeeper-server/conf::/usr/share/zookeeper/*:/usr/share/zookeeper/* -Xmx1024m -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /usr/hdp/current/zookeeper-server/conf/zoo.cfg",
+            "hadoop" : true
+          },
+          {
+            "user" : "hdfs",
+            "pid" : 12704,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_datanode -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop-hdfs-datanode-ashwin-dp-knox-test-1.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -server -server -XX:ParallelGCThreads=4 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=200m -XX:MaxNewSize=200m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -server -XX:ParallelGCThreads=4 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=200m -XX:MaxNewSize=200m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -server -XX:ParallelGCThreads=4 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=200m -XX:MaxNewSize=200m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Dhadoop.security.logger=INFO,RFAS org.apache.hadoop.hdfs.server.datanode.DataNode",
+            "hadoop" : true
+          },
+          {
+            "user" : "hdfs",
+            "pid" : 13109,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_namenode -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop-hdfs-namenode-ashwin-dp-knox-test-1.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-namenode/bin/kill-name-node\" -Dorg.mortbay.jetty.Request.maxFormContentSize=-1 -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-namenode/bin/kill-name-node\" -Dorg.mortbay.jetty.Request.maxFormContentSize=-1 -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192055 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-namenode/bin/kill-name-node\" -Dorg.mortbay.jetty.Request.maxFormContentSize=-1 -Dhadoop.security.logger=INFO,RFAS org.apache.hadoop.hdfs.server.namenode.NameNode",
+            "hadoop" : true
+          },
+          {
+            "user" : "atlas",
+            "pid" : 14305,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Datlas.log.dir=/var/log/atlas -Datlas.log.file=application.log -Datlas.home=/usr/hdp/2.6.0.0-598/atlas -Datlas.conf=/usr/hdp/current/atlas-server/conf -Xms2048m -Xmx2048m -XX:MaxNewSize=600m -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=512m -server -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+PrintTenuringDistribution -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/atlas/atlas_server.hprof -Xloggc:-worker.log -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1m -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps -Dlog4j.configuration=atlas-log4j.xml -classpath /usr/hdp/current/atlas-server/conf:/usr/hdp/current/atlas-server/server/webapp/atlas/WEB-INF/classes:/usr/hdp/current/atlas-server/server/webapp/atlas/WEB-INF/lib/*:/usr/hdp/2.6.0.0-598/atlas/libext/*:/etc/hbase/conf org.apache.atlas.Atlas -app /usr/hdp/current/atlas-server/server/webapp/atlas",
+            "hadoop" : false
+          },
+          {
+            "user" : "yarn",
+            "pid" : 14438,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_timelineserver -Xmx1024m -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-timelineserver-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-timelineserver-ashwin-dp-knox-test-1.log -Dyarn.home.dir= -Dyarn.id.str=yarn -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Dyarn.policy.file=hadoop-policy.xml -Djava.io.tmpdir=/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Djava.util.logging.config.file=ats.logging.properties -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-timelineserver-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-timelineserver-ashwin-dp-knox-test-1.log -Dyarn.home.dir=/usr/hdp/current/hadoop-yarn-timelineserver -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -classpath /usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/2.6.0.0-598/hadoop/lib/*:/usr/hdp/2.6.0.0-598/hadoop/.//*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/./:/usr/hdp/2.6.0.0-598/hadoop-hdfs/lib/*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/.//*:/usr/hdp/2.6.0.0-598/hadoop-yarn/lib/*:/usr/hdp/2.6.0.0-598/hadoop-yarn/.//*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/lib/*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/.//*::mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:/usr/hdp/current/hadoop-yarn-timelineserver/.//*:/usr/hdp/current/hadoop-yarn-timelineserver/lib/*:/usr/hdp/current/hadoop-client/conf/timelineserver-config/log4j.properties org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer",
+            "hadoop" : true
+          },
+          {
+            "user" : "mapred",
+            "pid" : 15601,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_historyserver -Xmx900m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Djava.io.tmpdir=/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Dhdp.version= -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop/mapred -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=mapred -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop-mapreduce/mapred -Dhadoop.log.file=hadoop.log -Dhadoop.root.logger=INFO,console -Dhadoop.id.str=mapred -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/mapred -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=mapred -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop-mapreduce/mapred -Dhadoop.log.file=mapred-mapred-historyserver-ashwin-dp-knox-test-1.log -Dhadoop.root.logger=INFO,RFA -Dmapred.jobsummary.logger=INFO,JSA -Dhadoop.security.logger=INFO,NullAppender org.apache.hadoop.mapreduce.v2.hs.JobHistoryServer",
+            "hadoop" : true
+          },
+          {
+            "user" : "knox",
+            "pid" : 16543,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Djava.library.path=/usr/hdp/current/knox-server/ext/native -jar /usr/hdp/current/knox-server/bin/gateway.jar",
+            "hadoop" : false
+          },
+          {
+            "user" : "yarn",
+            "pid" : 16815,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_resourcemanager -Xmx1024m -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-resourcemanager-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-resourcemanager-ashwin-dp-knox-test-1.log -Dyarn.home.dir= -Dyarn.id.str=yarn -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Dyarn.policy.file=hadoop-policy.xml -Djava.io.tmpdir=/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Dyarn.server.resourcemanager.appsummary.logger=INFO,RMSUMMARY -Drm.audit.logger=INFO,RMAUDIT -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-resourcemanager-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-resourcemanager-ashwin-dp-knox-test-1.log -Dyarn.home.dir=/usr/hdp/current/hadoop-yarn-resourcemanager -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -classpath /usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/2.6.0.0-598/hadoop/lib/*:/usr/hdp/2.6.0.0-598/hadoop/.//*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/./:/usr/hdp/2.6.0.0-598/hadoop-hdfs/lib/*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/.//*:/usr/hdp/2.6.0.0-598/hadoop-yarn/lib/*:/usr/hdp/2.6.0.0-598/hadoop-yarn/.//*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/lib/*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/.//*::mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:/usr/hdp/current/hadoop-yarn-resourcemanager/.//*:/usr/hdp/current/hadoop-yarn-resourcemanager/lib/*:/usr/hdp/current/hadoop-client/conf/rm-config/log4j.properties org.apache.hadoop.yarn.server.resourcemanager.ResourceManager",
+            "hadoop" : true
+          },
+          {
+            "user" : "hdfs",
+            "pid" : 16966,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_secondarynamenode -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhdp.version= -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hdfs -Dhadoop.log.file=hadoop-hdfs-secondarynamenode-ashwin-dp-knox-test-1.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hdfs -Dhadoop.root.logger=INFO,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192056 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-secondarynamenode/bin/kill-secondary-name-node\" -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192056 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-secondarynamenode/bin/kill-secondary-name-node\" -server -XX:ParallelGCThreads=8 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hadoop/hdfs/hs_err_pid%p.log -XX:NewSize=128m -XX:MaxNewSize=128m -Xloggc:/var/log/hadoop/hdfs/gc.log-201703192056 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Xms1024m -Xmx1024m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:OnOutOfMemoryError=\"/usr/hdp/current/hadoop-hdfs-secondarynamenode/bin/kill-secondary-name-node\" -Dhadoop.security.logger=INFO,RFAS org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode",
+            "hadoop" : true
+          },
+          {
+            "user" : "ams",
+            "pid" : 17504,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_master -XX:OnOutOfMemoryError=kill -9 %p -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/ambari-metrics-collector/hs_err_pid%p.log -Djava.io.tmpdir=/var/lib/ambari-metrics-collector/hbase-tmp -Djava.library.path=/usr/lib/ams-hbase/lib/hadoop-native/ -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/var/log/ambari-metrics-collector/gc.log-201703192057 -Xms1408m -Xmx1408m -Xmn192m -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSInitiatingOccupancyOnly -Dhbase.log.dir=/var/log/ambari-metrics-collector -Dhbase.log.file=hbase-ams-master-ashwin-dp-knox-test-1.log -Dhbase.home.dir=/usr/lib/ams-hbase/ -Dhbase.id.str=ams -Dhbase.root.logger=INFO,RFA -Dhbase.security.logger=INFO,RFAS org.apache.hadoop.hbase.master.HMaster start",
+            "hadoop" : true
+          },
+          {
+            "user" : "ams",
+            "pid" : 17558,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Xms512m -Xmx512m -Djava.library.path=/usr/lib/ams-hbase/lib/hadoop-native -XX:+UseConcMarkSweepGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/var/log/ambari-metrics-collector/collector-gc.log-201703192057 -cp /usr/lib/ambari-metrics-collector/*:/etc/ambari-metrics-collector/conf -Djava.net.preferIPv4Stack=true -Dams.log.dir=/var/log/ambari-metrics-collector -Dproc_timelineserver org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer",
+            "hadoop" : true
+          },
+          {
+            "user" : "yarn",
+            "pid" : 19068,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dproc_nodemanager -Xmx1024m -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-nodemanager-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-nodemanager-ashwin-dp-knox-test-1.log -Dyarn.home.dir= -Dyarn.id.str=yarn -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -Dyarn.policy.file=hadoop-policy.xml -Djava.io.tmpdir=/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -server -Dnm.audit.logger=INFO,NMAUDIT -Dnm.audit.logger=INFO,NMAUDIT -Dhadoop.log.dir=/var/log/hadoop-yarn/yarn -Dyarn.log.dir=/var/log/hadoop-yarn/yarn -Dhadoop.log.file=yarn-yarn-nodemanager-ashwin-dp-knox-test-1.log -Dyarn.log.file=yarn-yarn-nodemanager-ashwin-dp-knox-test-1.log -Dyarn.home.dir=/usr/hdp/current/hadoop-yarn-nodemanager -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.root.logger=INFO,EWMA,RFA -Dyarn.root.logger=INFO,EWMA,RFA -Djava.library.path=:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir:/usr/hdp/2.6.0.0-598/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native:/var/lib/ambari-agent/tmp/hadoop_java_io_tmpdir -classpath /usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/current/hadoop-client/conf:/usr/hdp/2.6.0.0-598/hadoop/lib/*:/usr/hdp/2.6.0.0-598/hadoop/.//*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/./:/usr/hdp/2.6.0.0-598/hadoop-hdfs/lib/*:/usr/hdp/2.6.0.0-598/hadoop-hdfs/.//*:/usr/hdp/2.6.0.0-598/hadoop-yarn/lib/*:/usr/hdp/2.6.0.0-598/hadoop-yarn/.//*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/lib/*:/usr/hdp/2.6.0.0-598/hadoop-mapreduce/.//*::mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:mysql-connector-java-5.1.17.jar:mysql-connector-java.jar:/usr/hdp/2.6.0.0-598/tez/*:/usr/hdp/2.6.0.0-598/tez/lib/*:/usr/hdp/2.6.0.0-598/tez/conf:/usr/hdp/current/hadoop-yarn-nodemanager/.//*:/usr/hdp/current/hadoop-yarn-nodemanager/lib/*:/usr/hdp/current/hadoop-client/conf/nm-config/log4j.properties org.apache.hadoop.yarn.server.nodemanager.NodeManager",
+            "hadoop" : true
+          },
+          {
+            "user" : "root",
+            "pid" : 19572,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Dhdp.version=2.6.0.0-598 -Dlog.file.name=activity-explorer.log -DSmartSenseActivityExplorer -Dfile.encoding=UTF-8 -Xms256m -Xmx1024m -XX:MaxPermSize=256m -Dlog4j.configuration=file:///etc/smartsense-activity/conf/log4j.properties -Dzeppelin.log.file=/var/log/smartsense-activity/activity-explorer.log -cp :/etc/ams-hbase/conf::/usr/hdp/share/hst/activity-explorer/lib/*:/usr/hdp/share/hst/activity-explorer/*:/etc/ams-hbase/conf::/etc/smartsense-activity/conf org.apache.zeppelin.server.ZeppelinServer",
+            "hadoop" : false
+          },
+          {
+            "user" : "hive",
+            "pid" : 28421,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hive -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hive -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/current/hadoop-client/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Xmx1024m -Xmx1993m -Dlog4j.configurationFile=hive-log4j2.properties -Djava.util.logging.config.file=/usr/hdp/2.6.0.0-598/hive/bin/../conf/parquet-logging.properties -Dhadoop.security.logger=INFO,NullAppender org.apache.hadoop.util.RunJar /usr/hdp/2.6.0.0-598/hive/lib/hive-service-1.2.1000.2.6.0.0-598.jar org.apache.hadoop.hive.metastore.HiveMetaStore -hiveconf hive.log.file=hivemetastore.log -hiveconf hive.log.dir=/var/log/hive",
+            "hadoop" : true
+          },
+          {
+            "user" : "hive",
+            "pid" : 29211,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hive -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hive -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/current/hadoop-client/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Xmx1024m -Xmx5981m -Dlog4j.configurationFile=hive-log4j2.properties -Djava.util.logging.config.file=/usr/hdp/2.6.0.0-598/hive/bin/../conf/parquet-logging.properties -Dhadoop.security.logger=INFO,NullAppender org.apache.hadoop.util.RunJar /usr/hdp/2.6.0.0-598/hive/lib/hive-service-1.2.1000.2.6.0.0-598.jar org.apache.hive.service.server.HiveServer2 --hiveconf hive.aux.jars.path=file:///usr/hdp/current/hive-webhcat/share/hcatalog/hive-hcatalog-core.jar -hiveconf hive.metastore.uris=  -hiveconf hive.log.file=hiveserver2.log -hiveconf hive.log.dir=/var/log/hive",
+            "hadoop" : true
+          },
+          {
+            "user" : "hcat",
+            "pid" : 29593,
+            "command" : "/usr/jdk64/jdk1.8.0_112/bin/java -Xmx1024m -Dhdp.version=2.6.0.0-598 -Djava.net.preferIPv4Stack=true -Dwebhcat.log.dir=/var/log/webhcat/ -Dlog4j.configuration=file:///usr/hdp/2.6.0.0-598/hive-hcatalog/sbin/../etc/webhcat/webhcat-log4j.properties -Dhdp.version=2.6.0.0-598 -Dhadoop.log.dir=/var/log/hadoop/hcat -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/hdp/2.6.0.0-598/hadoop -Dhadoop.id.str=hcat -Dhadoop.root.logger=INFO,console -Djava.library.path=:/usr/hdp/current/hadoop-client/lib/native/Linux-amd64-64:/usr/hdp/2.6.0.0-598/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Xmx1024m -Dhadoop.security.logger=INFO,NullAppender org.apache.hadoop.util.RunJar /usr/hdp/2.6.0.0-598/hive-hcatalog/sbin/../share/webhcat/svr/lib/hive-webhcat-1.2.1000.2.6.0.0-598.jar org.apache.hive.hcatalog.templeton.Main",
+            "hadoop" : true
+          }
+        ],
+        "agentTimeStampAtReporting" : 1490449143850,
+        "serverTimeStampAtReporting" : 1490449143916,
+        "liveServices" : [
+          {
+            "desc" : "",
+            "name" : "ntpd or chronyd",
+            "status" : "Healthy"
+          }
+        ]
+      },
+      "umask" : 18,
+      "transparentHugePage" : "always",
+      "firewallRunning" : false,
+      "firewallName" : "iptables",
+      "reverseLookup" : true
+    },
+    "last_heartbeat_time" : 1490449198096,
+    "last_registration_time" : 1489956170381,
+    "maintenance_state" : "OFF",
+    "os_arch" : "x86_64",
+    "os_family" : "redhat6",
+    "os_type" : "centos6",
+    "ph_cpu_count" : 8,
+    "public_host_name" : "ashwin-dp-knox-test-1.openstacklocal",
+    "rack_info" : "/default-rack",
+    "recovery_report" : {
+      "summary" : "RECOVERABLE",
+      "component_reports" : [
+        {
+          "name" : "METRICS_COLLECTOR",
+          "num_attempts" : 0,
+          "limit_reached" : false
+        }
+      ]
+    },
+    "recovery_summary" : "RECOVERABLE",
+    "total_mem" : 16333852,
+    "desired_configs" : {
+      "activity-conf" : {
+        "default" : "version1"
+      },
+      "activity-env" : {
+        "default" : "version1"
+      },
+      "activity-log4j" : {
+        "default" : "version1"
+      },
+      "activity-zeppelin-env" : {
+        "default" : "version1"
+      },
+      "activity-zeppelin-interpreter" : {
+        "default" : "version1"
+      },
+      "activity-zeppelin-shiro" : {
+        "default" : "version1"
+      },
+      "activity-zeppelin-site" : {
+        "default" : "version1"
+      },
+      "admin-topology" : {
+        "default" : "version1"
+      },
+      "ams-env" : {
+        "default" : "version1"
+      },
+      "ams-grafana-env" : {
+        "default" : "version1"
+      },
+      "ams-grafana-ini" : {
+        "default" : "version1"
+      },
+      "ams-hbase-env" : {
+        "default" : "version1"
+      },
+      "ams-hbase-log4j" : {
+        "default" : "version1"
+      },
+      "ams-hbase-policy" : {
+        "default" : "version1"
+      },
+      "ams-hbase-security-site" : {
+        "default" : "version1"
+      },
+      "ams-hbase-site" : {
+        "default" : "version1"
+      },
+      "ams-log4j" : {
+        "default" : "version1"
+      },
+      "ams-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "ams-site" : {
+        "default" : "version1"
+      },
+      "ams-ssl-client" : {
+        "default" : "version1"
+      },
+      "ams-ssl-server" : {
+        "default" : "version1"
+      },
+      "anonymization-rules" : {
+        "default" : "version1"
+      },
+      "application-properties" : {
+        "default" : "version1490027184764"
+      },
+      "atlas-env" : {
+        "default" : "version1490027184764"
+      },
+      "atlas-log4j" : {
+        "default" : "version1490027184764"
+      },
+      "atlas-logsearch-conf" : {
+        "default" : "version1490027184764"
+      },
+      "atlas-solrconfig" : {
+        "default" : "version1490027184764"
+      },
+      "beeline-log4j2" : {
+        "default" : "version1"
+      },
+      "capacity-scheduler" : {
+        "default" : "version1"
+      },
+      "cluster-env" : {
+        "default" : "version1"
+      },
+      "core-site" : {
+        "default" : "version1"
+      },
+      "gateway-log4j" : {
+        "default" : "version1"
+      },
+      "gateway-site" : {
+        "default" : "version1"
+      },
+      "hadoop-env" : {
+        "default" : "version1"
+      },
+      "hadoop-metrics2.properties" : {
+        "default" : "version1"
+      },
+      "hadoop-policy" : {
+        "default" : "version1"
+      },
+      "hbase-env" : {
+        "default" : "version1490027184764"
+      },
+      "hbase-log4j" : {
+        "default" : "version1490027184764"
+      },
+      "hbase-logsearch-conf" : {
+        "default" : "version1490027184764"
+      },
+      "hbase-policy" : {
+        "default" : "version1490027184764"
+      },
+      "hbase-site" : {
+        "default" : "version1490027184764"
+      },
+      "hcat-env" : {
+        "default" : "version1"
+      },
+      "hdfs-log4j" : {
+        "default" : "version1"
+      },
+      "hdfs-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "hdfs-site" : {
+        "default" : "version1"
+      },
+      "hive-atlas-application.properties" : {
+        "default" : "version1"
+      },
+      "hive-env" : {
+        "default" : "version1490027184758"
+      },
+      "hive-exec-log4j" : {
+        "default" : "version1"
+      },
+      "hive-exec-log4j2" : {
+        "default" : "version1"
+      },
+      "hive-interactive-env" : {
+        "default" : "version1"
+      },
+      "hive-interactive-site" : {
+        "default" : "version1"
+      },
+      "hive-log4j" : {
+        "default" : "version1"
+      },
+      "hive-log4j2" : {
+        "default" : "version1"
+      },
+      "hive-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "hive-site" : {
+        "default" : "version1490027184758"
+      },
+      "hivemetastore-site" : {
+        "default" : "version1"
+      },
+      "hiveserver2-interactive-site" : {
+        "default" : "version1"
+      },
+      "hiveserver2-site" : {
+        "default" : "version1"
+      },
+      "hst-agent-conf" : {
+        "default" : "version1"
+      },
+      "hst-log4j" : {
+        "default" : "version1"
+      },
+      "hst-server-conf" : {
+        "default" : "version1"
+      },
+      "infra-logsearch-conf" : {
+        "default" : "version1490027184764"
+      },
+      "infra-solr-client-log4j" : {
+        "default" : "version1490027184764"
+      },
+      "infra-solr-env" : {
+        "default" : "version1490027184764"
+      },
+      "infra-solr-log4j" : {
+        "default" : "version1490027184764"
+      },
+      "infra-solr-security-json" : {
+        "default" : "version1490027184764"
+      },
+      "infra-solr-xml" : {
+        "default" : "version1490027184764"
+      },
+      "kafka-broker" : {
+        "default" : "version1490027184764"
+      },
+      "kafka-env" : {
+        "default" : "version1490027184764"
+      },
+      "kafka-log4j" : {
+        "default" : "version1490027184764"
+      },
+      "kafka-logsearch-conf" : {
+        "default" : "version1490027184764"
+      },
+      "kafka_client_jaas_conf" : {
+        "default" : "version1490027184764"
+      },
+      "kafka_jaas_conf" : {
+        "default" : "version1490027184764"
+      },
+      "knox-env" : {
+        "default" : "version1"
+      },
+      "knox-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "knoxsso-topology" : {
+        "default" : "version1"
+      },
+      "ldap-log4j" : {
+        "default" : "version1"
+      },
+      "llap-cli-log4j2" : {
+        "default" : "version1"
+      },
+      "llap-daemon-log4j" : {
+        "default" : "version1"
+      },
+      "mapred-env" : {
+        "default" : "version1"
+      },
+      "mapred-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "mapred-site" : {
+        "default" : "version1"
+      },
+      "pig-env" : {
+        "default" : "version1"
+      },
+      "pig-log4j" : {
+        "default" : "version1"
+      },
+      "pig-properties" : {
+        "default" : "version1"
+      },
+      "ranger-atlas-audit" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-atlas-plugin-properties" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-atlas-policymgr-ssl" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-atlas-security" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-hbase-audit" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-hbase-plugin-properties" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-hbase-policymgr-ssl" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-hbase-security" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-hdfs-audit" : {
+        "default" : "version1"
+      },
+      "ranger-hdfs-plugin-properties" : {
+        "default" : "version1"
+      },
+      "ranger-hdfs-policymgr-ssl" : {
+        "default" : "version1"
+      },
+      "ranger-hdfs-security" : {
+        "default" : "version1"
+      },
+      "ranger-hive-audit" : {
+        "default" : "version1"
+      },
+      "ranger-hive-plugin-properties" : {
+        "default" : "version1"
+      },
+      "ranger-hive-policymgr-ssl" : {
+        "default" : "version1"
+      },
+      "ranger-hive-security" : {
+        "default" : "version1"
+      },
+      "ranger-kafka-audit" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-kafka-plugin-properties" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-kafka-policymgr-ssl" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-kafka-security" : {
+        "default" : "version1490027184764"
+      },
+      "ranger-knox-audit" : {
+        "default" : "version1"
+      },
+      "ranger-knox-plugin-properties" : {
+        "default" : "version1"
+      },
+      "ranger-knox-policymgr-ssl" : {
+        "default" : "version1"
+      },
+      "ranger-knox-security" : {
+        "default" : "version1"
+      },
+      "ranger-yarn-audit" : {
+        "default" : "version1"
+      },
+      "ranger-yarn-plugin-properties" : {
+        "default" : "version1"
+      },
+      "ranger-yarn-policymgr-ssl" : {
+        "default" : "version1"
+      },
+      "ranger-yarn-security" : {
+        "default" : "version1"
+      },
+      "slider-client" : {
+        "default" : "version1"
+      },
+      "slider-env" : {
+        "default" : "version1"
+      },
+      "slider-log4j" : {
+        "default" : "version1"
+      },
+      "ssl-client" : {
+        "default" : "version1"
+      },
+      "ssl-server" : {
+        "default" : "version1"
+      },
+      "tez-env" : {
+        "default" : "version1"
+      },
+      "tez-interactive-site" : {
+        "default" : "version1"
+      },
+      "tez-site" : {
+        "default" : "version1"
+      },
+      "topology" : {
+        "default" : "version1"
+      },
+      "users-ldif" : {
+        "default" : "version1"
+      },
+      "webhcat-env" : {
+        "default" : "version1"
+      },
+      "webhcat-log4j" : {
+        "default" : "version1"
+      },
+      "webhcat-site" : {
+        "default" : "version1"
+      },
+      "yarn-env" : {
+        "default" : "version1"
+      },
+      "yarn-log4j" : {
+        "default" : "version1"
+      },
+      "yarn-logsearch-conf" : {
+        "default" : "version1"
+      },
+      "yarn-site" : {
+        "default" : "version1"
+      },
+      "zoo.cfg" : {
+        "default" : "version1"
+      },
+      "zookeeper-env" : {
+        "default" : "version1"
+      },
+      "zookeeper-log4j" : {
+        "default" : "version1"
+      },
+      "zookeeper-logsearch-conf" : {
+        "default" : "version1"
+      }
+    }
+  },
+  "alerts_summary" : {
+    "CRITICAL" : 2,
+    "MAINTENANCE" : 0,
+    "OK" : 54,
+    "UNKNOWN" : 4,
+    "WARNING" : 0
+  },
+  "metrics" : {
+    "boottime" : 1.489954203E9,
+    "cpu" : {
+      "cpu_idle" : 98.6,
+      "cpu_nice" : 0.0,
+      "cpu_num" : 8.0,
+      "cpu_system" : 0.4,
+      "cpu_user" : 0.9,
+      "cpu_wio" : 0.0
+    },
+    "disk" : {
+      "disk_free" : 372.91,
+      "disk_total" : 403.31,
+      "read_bytes" : 6.51206656E8,
+      "read_count" : 17384.0,
+      "read_time" : 217195.0,
+      "write_bytes" : 7.9144374272E10,
+      "write_count" : 2991383.0,
+      "write_time" : 1.01945535E8
+    },
+    "load" : {
+      "load_fifteen" : 0.27,
+      "load_five" : 0.3,
+      "load_one" : 0.27
+    },
+    "memory" : {
+      "mem_cached" : 2717336.0,
+      "mem_free" : 3703832.0,
+      "mem_shared" : 0.0,
+      "mem_total" : 1.6333852E7,
+      "swap_free" : 0.0,
+      "swap_total" : 0.0
+    },
+    "network" : {
+      "bytes_in" : 5109.928273528216,
+      "bytes_out" : 903.8165635649175,
+      "pkts_in" : 26.597544629745332,
+      "pkts_out" : 0.5999446157085413
+    },
+    "process" : {
+      "proc_run" : 0.0,
+      "proc_total" : 200.0
+    }
+  },
+  "alerts" : [
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/23",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 67,
+        "definition_name" : "ambari_agent_disk_usage",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 23,
+        "service_name" : "AMBARI"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/31",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 68,
+        "definition_name" : "ambari_server_agent_heartbeat",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 31,
+        "service_name" : "AMBARI"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/60",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 75,
+        "definition_name" : "infra_solr",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 60,
+        "service_name" : "AMBARI_INFRA"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/3",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 11,
+        "definition_name" : "grafana_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 3,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/6",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 6,
+        "definition_name" : "ams_metrics_collector_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 6,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/8",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 10,
+        "definition_name" : "ams_metrics_collector_autostart",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 8,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/24",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 7,
+        "definition_name" : "ams_metrics_collector_hbase_master_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 24,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/29",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 5,
+        "definition_name" : "ams_metrics_monitor_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 29,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/45",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 8,
+        "definition_name" : "ams_metrics_collector_hbase_master_cpu",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 45,
+        "service_name" : "AMBARI_METRICS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/64",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 76,
+        "definition_name" : "metadata_server_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 64,
+        "service_name" : "ATLAS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/61",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 74,
+        "definition_name" : "hbase_regionserver_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 61,
+        "service_name" : "HBASE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/63",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 71,
+        "definition_name" : "hbase_master_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 63,
+        "service_name" : "HBASE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/66",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 72,
+        "definition_name" : "hbase_master_cpu",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 66,
+        "service_name" : "HBASE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/1",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 28,
+        "definition_name" : "namenode_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 1,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/2",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 38,
+        "definition_name" : "upgrade_finalized_state",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 2,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/9",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 17,
+        "definition_name" : "secondary_namenode_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 9,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/14",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 25,
+        "definition_name" : "datanode_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 14,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/18",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 29,
+        "definition_name" : "datanode_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 18,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/21",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 49,
+        "definition_name" : "namenode_last_checkpoint",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 21,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/22",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 22,
+        "definition_name" : "datanode_health_summary",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 22,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/25",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 43,
+        "definition_name" : "namenode_directory_status",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 25,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/32",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 18,
+        "definition_name" : "namenode_hdfs_pending_deletion_blocks",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 32,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/33",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 27,
+        "definition_name" : "namenode_hdfs_blocks_health",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 33,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/34",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 23,
+        "definition_name" : "datanode_unmounted_data_dir",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 34,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/35",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 30,
+        "definition_name" : "datanode_storage",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 35,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/36",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 47,
+        "definition_name" : "namenode_hdfs_capacity_utilization",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 36,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/37",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 48,
+        "definition_name" : "namenode_rpc_latency",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 37,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/39",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 21,
+        "definition_name" : "datanode_heap_usage",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 39,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/47",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 16,
+        "definition_name" : "namenode_cpu",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 47,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/48",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 39,
+        "definition_name" : "namenode_client_rpc_processing_latency_hourly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 48,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/51",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 31,
+        "definition_name" : "namenode_service_rpc_processing_latency_hourly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 51,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/52",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 44,
+        "definition_name" : "namenode_service_rpc_queue_latency_hourly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 52,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/53",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 35,
+        "definition_name" : "namenode_client_rpc_queue_latency_hourly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 53,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/56",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 26,
+        "definition_name" : "namenode_client_rpc_processing_latency_daily",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 56,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/57",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 19,
+        "definition_name" : "namenode_client_rpc_queue_latency_daily",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 57,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/58",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 50,
+        "definition_name" : "increase_nn_heap_usage_daily",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 58,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/59",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 34,
+        "definition_name" : "namenode_increase_in_storage_capacity_usage_daily",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 59,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/67",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 40,
+        "definition_name" : "namenode_increase_in_storage_capacity_usage_weekly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 67,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/68",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 45,
+        "definition_name" : "increase_nn_heap_usage_weekly",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 68,
+        "service_name" : "HDFS"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/15",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 66,
+        "definition_name" : "hive_webhcat_server_status",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 15,
+        "service_name" : "HIVE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/41",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 62,
+        "definition_name" : "hive_metastore_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 41,
+        "service_name" : "HIVE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/42",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 65,
+        "definition_name" : "hive_server_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 42,
+        "service_name" : "HIVE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/62",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 77,
+        "definition_name" : "kafka_broker_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 62,
+        "service_name" : "KAFKA"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/10",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 53,
+        "definition_name" : "knox_gateway_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 10,
+        "service_name" : "KNOX"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/5",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 12,
+        "definition_name" : "mapreduce_history_server_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 5,
+        "service_name" : "MAPREDUCE2"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/20",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 13,
+        "definition_name" : "mapreduce_history_server_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 20,
+        "service_name" : "MAPREDUCE2"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/46",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 15,
+        "definition_name" : "mapreduce_history_server_cpu",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 46,
+        "service_name" : "MAPREDUCE2"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/49",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 14,
+        "definition_name" : "mapreduce_history_server_rpc_latency",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 49,
+        "service_name" : "MAPREDUCE2"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/4",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 1,
+        "definition_name" : "smartsense_server_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 4,
+        "service_name" : "SMARTSENSE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/11",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 3,
+        "definition_name" : "smartsense_gateway_status",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 11,
+        "service_name" : "SMARTSENSE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/38",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 2,
+        "definition_name" : "smartsense_bundle_failed_or_timedout",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 38,
+        "service_name" : "SMARTSENSE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/50",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 4,
+        "definition_name" : "smartsense_long_running_bundle",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 50,
+        "service_name" : "SMARTSENSE"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/7",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 56,
+        "definition_name" : "yarn_resourcemanager_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 7,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/12",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 58,
+        "definition_name" : "yarn_nodemanager_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 12,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/13",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 55,
+        "definition_name" : "yarn_nodemanager_health",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 13,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/16",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 60,
+        "definition_name" : "nodemanager_health_summary",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 16,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/19",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 61,
+        "definition_name" : "yarn_app_timeline_server_webui",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 19,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/54",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 59,
+        "definition_name" : "yarn_resourcemanager_rpc_latency",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 54,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/55",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 57,
+        "definition_name" : "yarn_resourcemanager_cpu",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 55,
+        "service_name" : "YARN"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/alerts/17",
+      "Alert" : {
+        "cluster_name" : "test",
+        "definition_id" : 52,
+        "definition_name" : "zookeeper_server_process",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 17,
+        "service_name" : "ZOOKEEPER"
+      }
+    }
+  ],
+  "kerberos_identities" : [ ],
+  "stack_versions" : [
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/stack_versions/1",
+      "HostStackVersions" : {
+        "cluster_name" : "test",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal",
+        "id" : 1,
+        "repository_version" : 1,
+        "stack" : "HDP",
+        "version" : "2.6"
+      }
+    }
+  ],
+  "host_components" : [
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ACTIVITY_ANALYZER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ACTIVITY_ANALYZER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ACTIVITY_EXPLORER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ACTIVITY_EXPLORER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/APP_TIMELINE_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "APP_TIMELINE_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ATLAS_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ATLAS_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ATLAS_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ATLAS_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/DATANODE",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "DATANODE",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HBASE_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HBASE_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HBASE_MASTER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HBASE_MASTER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HBASE_REGIONSERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HBASE_REGIONSERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HCAT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HCAT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HDFS_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HDFS_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HISTORYSERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HISTORYSERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HIVE_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HIVE_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HIVE_METASTORE",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HIVE_METASTORE",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HIVE_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HIVE_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HST_AGENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HST_AGENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/HST_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "HST_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/INFRA_SOLR",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "INFRA_SOLR",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/INFRA_SOLR_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "INFRA_SOLR_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/KAFKA_BROKER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "KAFKA_BROKER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/KNOX_GATEWAY",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "KNOX_GATEWAY",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/MAPREDUCE2_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "MAPREDUCE2_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/METRICS_COLLECTOR",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "METRICS_COLLECTOR",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/METRICS_GRAFANA",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "METRICS_GRAFANA",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/METRICS_MONITOR",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "METRICS_MONITOR",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/MYSQL_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "MYSQL_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/NAMENODE",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "NAMENODE",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/NODEMANAGER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "NODEMANAGER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/PIG",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "PIG",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/RESOURCEMANAGER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "RESOURCEMANAGER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/SECONDARY_NAMENODE",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "SECONDARY_NAMENODE",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/SLIDER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "SLIDER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/TEZ_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "TEZ_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/WEBHCAT_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "WEBHCAT_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/YARN_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "YARN_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ZOOKEEPER_CLIENT",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ZOOKEEPER_CLIENT",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    },
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/ZOOKEEPER_SERVER",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "ZOOKEEPER_SERVER",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="page-container">
+  <div *ngIf="showError" class="mdl-grid no-top-bottom-space">
+    <div class="mdl-cell mdl-cell--12-col no-top-bottom-space">
+      <div id="error-notification-bar" class="error-notification-bar">
+        <i class="fa fa-times-circle pull-left"></i>
+        <i id="e" class="fa fa-remove pull-right" (click)="closeError()"></i>
+        <div id="error-header" class="text-medium">{{"common.failed" | translate}}</div>
+        <div id="error-message" class="text-small-1">{{errorMessage}} </div>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <button id="refresh-btn" class="mdl-button btn-hwx-default pull-right refresh-btn" (click)="fetchClusterDetails(this.lake.id)"><i class="fa fa-refresh"></i></button>
+      <div class="hwx-title"> {{lake.name}} </div>
+    </div>
+  </div>
+  <div class="mdl-grid no-top-bottom-space">
+    <div class="mdl-cell mdl-cell--12-col">
+      <div class="summary-pane-7">
+        <ul>
+          <li>
+            <div class="title">{{"common.location" | translate}}</div>
+            <div class="value">{{clusterDetails.location}}</div>
+          </li>
+          <li>
+            <div class="title">{{"pages.infra.labels.dataCenter" | translate}}</div>
+            <div class="value">{{clusterDetails.dataCenter}}</div>
+          </li>
+          <li>
+            <div class="title">{{"pages.infra.labels.hdpVersion" | translate}}</div>
+            <div class="value">{{clusterDetails.hdpVersion}}</div>
+          </li>
+          <li>
+            <div class="title">{{"pages.infra.labels.nodes" | translate}}</div>
+            <div class="value">{{clusterDetails.healthyNodes}}/{{clusterDetails.nodes}}</div>
+          </li>
+          <li>
+            <div class="title">{{"common.tags" | translate}}</div>
+            <div class="value">{{clusterDetails.tags}}</div>
+          </li>
+          <li>
+            <div class="title">{{"pages.infra.labels.uptime" | translate}}</div>
+            <div class="value">{{clusterDetails.uptime}}</div>
+          </li>
+          <li>
+            <div class="title">{{"pages.infra.labels.registeredBy" | translate}}</div>
+            <div class="value">{{user? user.username: ''}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-grid no-top-bottom-space details-container flex-display">
+    <div class="mdl-cell mdl-cell--12-col no-top-bottom-space info-container white-bg">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col">
+              <label class="text-medium pull-left">{{("common.information" | translate).toUpperCase()}}</label>
+            </div>
+            <div class="mdl-layout-spacer"> </div>
+            <div class="info-button">
+              <button id="info-actions" [ngClass]="{'disabled': !clusterStatus || clusterStatus === 'WAITING'}" class="mdl-button mdl-js-button mdl-button--icon hwx-button-icon pull-right">
+                <i class="fa fa-ellipsis-v"></i></button>
+              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="info-actions">
+                <li class="mdl-menu__item"><i class="fa fa-external-link"></i><a href="{{lake.ambariUrl}}" target="_blank">Go to Ambari</a></li>
+              </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col">
+              <div class="text-dark-small-1">{{"common.description" | translate}}</div>
+              <div class="text-small-1 margin-top-10">{{lake.description}}</div>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"common.status" | translate}}</div>
+              <div class="text-small-1 margin-top-10">
+                <span *ngIf="clusterDetails && clusterDetails.status === 'STARTED'"><i class="fa fa-circle fa-circle--color-up"></i>Running</span>
+                <span *ngIf="clusterDetails && clusterDetails.status === 'NOT STARTED'"><i class="fa fa-circle fa-circle--color-down"></i>Not Running</span>
+                <span *ngIf="clusterDetails && clusterDetails.status === 'SYNC_ERROR'"><i class="fa fa-circle fa-circle--color-down"></i>Not Reachable</span>
+                <span *ngIf="!clusterDetails || !clusterDetails.status || clusterDetails.status === 'NA'"><i class="fa fa-circle fa-circle--color-na"></i>NA</span>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.securityType" | translate}}</div>
+              <div class="text-small-1 margin-top-10">{{clusterDetails.securityType}}</div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.noOfServices" | translate}}</div>
+              <div class="text-small-1 margin-top-10">{{clusterDetails.noOfSerices}}</div>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.dataNodes" | translate}}</div>
+              <div class="text-small-1 margin-top-10">
+                <span class="margin-right-10"><i class="fa fa-circle fa-circle--color-up"></i>{{clusterDetails.healthyDataNodes}}</span>
+                <span><i class="fa fa-circle fa-circle--color-down"></i>{{clusterDetails.unhealthyDataNodes}}</span>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.nameNodeHeapSize" | translate}}</div>
+              <div #heapProgress class="mdl-progress mdl-js-progress dp-progress pull-left"></div>
+              <div class="progress-percent">{{heapPercent}}</div>
+              <div class="placeholder"></div>
+              <div class="text-small-1 margin-top-0">{{clusterDetails.heapSizeUsed}}/{{clusterDetails.heapSizeTotal}}</div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.hdfsDiskSpace" | translate}}</div>
+              <div #hdfsProgress class="mdl-progress mdl-js-progress dp-progress pull-left"></div>
+              <div class="progress-percent">{{hdfsPercent}}</div>
+              <div class="placeholder"></div>
+              <div class="text-small-1 margin-top-0">{{clusterDetails.hdfsUsed}}/{{clusterDetails.hdfsTotal}}</div>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.nodeManagers" | translate}}</div>
+              <div class="text-small-1 margin-top-10">
+                <span class="margin-right-10"><i class="fa fa-circle fa-circle--color-up"></i>{{clusterDetails.nodeManagersActive}}</span>
+                <span><i class="fa fa-circle fa-circle--color-down"></i>{{clusterDetails.nodeManagersInactive}}</span>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.resourceManagerHeapSize" | translate}}</div>
+              <div #rmHeapProgress class="mdl-progress mdl-js-progress dp-progress pull-left"></div>
+              <div class="progress-percent">{{rmHeapPercent}}</div>
+              <div class="placeholder"></div>
+              <div class="text-small-1 margin-top-0">{{clusterDetails.rmHeapUsed?clusterDetails.rmHeapUsed:'NA'}}/{{clusterDetails.rmHeapTotal?clusterDetails.rmHeapTotal:'NA'}}</div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="text-dark-small-1">{{"pages.infra.labels.resourceManagerUptime" | translate}}</div>
+              <div class="text-small-1 margin-top-10">{{clusterDetails.rmUptime?clusterDetails.rmUptime:'NA'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col no-top-bottom-space white-bg services-container">
+      <div class="mdl-grid services-header-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <label class="text-medium pull-left">{{"pages.services.labels.dpServices" | translate}}</label>
+        </div>
+      </div>
+      <div class="mdl-grid services-body-grid" *ngIf=" !serviceLoadError && (!servicesInfo || servicesInfo.length == 0)">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-cell mdl-cell--4-col">{{"common.loading" | translate}}...</div>
+        <div class="mdl-layout-spacer"></div>
+      </div>
+      <div class="mdl-grid services-body-grid" *ngIf=" serviceLoadError ">
+        <div class="mdl-cell mdl-cell--12-col load-service-error">{{"pages.infra.description.loadServiceError" | translate}}</div>
+      </div>
+      <div *ngFor="let serviceinfo of servicesInfo" class="services">
+        <div class="mdl-grid services-body-grid">
+          <div class="mdl-cell mdl-cell--6-col services-body-cell">
+            <label class="text-small-1 pull-left flex-display"><i class="fa fa-check-circle" *ngIf="serviceinfo.state === 'STARTED'" aria-hidden="true"></i><i class="fa fa-exclamation-triangle" *ngIf="serviceinfo.state !== 'STARTED'" aria-hidden="true"></i>
+              {{(("common.serviceNameMappings."+serviceinfo.serviceName | translate) !== "common.serviceNameMappings."+serviceinfo.serviceName)? ("common.serviceNameMappings."+serviceinfo.serviceName | translate).toUpperCase() : serviceinfo.serviceName}}</label>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col services-body-cell">
+            <label class="text-small-1 pull-left">{{serviceinfo.serviceVersion}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

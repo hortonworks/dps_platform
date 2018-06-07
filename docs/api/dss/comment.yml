@@ -1,0 +1,200 @@
+---
+swagger: '2.0'
+info:
+  title: Comments API for core
+  version: 0.0.1
+  description: |
+    Proposed API for comments which will be used by UI to add/retrieve/update/delete comments
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /api/comments:
+    get:
+      summary: Get a list of comments related to a particular object( e.g. a particular asset collection)
+      parameters:
+      - name: objectId
+        in: query
+        description: the ID of the object for which comments are fetched
+        required: true
+        type: string
+      - name: objectType
+        in: query
+        description: the type of the object (e.g. assetCollection)
+        required: true
+        type: string
+      - name: offset
+        in: query
+        description: the offset for new call
+        type: integer
+      - name: size
+        in: query
+        description: number of comments to be fetched in each call
+        type: integer
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CommentWithUser'
+        400:
+          description: comment is not supported for the supplied objectType or request was malformed
+        404:
+          description: Not Found
+        500:
+          description: internal server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+
+    post:
+      summary: Add a new comment
+      parameters:
+        - in: body
+          name: Comment
+          required: true
+          schema:
+            $ref: '#/definitions/Comment'
+      responses:
+        201:
+          description: CREATED
+          schema:
+            $ref: '#/definitions/CommentWithUser'
+        400:
+          description: comment is not supported for the supplied objectType or request was malformed
+        500:
+          description: internal server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+
+
+  /api/comments/{id}:
+    patch:
+      summary: Update the comment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: commentTextWithUser
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CommentTextWithUser'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommentWithUser'
+        401:
+          description: If the user is not authorized to update that comment
+        500:
+          description: internal server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+
+    delete:
+      summary: Delete the specified comment
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: string
+            description: Success message with number of rows deleted
+        500:
+          description: internal server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+
+definitions:
+
+  Comment:
+    description: Comment object which contains all information related to a comment
+    type: object
+    required:
+      - objectType
+      - objectId
+      - createdBy
+    properties:
+      id:
+        type: integer
+        format: integer64
+        description: id of the comment
+      comment:
+        type: string
+        description: comment text
+      objectType:
+        type: string
+      objectId:
+        type: integer
+        format: integer64
+      createdBy:
+        type: integer
+        format: integer64
+      createdOn:
+        type: string
+        format: date-time
+      lastModified:
+        type: string
+        format: date-time
+      editVersion:
+        type: integer
+        format: integer32
+
+  CommentWithUser:
+    description: Comment object along with user name
+    type: object
+    required:
+      - comment
+      - userName
+    properties:
+      comment:
+        $ref: '#/definitions/Comment'
+      userName:
+        type: string
+
+  CommentTextWithUser:
+    description: a tuple which consists of commentText and user id
+    type: object
+    required:
+      - commentText
+      - userId
+    properties:
+      commentText:
+        type: string
+      userId:
+        type: string
+
+  Error:
+    type: object
+    required:
+      - status
+      - message
+      - errorType
+    properties:
+      status:
+        type: number
+        description: HTTP status code
+      message:
+        type: string
+        description: Description/trace of the error
+      errorType:
+        type: string
+        description: Text describing the type of errror , may be indicating its origin

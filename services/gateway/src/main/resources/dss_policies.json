@@ -1,0 +1,9 @@
+{
+  "routePerms":
+  [
+    {
+      "path":"/",
+      "roles": ["CURATOR"]
+    }
+  ]
+}

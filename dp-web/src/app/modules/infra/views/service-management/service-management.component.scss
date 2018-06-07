@@ -1,0 +1,280 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../../styles/variables";
+
+.container {
+  padding: 0 25px;
+}
+
+.services-list {
+  @extend .borderBox;
+  width: auto;
+  display: inline;
+  margin: 0;
+  padding: 0;
+
+}
+
+.title-pane {
+  padding: 25px 0;
+}
+
+.services-table {
+  border: 1px solid $white;
+  .row:last-child {
+    border-bottom: 1px solid $gallery;
+  }
+}
+
+.row {
+  background-color: $white;
+  border: 1px solid $gallery;
+  border-bottom: 0;
+  padding: 5px;
+
+  span {
+    display: inline-block;
+  }
+
+  .logo-img {
+    width: 20px;
+    margin: 0 10px;
+  }
+  .name {
+    width: 250px;
+    display: inline-block;
+  }
+  .divider {
+    margin: 10px;
+  }
+  .smart-sense {
+    width: 250px;
+  }
+  .action {
+    margin: 12px 15px;
+    color: $eastern-blue;
+    cursor: pointer;
+  }
+}
+
+.inner-row {
+  background-color: $white;
+  border: 1px solid $gallery;
+  border-bottom: 0;
+  height: 42px;
+
+
+}
+
+table.mdl-data-table {
+  thead th {
+    background-color: $gallery !important;
+    height: 42px;
+  }
+  tbody tr {
+    height: 42px;
+  }
+}
+
+.status-col {
+  width: 20px;
+}
+
+.inner-list {
+  background-color: $gallery;
+  padding: 0 10px 10px;
+}
+
+.list-title {
+  text-align: center;
+  padding-top: 25px;
+}
+
+.list-item {
+  text-align: center;
+  padding: 15px 0px;
+}
+
+.logo-wrapper {
+  background-color: $gallery;
+  padding: 15px;
+  height: 120px;
+  position: relative;
+}
+
+.service-item {
+  display: inline-block;
+  float: left;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  border: 1px solid $iron-gray;
+  border-radius: 2px;
+  width: 200px;
+  height: 175px;
+  .action-btn {
+    display: none;
+  }
+}
+
+.service-item:hover {
+  .logo-img {
+    opacity: 0.1;
+  }
+  .logo-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .action-btn {
+    display: block;
+    position: absolute;
+    bottom: 40px;
+    width: 96px;
+    left: 52px;
+    opacity: 1;
+  }
+}
+
+.service-name {
+  height: 24px;
+  background-color: $white;
+  margin: 0px;
+  padding: 3px;
+}
+
+.version {
+  background-color: $wild-sand;
+  margin: 0;
+  height: 28px;
+  padding: 10px;
+}
+
+.logo-img {
+  color: $eastern-blue;
+  width: 50px;
+  margin: 25px;
+  cursor: pointer;
+}
+
+.enable-btn {
+  height: 21px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.additional-service-btn {
+  height: 21px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  margin-left: 30px;
+}
+
+.cluster-check {
+  margin: 25px 0 0;
+}
+
+
+.notification-bar {
+  padding: 15px;
+  background: $concrete;
+  height: 34px;
+  margin-bottom: 20px;
+  .fa-check-circle {
+    font-size: 20px;
+    color: $forest-green-1;
+    margin: 5px;
+  }
+  .title {
+    color: $forest-green-1;
+    margin-bottom: 5px;
+  }
+  .message {
+    font-weight: 500;
+  }
+}
+
+.not-installed-btn {
+  width: 150px !important;
+  left: 24px !important;
+  height: 55px !important;
+  bottom: 32px !important;
+}
+
+.know-more-link {
+  font-size: 12px;
+  margin-top: 3px;
+  text-decoration: underline;
+  display: block;
+}
+
+.not-installed {
+  color: $shuttle-gray;
+}
+
+.installed {
+  color: $forest-green-1;
+}
+
+.unhealthy {
+  color: $roman-red;
+}
+
+.hexagon {
+  width: 20px;
+  height: 150px;
+  left: 90px;
+  top: 75px;
+  background: red;
+  position: relative;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.hexagon:before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid red;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid red;
+}

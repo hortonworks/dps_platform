@@ -1,0 +1,52 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="container line-height-1-5">
+  <div class="text-medium line-height-1">{{"pages.onboard.labels.welcomeText" | translate}}</div>
+  <div class="text-xlarge green">{{"pages.onboard.labels.hwxDataplane" | translate}}</div>
+  <div class="text-small margin-top-bottom-20"> {{"pages.onboard.description.dataplane" | translate}}</div>
+  <div class="mdl-grid white-bg margin-top-bottom-3" data-se="onboard__welcome__auth">
+    <div class="mdl-cell mdl-cell--12-col">
+      <i class="fa fa-lock pull-left text-large green"></i>
+      <div>
+        <div class="text-medium text-semibold"><span class="green">{{"common.step" | translate}} 1:</span> {{"pages.onboard.labels.setupAuth" | translate}}</div>
+        <div class="text-light line-height-2">{{"pages.onboard.description.setupAuth" | translate}}</div>
+      </div>
+     </div>
+  </div>
+  <div class="mdl-grid white-bg margin-top-bottom-3" data-se="onboard__welcome__users">
+    <div class="mdl-cell mdl-cell--12-col">
+      <i class="fa fa-users pull-left text-large green"></i>
+      <div>
+        <div class="text-medium text-semibold"><span class="green">{{"common.step" | translate}} 2:</span> {{"pages.onboard.labels.defineUsers" | translate}}</div>
+        <div class="text-light line-height-2">{{"pages.onboard.description.defineUsers" | translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="margin-top-30">
+    <button
+      id="get-started-btn"
+      class="mdl-button btn-hwx-primary"
+      [routerLink]="['/onboard/identity-provider']"
+      data-se="onboard__welcome__start">{{("pages.onboard.labels.startButton" | translate).toUpperCase()}}</button>
+  </div>
+</div>

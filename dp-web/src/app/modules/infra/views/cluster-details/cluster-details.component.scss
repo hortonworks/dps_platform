@@ -1,0 +1,223 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../../styles/_variables.scss";
+.no-top-bottom-space {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+.page-container {
+  padding: 14px 9px 20px;
+}
+
+.details-container {
+  padding-top: 0;
+}
+
+.text-large {
+  display: block;
+  color: $dove-gray;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 6px 6px;
+  line-height: 20px;
+}
+
+.text-dark-small-1 {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.text-medium {
+  display: block;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.services {
+  margin: 7px 0 0;
+  & .fa-check-circle {
+    color: $forest-green-1;
+    margin-right: 10px;
+  }
+  & .fa-exclamation-triangle {
+    color: $burnt-cienna-red;
+    margin-right: 10px;
+  }
+}
+
+.text-small-1 {
+  display: block;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.fa-circle--color-up {
+  color: $forest-green-1;
+  margin-right: 5px;
+}
+
+.fa-circle--color-down {
+  color : $burnt-cienna-red;
+  margin-right: 5px;
+}
+
+.fa-circle--color-na {
+  color : $shuttle-gray;
+  margin-right: 5px;
+}
+
+.mdl-tabs__tab-bar {
+  justify-content: flex-start;
+  a, a.is-active {
+    color: $dusty-gray;
+  }
+}
+
+.summary-pane-7 ul {
+  border: none;
+}
+
+.summary-pane-7 li {
+  background-color: $white;
+}
+
+.dp-progress {
+  width: 150px;
+  margin: 10px 10px 10px 0;
+}
+
+.progress-percent {
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.placeholder{
+  clear: both;
+}
+
+:host /deep/ .mdl-progress > .progressbar{
+  background-color: $forest-green-1;
+}
+
+:host /deep/ .mdl-progress > .bufferbar{
+  background-image: linear-gradient(to right, rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), linear-gradient(to right, $shuttle-gray, $shuttle-gray);
+}
+
+.refresh-btn {
+  min-width: 40px !important;
+  padding: 9px 10px;
+  margin-right: 5px;
+}
+
+.margin-right-10{
+  margin-right: 10px;
+}
+
+.margin-top-10{
+  margin-top: 10px;
+}
+
+.margin-top-0 {
+  margin-top: 0 !important;
+}
+
+.white-bg{
+  background-color: $white;
+}
+
+.mdl-menu__item {
+  a{
+    color: $dove-gray;
+    text-decoration: none;
+    font-weight: normal;
+  }
+  .fa {
+    padding: 0 8px;
+  }
+}
+
+.flex-display{
+  display: flex;
+}
+
+.info-container{
+  width: 75%;
+  flex: 1;
+}
+
+.info-button{
+  position: relative;
+}
+
+.services-container{
+  width: 25%;
+  padding-left: 12px;
+}
+
+.services-header-grid{
+  padding-bottom: 0px;
+  padding-top: 24px;
+}
+
+.services-body-grid{
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.services-body-cell{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.error-notification-bar {
+  padding: 15px;
+  background: $concrete;
+  height: 34px;
+  margin-bottom: 20px;
+  .fa-times-circle {
+    font-size: 24px;
+    color: $roman-red;
+  }
+  .fa-remove {
+    color: $dusty-gray;
+    cursor: pointer;
+  }
+  .text-medium {
+    font-weight: 500;
+    color: $roman-red;
+  }
+}
+
+.load-service-error{
+  color:$roman-red
+}
+
+.disabled, .disabled > * {
+  color: rgba(0,0,0, 0.26) !important;
+  cursor: default;
+  background-color: transparent;
+  pointer-events: none;
+}

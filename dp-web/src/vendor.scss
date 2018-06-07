@@ -1,0 +1,61 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+/* Material Design Lite */
+
+// Variables and mixins
+@import "../node_modules/material-design-lite/src/variables";
+@import "styles/variables";
+@import "../node_modules/material-design-lite/src/mixins";
+
+// Resets and dependencies
+@import "../node_modules/material-design-lite/src/resets/resets";
+@import "../node_modules/material-design-lite/src/typography/typography";
+
+// Components
+@import "../node_modules/material-design-lite/src/palette/palette";
+@import "../node_modules/material-design-lite/src/ripple/ripple";
+@import "../node_modules/material-design-lite/src/animation/animation";
+@import "../node_modules/material-design-lite/src/badge/badge";
+@import "../node_modules/material-design-lite/src/button/button";
+@import "../node_modules/material-design-lite/src/card/card";
+@import "../node_modules/material-design-lite/src/checkbox/checkbox";
+@import "../node_modules/material-design-lite/src/chip/chip";
+@import "../node_modules/material-design-lite/src/data-table/data-table";
+@import "../node_modules/material-design-lite/src/dialog/dialog";
+@import "../node_modules/material-design-lite/src/footer/mega_footer";
+@import "../node_modules/material-design-lite/src/footer/mini_footer";
+@import "../node_modules/material-design-lite/src/icon-toggle/icon-toggle";
+@import "../node_modules/material-design-lite/src/list/list";
+@import "../node_modules/material-design-lite/src/menu/menu";
+@import "../node_modules/material-design-lite/src/progress/progress";
+@import "../node_modules/material-design-lite/src/layout/layout";
+@import "../node_modules/material-design-lite/src/radio/radio";
+@import "../node_modules/material-design-lite/src/slider/slider";
+@import "../node_modules/material-design-lite/src/snackbar/snackbar";
+@import "../node_modules/material-design-lite/src/spinner/spinner";
+@import "../node_modules/material-design-lite/src/switch/switch";
+@import "../node_modules/material-design-lite/src/tabs/tabs";
+@import "../node_modules/material-design-lite/src/textfield/textfield";
+@import "../node_modules/material-design-lite/src/tooltip/tooltip";
+@import "../node_modules/material-design-lite/src/shadow/shadow";
+@import "../node_modules/material-design-lite/src/grid/grid";

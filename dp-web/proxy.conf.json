@@ -1,0 +1,15 @@
+{
+  "/api": {
+    "target": "http://localhost:8762/service/core",
+    "secure": false
+  },
+  "/auth": {
+    "target": "http://localhost:8762",
+    "secure": false
+  },
+  "/knox": {
+    "target": "https://localhost:8443",
+    "secure": false,
+    "pathRewrite": {"^/knox" : ""}
+  }
+}

@@ -1,0 +1,234 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../styles/variables";
+
+.dp-header-logo {
+  @extend .borderBox;
+
+  width: $side-nav-width;
+  height: $header-height;
+  line-height: $header-height;
+  background: $logo-background;
+  border: 1px solid $logo-background;
+  white-space: nowrap;
+  padding-left: 10px;
+  margin-bottom: 5px;
+
+  &--active {
+    cursor: pointer;
+  }
+  & > img {
+    width: 25px;
+    float: left;
+    margin-top: 15px;
+  }
+
+  & > span {
+    color: $white;
+    font-size: 20px;
+    padding-left: 10px;
+  }
+
+  .persona-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 16px 0;
+    display: block;
+    width: 152px;
+    height: 60px;
+    word-wrap: break-word;
+    white-space: normal !important;
+    line-height: 1.2;
+    margin-left: 35px;
+
+    &:after {
+      font-family: "FontAwesome";
+      font-style: normal;
+      font-size: 15px;
+      content: '\f078';
+      margin-left: 10px;
+      display: inline-block;
+      color: $fruit-salad;
+    }
+  }
+
+  .persona-drop-down-small {
+    display: none;
+
+    &:after {
+      font-family: "FontAwesome";
+      font-style: normal;
+      font-size: 12px;
+      content: '\f078';
+      margin-left: 5px;
+      display: inline-block;
+      color: $fruit-salad;
+      position: absolute;
+      left: 28px;
+      top: -20px;
+    }
+  }
+
+  &.minimised {
+    width: 50px;
+    padding-left: 10px;
+  }
+}
+
+.sidenav {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background: $tuna;
+  overflow-x: hidden;
+  width: $side-nav-width;
+
+  .sidenav-item {
+    padding: 11px 5px 11px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: normal;
+    display: block;
+    transition: 0.3s;
+    color: $submarine;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover, &.active {
+      color: $white;
+      background: $bright-gray;
+    }
+
+    i {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+  }
+
+  .sidenav-item.active {
+    &:before {
+      font-family: FontAwesome;
+      content: "\F0DA";
+      color: $fruit-salad;
+      margin-left: -20px;
+      font-size: 18px;
+      position: absolute;
+    }
+  }
+}
+
+.collpased {
+  &.sidenav {
+   width: $side-nav-minimised-width;
+  }
+
+  .sidenav-item {
+    padding:15px 15px 16px 15px;
+
+    &.active:before {
+      margin-left: -15px;
+    }
+
+    i {
+      font-size: 19px;
+      margin-right: 8px;
+    }
+  }
+  .sidenav-item-name {
+    display: none;
+  }
+
+  .dp-header-logo {
+    width: 50px;
+    padding-left: 10px;
+  }
+
+  .persona-name {
+    display: none;
+  }
+
+  .persona-drop-down-small {
+    display: block;
+  }
+}
+
+.expander {
+  width: 100%;
+  background: $logo-background;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  color: $forest-green-1;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+
+.suit-navigation {
+  position: absolute;
+  top: $layout-header-desktop-row-height;
+  left: 0;
+  margin: 0;
+  padding: 40px 40px 20px;
+  background: $white;
+  -webkit-box-shadow: 5px 5px 10px rgba(66, 66, 66, 0.3);
+  -moz-box-shadow: 5px 5px 10px rgba(66, 66, 66, 0.3);
+  box-shadow: 5px 5px 10px rgba(66, 66, 66, 0.3);
+  z-index: 100;
+  visibility: hidden;
+  display: flex;
+  justify-content: space-between;
+
+  &.showPersona {
+    visibility: visible;
+  }
+
+  & > li {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+
+    & .logo-wrapper {
+      background-color: $eastern-blue;
+      padding: 15px;
+      border-radius: 4px;
+      display: inline-block;
+      height: 72px;
+      & + div {
+        text-align: center;
+        font-size: 14px;
+        padding-top: 5px;
+        text-overflow: ellipsis;
+        width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

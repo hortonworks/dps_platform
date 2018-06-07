@@ -1,0 +1,118 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div data-se="groups__slider-add-group" class="load-right-to-left-slider dialog1x">
+  <div class="title-container">
+    <div class="hwx-subtitle">
+      <span *ngIf="mode === modes.ADD">{{"pages.infra.labels.addGroup" | translate}}</span>
+      <span *ngIf="mode === modes.EDIT">{{group? group.groupName: ''}}</span>
+      <i class="fa fa-remove close-icon" id="back" [routerLink]="['/infra/manage-access/groups']"></i>
+    </div>
+  </div>
+  <div class="slider-container">
+    <div data-se="groups__add-group__error" class="error-notification-bar" *ngIf="showError">
+      <i class="fa fa-times-circle pull-left"></i>
+      <div class="error-title">{{"common.failed" | translate}}</div>
+      <div *ngFor="let msg of errorMessages" class="error-text">{{msg}}</div>
+    </div>
+    <form #addGroupForm="ngForm">
+      <div *ngIf="mode === modes.ADD">
+        <div class="form-group dp-input">
+          <label class="required">{{"pages.infra.labels.addGroupNames" | translate}}</label>
+          <div id="duplicate-group-warning" class="hwx-inline-desc warning"></div>
+          <tagging-widget data-se="groups__add-group__groups-input"  #groupTags id="group-tags" class="user-tags"
+          [tags]="groups"
+          [availableTags]="availableGroups"
+          [clearOnSearch]="true"
+          [restrictFreeText]="true"
+          [minChars]=3
+          (textChange)="onGroupSearchChange($event)"
+          (onNewSearch)="onNewGroupAddition($event)"></tagging-widget>
+        </div>
+        <div class="form-group dp-input">
+        <label class="required">{{"pages.infra.labels.roles" | translate}}</label>
+        <div id="duplicate-role-warning" class="hwx-inline-desc warning"></div>
+          <tagging-widget data-se="groups__add-group__roles-input" #roleTags class="role-tags" id="role-tags"
+          [tags]="roles"
+          [availableTags]="availableRoles"
+          [clearOnSearch]="true"
+          [restrictFreeText]="true"
+          [minChars]=3
+          (textChange)="onRoleSearchChange($event)"
+          (onNewSearch)="onNewRoleAddition($event)"></tagging-widget>
+          <i id="roles-dropdown" class="fa fa-caret-down drop-down-icon" (click)="showRoleOptions()"></i>
+          <div *ngIf="showRoles" id="roles-option-list" class="option-list">
+            <div *ngFor="let roleOption of allRoles" id="role-{{roleOption.data}}" (click)="onNewRoleAddition(roleOption)">{{roleOption.display}}</div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form #editGroupForm="ngForm">
+      <div *ngIf="mode === modes.EDIT">
+        <div class="mdl-grid mdl-grid--no-spacing padding-top15">
+          <div class="mdl-cell mdl-cell--2-col">{{"pages.infra.labels.groupName" | translate}}</div>
+          <div class="mdl-cell mdl-cell--1-col">  &nbsp;: </div>
+          <div class="mdl-cell mdl-cell--9-col">{{group? group.groupName: ''}} </div>
+        </div>
+        <div class="mdl-grid mdl-grid--no-spacing padding-top15">
+          <div class="mdl-cell mdl-cell--2-col">{{"common.status" | translate}}</div>
+          <div class="mdl-cell mdl-cell--1-col"> &nbsp;: </div>
+          <div class="mdl-cell mdl-cell--9-col">
+            <label class="mdl-switch mdl-js-switch" [ngClass]="{'is-checked': group.active}" for="status-switch">
+            <input name="group-status" type="checkbox" id="status-switch" class="mdl-switch__input" [(ngModel)] = "group.active"/>
+            <span class="mdl-switch__label">{{group && group.active? ("pages.infra.labels.active" | translate) : ("pages.infra.labels.inactive" | translate)}}</span>
+            </label>
+          </div>
+        </div>
+        <div class="mdl-grid mdl-grid--no-spacing padding-top15">
+          <div class="mdl-cell mdl-cell--2-col"></div>
+          <div class="mdl-layout-spacer"></div>
+          <div id="duplicate-role-warning" class="mdl-cell mdl-cell--9-col hwx-inline-desc warning"></div>
+        </div>
+        <div class="mdl-grid mdl-grid--no-spacing">
+          <div class="form-group mdl-cell mdl-cell--2-col">
+            <label class="required">{{"pages.infra.labels.roles" | translate}}</label>
+          </div>
+          <div class="mdl-cell mdl-cell--1-col">  : </div>
+          <div class="mdl-cell mdl-cell--9-col">
+            <tagging-widget #roleTags class="role-edit-tags" id="role-tags"
+              [tags]="groupRoles"
+              [availableTags]="availableRoles"
+              [clearOnSearch]="true"
+              [restrictFreeText]="true"
+              [minChars]=3
+              (textChange)="onRoleSearchChange($event)"
+              (onNewSearch)="onRolesEdit($event)"></tagging-widget>
+            <i class="fa fa-caret-down drop-down-icon" id="roles-dropdown" (click)="showRoleOptions()"></i>
+            <div *ngIf="showRoles" class="option-list" id="roles-option-list">
+              <div *ngFor="let roleOption of allRoles" id="role-{{roleOption.data}}" (click)="onRolesEdit(roleOption)">{{roleOption.display}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="margin-top-20">
+      <button id="save-btn" data-se="groups__add-group__save" class="mdl-button btn-hwx-primary margin-right-10" (click)="save()">{{"common.save" | translate}}</button>
+      <button id="cancel-btn" data-se="groups__add-group__cancel" class="mdl-button btn-hwx-default" [routerLink]="['/infra/manage-access/groups']">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+</div>

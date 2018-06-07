@@ -1,0 +1,153 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="load-right-to-left-slider dialog1x">
+  <div class="title-container">
+    <div class="hwx-subtitle">
+      <span class="primary-space comment-heading">
+        <i class="fa fa-comments"></i>
+        <span>{{"pages.comments.collaborate" | translate}}</span>
+    </span>
+      <i id="back" class="fa fa-remove close-icon" [routerLink]="['../']"></i>
+    </div>
+  </div>
+  <div class="rating-section" *ngIf="isRatingEnabled">
+    <div class="rating-stars"><star-rating-comp [starType]="'svg'" [labelText]="'RATE THIS COLLECTION'" [labelPosition]="'top'" [size]="'medium'" [speed]="'noticeable'" [step]="0.5"
+                                 [showHalfStars]="true" [id]="'rating-id'" [hoverEnabled]="true"></star-rating-comp></div>
+    <div class="rating-class">
+      <div>2000 votes</div>
+      <div class="fixed-star">
+        <star-rating-comp [starType]="'svg'" [labelText]="'4.1'" [labelPosition]="'left'" [size]="'medium'" [id]="'rating-id2'" [hoverEnabled]="false" [numOfStars]="1" [staticColor]="'positive'" [readOnly]="true"></star-rating-comp>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-grid" *ngIf="fetchError">
+    <div class="mdl-cell mdl-cell--12-col load-comment-error">{{"pages.comments.fetchErrorMsg" | translate}}</div>
+  </div>
+  <div class="mdl-grid" *ngIf="fetchInProgress">
+    <div class="mdl-cell mdl-cell--12-col">{{"common.loading" | translate}}...</div>
+  </div>
+  <div *ngIf="!fetchInProgress">
+    <div class="mdl-grid" *ngIf="!fetchError && commentsWithUserAndChildren.length === 0">
+      <div class="mdl-cell mdl-cell--12-col no-comments">{{"pages.comments.noComments" | translate}}</div>
+    </div>
+    <div class="comment-tree">
+      <ul>
+        <li *ngFor="let oneLevelComment of commentsWithUserAndChildren">
+          <div class="comment" [ngClass]= "{'online-user': isLoggedInUser(oneLevelComment.commentWithUser)}">
+            <div class="flex-grid">
+              <div class="primary-space">
+                        <span class="comment-user" [ngClass]= "{'hwx-warning-bg': !isLoggedInUser(oneLevelComment.commentWithUser), 'hwx-external-bg': isLoggedInUser(oneLevelComment.commentWithUser)}">
+                            <i class="fa fa-user"></i>
+                        </span>
+                <div class="user-display">
+                  <div class="username-text">{{oneLevelComment.commentWithUser.userName}}</div>
+                  <div class="comment-date">{{formatDate(oneLevelComment.commentWithUser.comment.lastModified)}}</div>
+                </div>
+              </div>
+              <div>
+                <div class="utility-action-selection">
+                            <span>
+                                <i class="fa fa-ellipsis-v"></i>
+                            </span>
+                  <ul class="utility-action-options">
+                    <li (click)="onReplyToComment(oneLevelComment.commentWithUser)">
+                      <i class="fa fa-reply"></i>
+                      <span>Reply</span></li>
+                    <li (click)="onDeleteComment(oneLevelComment.commentWithUser)" [ngClass]= "{'hide': !isLoggedInUser(oneLevelComment.commentWithUser)}">
+                      <i class="fa fa-times"></i>
+                      <span>Delete</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="comment-text">
+              {{oneLevelComment.commentWithUser.comment.comment}}
+            </div>
+            <ul [ngClass]="{'response-group': oneLevelComment.children && oneLevelComment.children.length > 0  }">
+              <li *ngFor="let child of oneLevelComment.children">
+                        <span class="comment-reply">
+                            <i class="fa fa-reply"></i>
+                        </span>
+                <div class="comment" [ngClass]= "{'online-user': isLoggedInUser(child)}">
+                  <div class="flex-grid">
+                    <div class="primary-space">
+                                    <span class="comment-user" [ngClass]= "{'hwx-warning-bg': !isLoggedInUser(child), 'hwx-external-bg': isLoggedInUser(child)}">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                      <div class="user-display">
+                        <div class="username-text">{{child.userName}}</div>
+                        <div class="comment-date">{{formatDate(child.comment.lastModified)}}</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="utility-action-selection">
+                                        <span>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </span>
+                        <ul class="utility-action-options">
+                          <li (click)="onReplyToComment(child)">
+                            <i class="fa fa-reply"></i>
+                            <span>Reply</span></li>
+                          <li (click)="onDeleteComment(child)" [ngClass]= "{'hide': !isLoggedInUser(child)}">
+                            <i class="fa fa-times"></i>
+                            <span>Delete</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="comment-text">
+                    {{child.comment.comment}}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="slider-footer">
+    <div class="comment-reply-to-placeholder" *ngIf="isReply">
+      <div class="username-text"><span>{{reply.username}}</span>
+        <i class="fa fa-remove close-icon close-reply" (click)="removeReply()" id="close-reply"></i>
+      </div>
+      <div class="comment-reply">{{reply.commentText}}</div>
+    </div>
+    <div class="flex-grid form-reply">
+        <span class="primary-space">
+          <textarea type="text" placeholder="Add your comment here..." class="comment-input" [(ngModel)]="newCommentText" rows="2"></textarea>
+        </span>
+      <span>
+            <button class="paper-btn" (click)="onPostComment()" id="post">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

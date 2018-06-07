@@ -1,0 +1,247 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+GET           /health                                                        controllers.Status.health
+GET           /metrics                                                       controllers.Status.metrics
+
+
+# Users
+GET           /users/detail/:username                                        controllers.Users.getUserDetail(username:String)
+GET           /users                                                         controllers.Users.all(username: Option[String])
+POST          /users/withroles                                               controllers.Users.insertWithRoles
+POST          /users/updateActiveAndRoles                                    controllers.Users.updateActiveAndRoles
+POST          /users/withgroups                                              controllers.Users.insertWithGroups
+PUT           /users/withgroups                                              controllers.Users.updateWithGroups
+GET           /users/:username/usercontext                                   controllers.Users.getUserContext(username:String)
+POST          /users                                                         controllers.Users.insert
+POST          /users/role                                                    controllers.Users.addUserRole
+GET           /users/role/:username                                          controllers.Users.getRolesForUser(username)
+GET           /users/all                                                     controllers.Users.getUsers
+GET           /users/:userId                                                 controllers.Users.load(userId:Long)
+PUT           /users/:userId                                                 controllers.Users.update(userId: String)
+DELETE        /users/:userId                                                 controllers.Users.delete(userId:Long)
+
+
+# Groups
+GET           /groups                                                        controllers.Groups.getGroups
+GET           /groups/active                                                 controllers.Groups.getAllActiveGroups
+POST          /groups/withroles                                              controllers.Groups.insertWithRoles
+POST          /groups/update                                                 controllers.Groups.updateGroupInfo
+GET           /groups/roles                                                  controllers.Groups.getRoles
+GET           /groups/:name                                                  controllers.Groups.groupInfoByName(name: String)
+
+
+
+#Roles API
+GET           /roles                                                         controllers.Roles.all
+GET           /roles/:roleId                                                 controllers.Roles.load(roleId:Long)
+POST          /roles                                                         controllers.Roles.add
+
+
+#Permissions API
+GET           /permissions                                                   controllers.Permissions.all
+POST          /permissions                                                   controllers.Permissions.add
+GET           /permissions/user/:username                                    controllers.Permissions.userPermissions(username)
+
+#Locations
+GET           /locations                                                     controllers.DpClusters.getLocations(query: Option[String])
+GET           /locations/:locationId                                         controllers.DpClusters.loadLocation(locationId:Long)
+DELETE        /locations/:locationId                                         controllers.DpClusters.deleteLocation(locationId:Long)
+POST          /locations                                                     controllers.DpClusters.addLocation
+
+#DpClusters API
+GET           /dp/clusters                                                   controllers.DpClusters.all
+POST          /dp/clusters                                                   controllers.DpClusters.add
+GET           /dp/clusters/:dpClusterId                                      controllers.DpClusters.load(dpClusterId:Long)
+GET           /dp/clusters/:dpClusterId/clusters                             controllers.DiscoveredClusters.getByDpClusterId(dpClusterId:Long)
+DELETE        /dp/clusters/:dpClusterId                                      controllers.DpClusters.delete(dpClusterId:Long)
+PATCH         /dp/clusters/status                                            controllers.DpClusters.updateStatus
+PUT           /dp/clusters                                                   controllers.DpClusters.update
+GET           /dp/clusters/:dpClusterId/services                             controllers.ClusterServices.allWithDpCluster(dpClusterId:Long)
+POST          /dp/clusters/services                                          controllers.ClusterServices.addWithDpCluster
+
+#Clusters API
+GET           /clusters                                                      controllers.DiscoveredClusters.all(dpClusterId: Option[Long])
+POST          /clusters                                                      controllers.DiscoveredClusters.add
+GET           /clusters/:clusterId                                           controllers.DiscoveredClusters.load(clusterId:Long)
+DELETE        /clusters/:clusterId                                           controllers.DiscoveredClusters.delete(clusterId:Long)
+
+
+#Cluster services API
+GET           /clusters/:clusterId/services                                  controllers.ClusterServices.allWithCluster(clusterId:Long)
+POST          /cluster/services                                              controllers.ClusterServices.addWithCluster
+PUT           /clusters/services                                             controllers.ClusterServices.updateWithCluster
+GET           /clusters/:clusterId/services/:serviceId/endpoint              controllers.ClusterServices.getEndpoints(clusterId:Long,serviceId:Long)
+GET           /clusters/:clusterId/service/:serviceName                      controllers.ClusterServices.loadWithClusterAndName(clusterId:Long,serviceName:String)
+
+
+# Services API
+DELETE        /services/:serviceId                                           controllers.ClusterServices.delete(serviceId:Long)
+POST          /services/endpoints                                            controllers.ClusterServices.addServiceEndpoint
+GET           /services/:serviceId/endpoints                                 controllers.ClusterServices.getServiceEndpoints(serviceId:Long)
+GET           /services/endpoints/:serviceName                               controllers.ClusterServices.getAllServiceEndpoints(serviceName: String)
+PUT           /services/endpoints                                            controllers.ClusterServices.updateServiceEndpoint
+
+
+
+
+#Workspaces API
+GET           /workspaces                                                    controllers.Workspaces.all
+POST          /workspaces                                                    controllers.Workspaces.insert
+GET           /workspaces/name/:name                                         controllers.Workspaces.loadByName(name:String)
+GET           /workspaces/:workspaceId                                       controllers.Workspaces.load(workspaceId:Long)
+DELETE        /workspaces/:workspaceId                                       controllers.Workspaces.delete(workspaceId:Long)
+
+#Workspace Details API
+GET           /workspacedetails                                              controllers.Workspaces.allWithDetails
+GET           /workspacedetails/name/:name                                   controllers.Workspaces.loadByNameWithDetails(name:String)
+DELETE        /workspacedetails/name/:name                                   controllers.Workspaces.deleteByName(name:String)
+DELETE        /workspacedetails/name/:name                                   controllers.Workspaces.deleteByName(name:String)
+GET           /workspaces/users/:userId                                      controllers.Workspaces.loadByUser(userId:Long)
+
+
+#Asset workspace API
+#Get assets for workspace
+POST          /workspaces/assets                                             controllers.AssetWorkspaces.add
+GET           /workspaces/:workspaceId/assets                                controllers.AssetWorkspaces.assetsforWorkspace(workspaceId:Long)
+
+#Notebook Workspace API
+POST          /workspaces/notebooks                                          controllers.NotebookWorkspaces.add
+DELETE        /notebooks/:notebookId                                         controllers.NotebookWorkspaces.deleteByNotebookId(notebookId : String)
+GET           /workspaces/:workspaceId/notebooks                             controllers.NotebookWorkspaces.notebookForWorkspace(workspaceId : Long)
+
+#Categories
+GET           /categories                                                    controllers.Categories.all
+POST          /categories                                                    controllers.Categories.insert
+GET           /categories/search/:search                                     controllers.Categories.search(search : String, size :Option[Long])
+GET           /categories/:categoryId                                        controllers.Categories.load(categoryId:Long)
+DELETE        /categories/:categoryId                                        controllers.Categories.delete(categoryId:Long)
+
+#Skus API
+GET           /skus                                                          controllers.Skus.all
+POST          /skus                                                          controllers.Skus.insert
+GET           /skus/:skuId                                                   controllers.Skus.load(skuId: Long)
+GET           /skus/byName/:name                                             controllers.Skus.findByName(name:String)
+DELETE        /skus/:skuId                                                   controllers.Skus.delete(skuId: Long)
+
+#EnabledSkus API
+GET           /enabledskus                                                   controllers.EnabledSkus.all
+POST          /enabledskus                                                   controllers.EnabledSkus.insert
+GET           /enabledskus/:skuId                                            controllers.EnabledSkus.load(skuId: Long)
+DELETE        /enabledskus/:skuId                                            controllers.EnabledSkus.delete(skuId: Long)
+
+#ClusterHosts API
+GET           /clusters/:clusterId/hosts                                     controllers.ClusterHosts.allWithCluster(clusterId:Long)
+POST          /clusters/hosts                                                controllers.ClusterHosts.add
+PUT           /clusters/hosts                                                controllers.ClusterHosts.addOrUpdate
+GET           /clusters/:clusterId/hosts/:hostId                             controllers.ClusterHosts.loadWithCluster(clusterId: Long, hostId:Long)
+GET           /clusters/:clusterId/host/:hostName                            controllers.ClusterHosts.find(clusterId: Long, hostName)
+DELETE        /clusters/:clusterId/hosts/:hostId                             controllers.ClusterHosts.delete(clusterId: Long, hostId:Long)
+
+#ClusterProperties API
+GET           /clusters/:clusterId/properties                                controllers.ClusterProps.allWithCluster(clusterId:Long)
+POST          /clusters/properties                                           controllers.ClusterProps.add
+GET           /clusters/:clusterId/properties/:propertiesId                  controllers.ClusterProps.loadWithCluster(clusterId: Long, propertiesId:Long)
+DELETE        /clusters/:clusterId/properties/:propertiesId                  controllers.ClusterProps.delete(clusterId: Long, propertiesId:Long)
+
+#Dataset API
+GET           /datasets                                                      controllers.Datasets.all(name: Option[String])
+GET           /datasets/bynames                                              controllers.Datasets.datasetsByNames(names: String)
+POST          /datasets                                                      controllers.Datasets.add
+POST          /datasets/:datasetId/addassets                                 controllers.Datasets.addAssets(datasetId:Long)
+DELETE        /datasets/:datasetId/assets                                    controllers.Datasets.removeAssets(datasetId: Long, ids: Seq[String])
+DELETE        /datasets/:datasetId/removeallassets                           controllers.Datasets.removeAllAssets(datasetId:Long)
+POST          /datasets/:datasetId/begin-edit                                controllers.Datasets.beginEdit(datasetId:Long)
+POST          /datasets/:datasetId/save-edit                                 controllers.Datasets.saveEdit(datasetId:Long)
+POST          /datasets/:datasetId/revert-edit                               controllers.Datasets.revertEdit(datasetId:Long)
+POST          /datasetswithassets                                            controllers.Datasets.addWithAsset
+PUT           /datasets                                                      controllers.Datasets.update
+GET           /datasets/:datasetId                                           controllers.Datasets.load(datasetId:Long)
+DELETE        /datasets/:datasetId                                           controllers.Datasets.delete(datasetId:Long)
+PATCH         /datasets/:datasetId                                           controllers.Datasets.updateDatset(datasetId:String)
+
+#RichDataset
+GET           /richdatasets                                                  controllers.Datasets.allRichDataset(userId: Long, filter: Option[String], search: Option[String])
+GET           /richdatasets/tags/:tagName                                    controllers.Datasets.richDatasetByTag(tagName: String, userId: Long,filter: Option[String], search: Option[String] )
+GET           /richdatasets/:id                                              controllers.Datasets.richDatasetById(id:Long)
+
+
+#Categories Api
+GET           /categoriescount                                               controllers.DatasetCategories.categoriesCount(search: Option[String], filter: Option[String],userId: Long)
+GET           /categoriescount/:name                                         controllers.DatasetCategories.categoriesCountByName(name : String)
+
+#DatasetCategory Api
+GET           /datasets/:datasetId/categories                                controllers.DatasetCategories.allWithDatasetId(datasetId:Long)
+GET           /categories/:categoryId/datasets                               controllers.DatasetCategories.allWithCategoryId(categoryId:Long)
+POST          /datasets/categories                                           controllers.DatasetCategories.add
+DELETE        /datasets/:datasetId/categories/:categoryId                    controllers.DatasetCategories.delete(datasetId:Long, categoryId:Long)
+
+#UnclassifiedDataset API
+GET           /unclassifieddatasets                                          controllers.UnclassifiedDatasets.all
+POST          /unclassifieddatasets                                          controllers.UnclassifiedDatasets.add
+GET           /unclassifieddatasets/:datasetId                               controllers.UnclassifiedDatasets.load(datasetId:Long)
+DELETE        /unclassifieddatasets/:datasetId                               controllers.UnclassifiedDatasets.delete(datasetId:Long)
+
+#UnclassifiedDatasetCategory Api
+GET           /unclassifieddatasets/:datasetId/categories                    controllers.UnclassifiedDatasetCategories.allWithDatasetId(datasetId:Long)
+GET           /unclassifieddatasets/categories/:categoryId/datasets          controllers.UnclassifiedDatasetCategories.allWithCategoryId(categoryId:Long)
+POST          /unclassifieddatasets/categories                               controllers.UnclassifiedDatasetCategories.add
+DELETE        /unclassifieddatasets/:datasetId/categories/:categoryId        controllers.UnclassifiedDatasetCategories.delete(datasetId:Long, categoryId:Long)
+
+#Dataset Details API
+GET           /datasets/:datasetId/details                                   controllers.DatasetDetailsCtrl.allWithDatasetId(datasetId:Long)
+POST          /datasets/details                                              controllers.DatasetDetailsCtrl.add
+DELETE        /datasets/details/:id                                          controllers.DatasetDetailsCtrl.delete(id:Long)
+
+#Data Asset Api
+GET           /dataassets/:datasetId                                         controllers.DataAssets.allWithDatasetId(datasetId:Long, queryName: String, offset: Long, limit: Long, state: Option[String])
+GET           /dataassets/guid/:guid                                         controllers.DataAssets.loadFromGuid(guid: String)
+POST          /dataassets                                                    controllers.DataAssets.add
+DELETE        /dataassets/:id                                                controllers.DataAssets.delete(id:Long)
+
+POST          /dataassets/managedresults                                     controllers.Datasets.findManagedAssets(clusterId: Long)
+
+
+#Config
+GET          /configurations/:key                                           controllers.Configs.get(key)
+POST         /configurations                                                controllers.Configs.add
+PUT          /configurations                                                controllers.Configs.addOrUpdate
+
+
+#ldapconfig
+POST         /ldapconfig                                                    controllers.LdapConfig.add
+GET          /ldapconfig                                                    controllers.LdapConfig.getAll
+PUT          /ldapconfig                                                    controllers.LdapConfig.update
+
+#comments api
+POST        /comments                                                       controllers.Comments.addComment
+GET         /comments                                                       controllers.Comments.getCommentByObjectRef(objectId: Long, objectType: String)
+GET         /comments/actions/count                                         controllers.Comments.getCommentsCount(objectId: Long, objectType: String)
+GET         /comments/:parentId/replies                                     controllers.Comments.getByParentId(parentId: Long)
+DELETE      /comments/:id                                                   controllers.Comments.deleteById(id: String, userId: Long)
+DELETE      /comments                                                       controllers.Comments.delete(objectId: Long, objectType: String)
+PATCH       /comments/:id                                                   controllers.Comments.update(id: String)
+
+#ratings api
+POST        /ratings                                                        controllers.Ratings.add
+GET         /ratings                                                        controllers.Ratings.get(objectId: Long, objectType: String, userId: Long)
+GET         /ratings/actions/average                                        controllers.Ratings.getAverage(objectId: Long, objectType: String)
+PATCH       /ratings/:id                                                    controllers.Ratings.update(id: String)
+DELETE      /ratings                                                        controllers.Ratings.delete(objectId: Long, objectType: String)
+
+#favourites api
+POST        /favourites                                                     controllers.Favourites.add
+DELETE      /favourites/:favId                                              controllers.Favourites.deleteById(favId: Long, userId: Long, objectType: String, objectId: Long)
+
+#bookmarks api
+POST        /bookmarks                                                      controllers.Bookmarks.add
+DELETE      /bookmarks/:bmId                                                controllers.Bookmarks.deleteById(bmId: Long, userId: Long)
+
+# trust store
+GET         /certificates                                                   controllers.Certificates.list(active: Option[Boolean], name: Option[String])
+POST        /certificates                                                   controllers.Certificates.create
+GET         /certificates/:certificateId                                    controllers.Certificates.retrieve(certificateId: String)
+PUT         /certificates/:certificateId                                    controllers.Certificates.update(certificateId: String)
+DELETE      /certificates/:certificateId                                    controllers.Certificates.delete(certificateId: String)

@@ -1,0 +1,76 @@
+{
+  "project": {
+    "version": "1.0.0-beta.32.3",
+    "name": "ui"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        { "glob": "**/*", "input": "../node_modules/dps-apps/dist/images", "output": "./assets/images/" },
+        "favicon.png"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "dp",
+      "mobile": false,
+      "styles": [
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/material-design-icons/iconfont/material-icons.css",
+        "../node_modules/nvd3/build/nv.d3.css",
+        "../node_modules/dialog-polyfill/dialog-polyfill.css",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/dps-apps/dist/dp-app-navigation.css",
+        "vendor.scss",
+        "styles.scss"
+      ],
+      "scripts": [
+        "../node_modules/d3/d3.js",
+        "../node_modules/d3-tip/index.js",
+        "../node_modules/nvd3/build/nv.d3.js",
+        "../node_modules/dagre-d3/dist/dagre-d3.js",
+        "../node_modules/material-design-lite/dist/material.min.js"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "../node_modules"
+        ]
+      },
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "dev-hmr": "environments/environment.dev-hmr.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false
+  }
+}

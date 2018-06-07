@@ -1,0 +1,108 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../styles/variables";
+
+.underline {
+  .mdl-navigation__link {
+    cursor: pointer;
+    padding: 0px 9px;
+    margin: 0px 6px;
+    position: relative;
+    line-height: 34px;
+    &:hover {
+      color: $mine-shaft !important;
+    }
+  }
+
+  .is_active:after {
+    height: 2px;
+    width: 100%;
+    display: block;
+    content: " ";
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background: $fruit-salad;
+  }
+
+  .mdl-navigation__link.is_active {
+    color: $mine-shaft !important;
+  }
+}
+
+.buttons {
+  .mdl-navigation__link {
+    cursor: pointer;
+    padding: 0px 20px;
+    position: relative;
+    background: #F1F2F3;
+    border-right: 1px solid #CFD3D7;
+  }
+
+  .mdl-navigation {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top: 1px solid $iron;
+    border-left: 1px solid $iron;
+    border-right: 1px solid $iron;
+
+    span:last-child {
+      border-right: none;
+    }
+  }
+
+  .mdl-navigation__link.is_active {
+    color: $mine-shaft !important;
+    background: #CFD3D7;
+  }
+}
+
+.layout {
+  &.mdl-layout__header-row {
+    height: 34px;
+  }
+
+  .mdl-navigation {
+    border: 1px solid $dove-gray;
+    height: 34px;
+  }
+
+  .mdl-navigation__link {
+    cursor: pointer;
+    padding: 0px 15px;
+    line-height: 32px;
+    color: $dove-gray !important;
+    background: $white;
+  }
+
+  .mdl-navigation__link.is_active {
+    background: $dove-gray;
+    color: $white !important;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .mdl-layout__header-row {
+    padding: 0 10px 0 0;
+  }
+}

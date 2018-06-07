@@ -1,0 +1,62 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<dialog id="dialog" class="mdl-dialog" [ngClass]="{'mdl-dialog-large': requestKnoxURL}">
+  <div class="dialog-title hwx-subtitle">
+    <i class="fa fa-cogs"></i>
+    {{("pages.infra.labels.additionalConfigs" | translate).toUpperCase()}}
+  </div>
+  <div class="dialog-container">
+    <div class="hwx-desc">{{"pages.infra.description.additionalConfigs" | translate}}</div>
+    <div *ngIf="showError">
+      <div class="error-notification-bar">
+        <i class="fa fa-times-circle pull-left"></i>
+        <div class="text-medium">{{"common.failed" | translate}}</div>
+        <div class="text-small-1">{{errorMessage}} </div>
+      </div>
+    </div>
+    <form #configForm="ngForm">
+      <div *ngIf="requestAmbariCreds">
+        <div class="form-group">
+          <label class="required">{{"pages.infra.labels.ambariUsername" | translate}}</label>
+          <input required class="dp-input" name="username" type="text" [(ngModel)]="clusterDetailsRequest.ambariUser"/>
+        </div>
+        <div class="form-group">
+          <label class="required">{{"pages.infra.labels.ambariPassword" | translate}}</label>
+          <input required class="dp-input" name="password" type="password" [(ngModel)]="clusterDetailsRequest.ambariPass"/>
+        </div>
+      </div>
+      <div *ngIf="requestKnoxURL">
+        <div class="form-group">
+          <label class="required">{{"pages.infra.labels.knoxUrl" | translate}}</label>
+          <div class="hwx-inline-desc">{{"pages.infra.description.knoxUrl" | translate}}</div>
+          <input required class="dp-input-url" name="knox-url" type="text" placeholder="https://hostname:8443/" [(ngModel)]="clusterDetailsRequest.knoxTopology"/>
+        </div>
+      </div>
+    </form>
+    <div class="actions">
+      <button type="button" (click)="save()" class="mdl-button btn-hwx-primary">{{"common.save" | translate}}</button>
+      <button type="button" (click)="cancel()" class="mdl-button btn-hwx-secondary">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+
+</dialog>

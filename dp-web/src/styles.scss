@@ -1,0 +1,231 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+/* You can add global styles to this file, and also import other style files */
+@import "fonts";
+@import "styles/variables";
+@import "styles/mdl-extend";
+@import "styles/buttons";
+@import "styles/table";
+@import "styles/mixins";
+@import "styles/html-controls";
+@import "styles/slider";
+@import "styles/dialog";
+@import "~angular-star-rating/assets/scss/star-rating";
+
+body {
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  background: $gallery;
+  color: $dove-gray;
+  line-height: 1;
+  min-width: 1366px;
+}
+
+.dp-view-pane {
+  padding: 20px 20px;
+  border: 1px solid $concrete;
+  min-height: calc(100vh - 85px);
+}
+
+div.spacer-34 {
+  height: 34px;
+}
+
+div.spacer-15 {
+  height: 15px;
+}
+
+.visibility-visible {
+  visibility: visible;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.hwx-title {
+  font-size: 20px;
+  color: $mine-shaft;
+}
+.hwx-subtitle {
+  font-size: 15px;
+}
+.hwx-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.hwx-inline-desc {
+  font-size: 12px;
+  color: $dusty-gray;
+  line-height: 1;
+  margin: 5px 0;
+}
+
+.hwx-body {
+  font-size: inherit;
+  color: inherit;
+}
+
+.hwx-button-icon {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  font-size: 12px;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+a,
+a:focus {
+  color: $eastern-blue;
+  text-decoration: none;
+  font-weight: normal;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.page-container {
+  padding: 0 25px 20px;
+}
+
+.icon-container {
+  padding-left: 40px;
+
+  &:before {
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-size: 20px;
+    content: '\f233';
+    position: absolute;
+    margin-left: -40px;
+    display: inline-block;
+    color: $fruit-salad;
+  }
+}
+
+.breadcrumb-container {
+  padding-left: 25px;
+  height:45px;
+  background-color: $albaster-gray;
+    span {
+      color : $shuttle-gray;
+      padding: 15px 0;
+      display: inline-block;
+    }
+}
+
+.button-container{
+  padding-top: 30px;
+  .mdl-button + * {
+    margin-left: 7px;
+  }
+}
+
+@include summary-pane("summary-pane-5", "20%");
+@include summary-pane("summary-pane-6", "16.7%");
+@include summary-pane("summary-pane-7", "14.2%");
+@include summary-pane("summary-pane-3", "33%");
+@include summary-pane("summary-pane-1", "100%");
+
+
+.overFlowEllipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  overflow: auto;
+  z-index: 999;
+
+  & > .opaque {
+    background-color: white;
+    border-radius: 3px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+  }
+}
+.callout {
+  padding: 19px 29px;
+  border: 1px solid $eastern-blue;
+  background-color: $polar-blue;
+  .icon-container {
+    &:before {
+      content: '\f05a';
+      color: $eastern-blue;
+    }
+  }
+  .hwx-title {
+    color: $eastern-blue;
+  }
+  .hwx-desc {
+    color: $dusty-gray;
+  }
+}
+.cs-list > span {
+  &:after {
+    content: ', ';
+  }
+  &:last-child:after {
+    content: '';
+  }
+}
+
+.hwx-title-panel {
+  margin: 18px 0;
+  & .hwx-title {
+    line-height: 34px;
+  }
+}
+
+//Lightening the Input placeholder texts
+
+::-webkit-input-placeholder {
+  color: $dusty-gray;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $dusty-gray;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: $dusty-gray;
+}
+
+:-ms-input-placeholder {
+  color: $dusty-gray;
+}

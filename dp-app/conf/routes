@@ -1,0 +1,149 @@
+#
+# HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+# (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+# This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+# Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+# to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+# properly licensed third party, you do not have any rights to this code.
+# If this code is provided to you under the terms of the AGPLv3:
+#   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+# (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+# LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+# (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+# FROM OR RELATED TO THE CODE; AND
+# (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+# DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+# OR LOSS OR CORRUPTION OF DATA.
+#
+#
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#Settings
+
+POST          /api/settings/certificates                             controllers.Settings.createCert()
+GET           /api/settings/certificates                             controllers.Settings.listCerts(name: Option[String])
+PUT           /api/settings/certificates/:certificateId              controllers.Settings.updateCert(certificateId: String)
+DELETE        /api/settings/certificates/:certificateId              controllers.Settings.deleteCert(certificateId: String)
+
+
+# health checks
+# ===========================================
+GET           /health                                                controllers.Status.health
+GET           /metrics                                               controllers.Status.metrics
+
+# identity calls
+# ===========================================
+GET           /api/identity                                          controllers.Authentication.userDetail
+GET           /api/identity/:userId                                  controllers.Authentication.userById(userId: String)
+POST          /api/identity/actions/change-password                  controllers.Authentication.changePassword
+
+# fetch initial configuration required by ui
+# ===========================================
+GET           /api/init                                              controllers.Config.init
+
+# Locations
+# ===========================================
+GET           /api/locations                                         controllers.Locations.list(query: Option[String])
+GET           /api/locations/:locationId                             controllers.Locations.retrieve(locationId: String)
+
+# DataplaneClusters
+# ===========================================
+GET           /api/lakes                                             controllers.DataplaneClusters.list
+POST          /api/lakes                                             controllers.DataplaneClusters.create
+
+GET           /api/lakes/:dpClusterId                                controllers.DataplaneClusters.retrieve(dpClusterId: String)
+PUT           /api/lakes/:dpClusterId                                controllers.DataplaneClusters.update(dpClusterId: String)
+DELETE        /api/lakes/:dpClusterId                                controllers.DataplaneClusters.delete(dpClusterId: String)
+
+GET           /api/lakes/:dpClusterId/services                       controllers.DataplaneClusters.retrieveServices(dpClusterId: String)
+GET           /api/lakes/:dpClusterId/servicesDetails                controllers.DataplaneClusters.getDependentServicesDetails(dpClusterId: String)
+
+POST          /api/lakes/:dpClusterId/sync                           controllers.Clusters.syncCluster(dpClusterId: String)
+
+# AmbariClusters
+# ===========================================
+GET           /api/clusters                                          controllers.Clusters.list(dpClusterId: Option[String])
+GET           /api/clusters/:clusterId/health                        controllers.Clusters.getHealth(clusterId: String, summary: Option[Boolean])
+GET           /api/clusters/:clusterId/rmhealth                      controllers.Clusters.getResourceManagerHealth(clusterId: String)
+GET           /api/clusters/:clusterId/dnhealth                      controllers.Clusters.getDataNodeHealth(clusterId: String)
+GET           /api/clusters/:clusterId/hosts                         controllers.Clusters.getHosts(clusterId:Long,ip:Option[String])
+
+GET           /api/actions/clusters                                  controllers.actions.DpClusterActions.listWithClusters
+
+# LDAP
+# ===========================================
+POST          /api/knox/validate                                     controllers.KnoxConfig.validate
+POST          /api/knox/configure                                    controllers.KnoxConfig.configure
+GET           /api/knox/configuration                                controllers.KnoxConfig.configuration
+GET           /api/knox/ldap                                         controllers.KnoxConfig.getLdapConfiguration
+POST          /api/knox/ldap                                         controllers.KnoxConfig.updateLdapConfig
+GET           /api/knox/status                                       controllers.KnoxConfig.isKnoxConfigured
+GET           /api/users/ldapsearch                                  controllers.UserManager.ldapSearch
+
+# Roles
+# ===========================================
+GET           /api/roles                                             controllers.UserManager.getAllRoles
+
+# User Management
+# ===========================================
+POST          /api/users/registerAdmins                              controllers.UserManager.addSuperAdminUsers
+POST          /api/users/updateActiveAndRoles                        controllers.UserManager.adminUpdateUserRolesAndStatus
+POST          /api/users/addUsersWithRoles                           controllers.UserManager.addUsersWithRoles
+GET           /api/users/withRoles                                   controllers.UserManager.listUsersWithRoles
+GET           /api/users                                             controllers.UserManager.listUsers
+GET           /api/users/detail                                      controllers.UserManager.getUserDetail
+GET           /api/userGroups                                        controllers.UserManager.getUserGroupsFromLdap
+POST          /api/users/withLdapGroups                              controllers.UserManager.createUserFromLdapGroupsConfiguration
+POST          /api/users/resyncLdapGroups                            controllers.UserManager.resyncUserFromLdap
+
+# Group Management
+# ===========================================
+GET           /api/groups/:name                                      controllers.GroupManager.getGroupsByName(name: String)
+GET           /api/groups                                            controllers.GroupManager.getGroups
+POST          /api/groups/admin                                      controllers.GroupManager.addAdminGroups
+POST          /api/groups/add                                        controllers.GroupManager.addGroupsWithRoles
+POST          /api/groups/update                                     controllers.GroupManager.updateGroupInfo
+
+# Services
+# ===========================================
+GET           /api/services                                          controllers.ServicesManager.getServices
+GET           /api/services/byName                                   controllers.ServicesManager.getSkuByName
+GET           /api/services/enabled                                  controllers.ServicesManager.getEnabledServices
+POST          /api/services/verifyCode                               controllers.ServicesManager.verifySmartSense
+POST          /api/services/enable                                   controllers.ServicesManager.enableService
+GET           /api/services/:serviceName/dependencies                controllers.ServicesManager.getDependentServices(serviceName: String)
+GET           /api/services/:serviceName/health                      controllers.ServicesManager.getServiceHealth(serviceName: String)
+
+# Workspaces
+# ===========================================
+GET           /api/workspaces                                        controllers.Workspaces.list
+GET           /api/workspaces/name/:name                             controllers.Workspaces.retrieve(name: String)
+POST          /api/workspaces                                        controllers.Workspaces.create
+DELETE        /api/workspaces/name/:name                             controllers.Workspaces.delete(name: String)
+
+# WorkspaceAssets
+# ===========================================
+POST          /api/workspaces/assets                                 controllers.AssetWorkspaces.add
+GET           /api/workspaces/:workspaceId/assets                    controllers.AssetWorkspaces.getAssets(workspaceId: String)
+
+# WorkspaceNotebooks
+# ===========================================
+POST          /api/workspaces/notebooks                              controllers.NotebookWorkspaces.add
+DELETE        /api/workspaces/notebooks/:notebookId                  controllers.NotebookWorkspaces.delete(notebookId: String)
+GET           /api/workspaces/:workspaceId/notebooks                 controllers.NotebookWorkspaces.getNotebooks(workspaceId: String)
+
+# Query Clusters
+# ===========================================
+GET           /api/ambari/status                                     controllers.DataplaneClusters.ambariCheck(url: String, allowUntrusted: Boolean, behindGateway: Boolean)
+POST          /api/ambari/details                                    controllers.Clusters.getDetails
+
+# Configuration
+# ===========================================
+GET           /api/config/:key                                       controllers.Config.getConfig(key: String)
+
+# Miscellaneous
+# ===========================================
+GET           /api/ga/properties                                     controllers.Config.getGAProperties()

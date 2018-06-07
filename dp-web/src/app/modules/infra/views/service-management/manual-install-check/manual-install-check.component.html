@@ -1,0 +1,114 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="container">
+  <div class="title-pane">
+    <span class="hwx-title"> Manual Install</span>
+  </div>
+  <div class="page-content">
+    <div class="hwx-desc" *ngIf="installSuccessful === false" [innerHTML]="'pages.services.description.manualInstall'| translate: descriptionParams"></div>
+    <div class="hwx-desc" *ngIf="installSuccessful !==false && optionalServiceInstallSuccessful === false" [innerHTML]="'pages.services.description.installOptionalService'| translate: descriptionParams"></div>
+    <div class="spacer-15"></div>
+    <div class="hwx-subtitle">
+      {{"pages.services.labels.dependentServicesLabel" | translate}}
+    </div>
+    <div class="status-panel">
+      <div class="spacer-15"></div>
+      <div class="success-list-item" *ngFor="let service of successfulServices">
+        <i class="fa fa-check-circle"></i>{{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}
+        <span *ngIf="service.isOptional">({{"pages.services.labels.optional" | translate}})</span>
+      </div>
+      <div class="error-list-item" [ngClass]="{'optional' : service.isOptional}" *ngFor="let service of failedServices">
+        <i class="fa" [ngClass]="{'fa-warning' : service.isOptional, 'fa-times-circle': !service.isOptional}"></i>{{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}
+        <span *ngIf="service.isOptional">({{"pages.services.labels.optional" | translate}})</span>
+      </div>
+    </div>
+    <div class="hwx-desc">{{"pages.services.description.installDependentService"| translate}}</div>
+    <div class="spacer-15"></div>
+    <div class="hwx-subtitle">
+      {{"pages.services.labels.installationSteps" | translate}}
+      <div class="hwx-desc">{{"pages.services.description.installationLink"| translate}}
+        <a href="{{'pages.services.labels.installationStepsDoc'| translate}}" target="_blank">{{'pages.services.labels.installationLink'| translate}}</a>
+      </div>
+    </div>
+    <div class="hwx-desc">{{"pages.services.description.verifyDependency"| translate}}</div>
+    <div class="spacer-15"></div>
+    <input type="checkbox" class="margin-0" name="verify-services" [(ngModel)]="verificationChecked" (change)="verify()"/> <span [innerHTML]="'pages.services.description.installationConfirmation'|translate: clusterNameParams"></span>
+    <div class="status-panel">
+      <div class="spacer-15"></div>
+      <div *ngIf="checkInProgress" class="hwx-desc">
+       <i class="fa fa-spinner fa-spin"></i><span>{{"pages.services.description.verifyingStatus"| translate}}</span>
+      </div>
+      <div *ngIf="!checkInProgress && verificationComplete">
+        <div class="spacer-15"></div>
+        <div class="hwx-subtitle">{{"pages.services.labels.serviceSummary" | translate}}</div>
+        <div class="spacer-15"></div>
+        <div class="success-list-item" *ngFor="let service of successfulServices">
+          <i class="fa fa-check-circle"></i>{{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}
+          <span *ngIf="service.isOptional">({{"pages.services.labels.optional" | translate}})</span>
+        </div>
+        <div class="error-list-item" [ngClass]="{'optional' : service.isOptional}" *ngFor="let service of failedServices">
+          <i class="fa" [ngClass]="{'fa-warning' : service.isOptional, 'fa-times-circle': !service.isOptional}"></i>{{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}
+          <span *ngIf="service.isOptional">({{"pages.services.labels.optional" | translate}})</span>
+        </div>
+        <div class="spacer-15"></div>
+      </div>
+      <div *ngIf="!checkInProgress && verificationComplete && installSuccessful && optionalServiceInstallSuccessful" class="hwx-subtitle success">
+        <span><i class="fa fa-check-circle"></i> {{"pages.services.labels.verified" | translate}}</span>
+        <div class="status-desc">{{"pages.services.description.allDependenciesMet"| translate}}</div>
+      </div>
+      <div *ngIf="verificationComplete && installSuccessful === false" class="hwx-subtitle error">
+        <span><i class="fa fa-times-circle"></i> {{"common.failed" | translate}}</span>
+        <div class="status-desc">{{"pages.services.description.errorStatus"| translate}}</div>
+        <ul class="failure-list">
+          <li *ngFor="let service of failedServices">
+            {{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}
+            <span *ngIf="service.isOptional">({{"pages.services.labels.optional" | translate}})</span>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="verificationComplete && installSuccessful && !optionalServiceInstallSuccessful" class="hwx-subtitle success">
+        <span><i class="fa fa-check-circle"></i>{{"pages.services.labels.verified" | translate}}</span>
+        <div class="status-desc">{{"pages.services.description.mandatoryDependenciesMet"| translate}}</div>
+      </div>
+      <div *ngIf="verificationComplete && installSuccessful && !optionalServiceInstallSuccessful" class="hwx-subtitle warning">
+        <div class="status-desc">{{"pages.services.description.optionalInstallation"| translate}}</div>
+        <ul class="failure-list">
+          <li *ngFor="let service of failedServices">
+            <span *ngIf="service.isOptional">{{(("common.serviceNameMappings."+service.name | translate) !== "common.serviceNameMappings."+service.name)? ("common.serviceNameMappings."+service.name | translate) : service.name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="button-container">
+      <button
+        [disabled]="!verificationComplete || !installSuccessful"
+        id="next-btn"
+        class="btn btn-hwx-primary"
+        [routerLink]="['/infra/services']">{{"pages.services.labels.next" | translate}}</button>
+      <button
+        id="cancel-btn"
+        class="btn btn-hwx-default"
+        [routerLink]="['/infra/services']">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+</div>

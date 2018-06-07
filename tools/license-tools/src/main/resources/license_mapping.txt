@@ -1,0 +1,87 @@
+apache license, version 2.0 (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+common development and distribution license (cddl) v1.0 (https://glassfish.dev.java.net/public/cddlv1.0.html) | CDDL
+bsd license (http://www.opensource.org/licenses/bsd-license) | BSD 2 Clause
+common development and distribution license (cddl) version 1.0 (http://www.sun.com/cddl/cddl.html) | CDDL
+mit license (http://www.opensource.org/licenses/mit-license.php) | MIT
+mit (https://opensource.org/licenses/mit) | MIT
+two-clause bsd-style license (http://github.com/sbt/junit-interface/blob/master/license.txt) | BSD 2 Clause
+apache software license - version 2.0 (http://www.apache.org/licenses/license-2.0) | Apache 2.0
+mpl 2.0 or epl 1.0 (http://h2database.com/html/license.html) | Mozilla Public License 2.0
+apache 2 (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+bsd-2-clause (https://jdbc.postgresql.org/about/license.html) | BSD 2 Clause
+bsd (http://asm.objectweb.org/license.html) | BSD 3 clause
+the apache software license, version 2.0 (src/assemble/ehcache-core-license.txt) | Apache 2.0
+bsd (https://github.com/sbt/test-interface/blob/master/license) | BSD 3 clause
+bsd-style (http://www.opensource.org/licenses/bsd-license.php) | BSD 2 clause
+public domain |
+the apache license, asl version 2.0 (http://www.apache.org/licenses/license-2.0) | Apache 2.0
+apache software licenses (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+asf 2.0 (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+apache license, version 2.0 (https://www.apache.org/licenses/license-2.0) | Apache 2.0
+gnu lesser general public license (http://www.gnu.org/licenses/lgpl.txt) | LGPLv3
+gpl2 w/ cpe (https://glassfish.java.net/public/cddl+gpl_1_1.html) |
+the apache software license, version 2.0 (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+new bsd license (http://www.opensource.org/licenses/bsd-license.php) | BSD 2 Clause
+isc/bsd license | BSD 2 Clause
+mozilla public license version 2.0 (http://www.mozilla.org/mpl/2.0/) | Mozilla Public License 2.0
+asl (http://github.com/json4s/json4s/raw/head/license) |
+mpl 1.1 (http://www.mozilla.org/mpl/mpl-1.1.html) | Mozilla Public License 1.1
+apache v2 (http://www.apache.org/licenses/license-2.0.html) | Apache 2.0
+none specified (none specified) |
+gnu lesser general public license (http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html) | LGPLv2.1
+apache license, version 2.0 (http://www.apache.org/licenses/license-2.0) | Apache 2.0
+apache license,version 2.0 (http://www.apache.org/licenses/license-2.0) | Apache 2.0
+apache-2.0 (https://opensource.org/licenses/apache-2.0) | Apache 2.0
+apache license, version 2.0 (http://www.apache.org/licenses/license-2.0.html) | Apache 2.0
+apache (http://www.opensource.org/licenses/apache-2.0) | Apache 2.0
+the w3c software license (http://www.w3.org/consortium/legal/copyright-software-19980720) | W3C Software Notice and License
+apache-2.0 (http://www.apache.org/licenses/license-2.0.html) | Apache 2.0
+two-clause bsd-style license (http://github.com/slick/slick/blob/master/license.txt) |
+the bsd license (http://www.opensource.org/licenses/bsd-license.php) | BSD 2 clause
+bsd 3-clause (http://www.scala-lang.org/license.html) | BSD 3 clause
+revised bsd (http://www.jcraft.com/jsch/license.txt) |
+the apache license, version 2.0 (http://www.apache.org/licenses/license-2.0.txt) | Apache 2.0
+bsd (license.txt) | BSD 2 clause
+gpl2 w/ cpe (https://glassfish.dev.java.net/public/cddl+gpl_1_1.html) |
+bsd (https://github.com/nbronson/scala-stm/blob/master/license.txt) |
+lgpl, version 2.1 (http://www.gnu.org/licenses/licenses.html) | LGPLv2.1
+apache license 2.0 (http://www.apache.org/licenses/license-2.0.html) | Apache 2.0
+bsd 3-clause (http://opensource.org/licenses/bsd-3-clause) | BSD 3 Clause
+eclipse public license 1.0 (http://www.eclipse.org/legal/epl-v10.html) | Eclipse Public License 1.0
+apache 2.0 license (http://www.apache.org/licenses/license-2.0.html) | Apache 2.0
+gpl2 w/ cpe (http://glassfish.java.net/public/cddl+gpl_1_1.html) |
+cc0 (http://creativecommons.org/publicdomain/zero/1.0/) |
+(mit or gpl-3.0) | MIT
+(mit and zlib) | MIT
+bsd-3-clause | BSD 3 clause
+(wtfpl or mit) | MIT
+apache-2.0 | Apache 2.0
+lgpl |
+unknown |
+bsd-3-clause and mit | BSD 3 Clause
+cc-by-4.0 |
+unlicensed |
+bsd |
+bsd-2-clause | BSD 2 Clause
+mit* | MIT
+(ofl-1.1 and mit) | MIT
+isc | ISC License
+(mit and cc-by-3.0) | MIT
+unlicense |
+aflv2.1,bsd |
+bsd* |
+mit | MIT
+(bsd-2-clause or mit or apache-2.0) | BSD 2 Clause
+gnu lesser general public license | LGPLv2.1
+apache software licenses | Apache 2.0
+apache license, version 2.0 | Apache 2.0
+eclipse public license - v 1.0 | Eclipse Public License 1.0
+apache license 2.0 | Apache 2.0
+apache 2 | Apache 2.0
+common development and distribution license | CDDL
+the apache software license, version 2.0 | Apache 2.0
+apache 2.0 | Apache 2.0
+the apache license, version 2.0 | Apache 2.0
+bouncy castle licence | MIT
+mit license | MIT
+public domain, per creative commons cc0 | CC-BY (all versions)

@@ -1,0 +1,30 @@
+{
+  "queryText": "hive_table where owner='admin'",
+  "queryType": "DSL",
+  "entities": [
+    {
+      "typeName": "hive_table",
+      "attributes": {
+        "owner": "admin",
+        "name": "geolocation_new",
+        "description": null
+      },
+      "guid": "e36ebdac-46ca-4f84-9834-7b9e5c5cae63",
+      "status": "ACTIVE",
+      "displayText": "geolocation_new",
+      "classificationNames": []
+    },
+    {
+      "typeName": "hive_table",
+      "attributes": {
+        "owner": "admin",
+        "name": "ereqbhkazbyoaxfjktphymmcacdykf",
+        "description": null
+      },
+      "guid": "da589a4a-f1d5-4fc7-ba4e-8fa06881773c",
+      "status": "DELETED",
+      "displayText": "ereqbhkazbyoaxfjktphymmcacdykf",
+      "classificationNames": []
+    }
+  ]
+}

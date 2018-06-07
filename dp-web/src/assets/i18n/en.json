@@ -1,0 +1,522 @@
+{
+  "common": {
+    "actions": "Actions",
+    "close": "Close",
+    "ok":"OK",
+    "confirm": "Confirm",
+    "dashboard": "Dashboard",
+    "dataplane": "DataPlane",
+    "clusters": "Clusters",
+    "datasets": "Asset Collection",
+    "datalake": "Datalake",
+    "services": "Services",
+    "location": "Location",
+    "tags": "Tags",
+    "step": "Step",
+    "description": "Description",
+    "new": "New",
+    "add": "Add",
+    "edit": "Edit",
+    "update": "Update",
+    "delete": "Delete",
+    "refresh": "Refresh",
+    "addAndNew": "Add & New",
+    "cancel": "Cancel",
+    "back": "BACK",
+    "proceed":"PROCEED",
+    "go": "Go",
+    "clear": "Clear",
+    "reset": "Reset",
+    "search": "Search",
+    "done": "Done",
+    "remove": "Remove",
+    "removeAll": "Remove All",
+    "advanced": "Advanced",
+    "status": "Status",
+    "loading": "Loading",
+    "name": "Name",
+    "moreLink": "Learn More",
+    "information": "Information",
+    "save": "SAVE",
+    "failed": "Failed",
+    "warning":"Warning",
+    "defaultRequiredFields": "Please fill in mandatory fields marked with '*'",
+    "sidenav": {
+      "analyst": "Analyst",
+      "infra": "Infra Admin",
+      "dlm": "DLM"
+    },
+    "noResults": "No Results to display.",
+    "pagination": {
+      "rowsPerPage": "Rows per page"
+    },
+    "roles": {
+      "SUPERADMIN": "DataPlane Admin",
+      "INFRAADMIN": "Infra Admin",
+      "CURATOR": "Data Steward"
+    },
+    "serviceNameMappings" : {
+      "BEACON": "Data Lifecycle Manager Engine"
+    },
+    "signout": "Sign Out",
+    "unauthorized": "Unauthorized",
+    "unauthorizedMessage": "You are not authorized to view this page.",
+    "serviceDisabled": "Service Not Enabled",
+    "serviceDisabledMessage": "This service has not been enabled by your Admin. Please contact your DataPlane Administrator to enable it.",
+    "serviceUnavailable":"Service Unavailable",
+    "serviceUnavailableMessage": "This service is unavailable. Please contact your DataPlane Administrator to install/enable it.",
+    "invalidUser": "You are not an authorized DataPlane user. Please contact your DataPlane Administrator.",
+    "noMatch": "No Match found...",
+    "searching": "Searching..."
+  },
+  "pages": {
+    "signin" :{
+      "description": {
+        "trackingMessage" :"Hortonworks DataPlane Service uses cookies and other telemetry mechanisms to improve the product and your experience. By logging in, you give consent to Hortonworks to use cookies. To learn more, please review our ",
+        "privacyPolicyLink":"<a href='https://hortonworks.com/privacy-policy/' target='_blank'>Privacy Policy</a>",
+        "invalidCredentials":"Credentials were incorrect. Please try again.",
+        "systemError": "System Error"
+      }
+    },
+    "onboard": {
+      "labels": {
+        "welcomeText": "Welcome to",
+        "hwxDataplane": "Hortonworks DataPlane Service",
+        "setupAuth": "Setup Authentication",
+        "defineUsers": "Define User Privileges Roles and Groups",
+        "manageUsers": "Manage User Privileges Roles and Groups",
+        "startButton": "Get Started",
+        "addCluster": "Add Clusters",
+        "addDataset": "Add Asset Collection",
+        "setService": "Setup Services"
+      },
+      "description": {
+        "dataplane": "Welcome to Hortonworks DataPlane Service. To start, please configure the LDAP properties and allow DataPlane authenticate against it. Optionally, you can add DataPlane Administrators. Please proceed by clicking on GET STARTED",
+        "clusterOnboard": "Welcome to Hortonworks DataPlane Service. To start, please add your Ambari managed clusters to DataPlane. You can also enable DataPlane services or provide more users or groups access to them. Please proceed by clicking on GET STARTED.",
+        "setupAuth": "The first step is to help DataPlane connect to your LDAP by providing the LDAP configurations to DataPlane.",
+        "defineUsers": "Upon completing the LDAP configuration, you may add administrators to DataPlane. You can add users or groups to DataPlane and assign or modify their roles anytime through the User Management Screen.",
+        "manageUsers": "You can manage users or groups in DataPlane and assign or modify their roles anytime through the User Management Screen.",
+        "addCluster": "Add your existing Ambari-managed cluster to DataPlane. DataPlane will auto-discover cluster information including available cluster services.",
+        "setService": "Set up services to enable DataPlane to manage your data",
+        "addDataset": "Create asset collection using Data Steward Studio capability",
+        "ldapEditNote": "Note: Values for attributes which are disabled must be valid on the LDAP instance if it is being pointed to a new URL."
+      },
+      "configure": {
+        "labels": {
+          "ldapConfiguration": "LDAP Configuration",
+          "masterPassword": "Master Password",
+          "userDNTemplate": "User DN Template",
+          "url": "URL",
+          "userSearchBase": "User Search base",
+          "userSearchAttributeName": "User Search Attribute",
+          "userObjectClass": "User Object Class",
+          "groupSearchAttributeName": "Group Search Attribute",
+          "groupMemberAttributeName": "Group Member Attribute Name",
+          "groupObjectClass": "Group Object Class",
+          "groupSearchBase": "Group Search base",
+          "adminBindDN": "Administrator Bind DN",
+          "adminPassword": "Administrator Password",
+          "showPassword": "Show Password",
+          "configError": "Unable to save LDAP configuration. Please check and try again.",
+          "uploadSecureLDAP": "Upload certificate if your LDAP server needs to be accessed securely",
+          "editSecureLDAP": "Update certificate if your LDAP server needs to be accessed securely",
+          "showCertificate": "Show currently configured certificate",
+          "certificateDialogTitle": "LDAPS Certificate"
+        },
+        "description": {
+          "configurationDesctiption": "The first step is to help DataPlane connect to your LDAP by providing the appropriate configurations.",
+          "genericCertificateError": "We could not save or update the LDAP certificate. Please try again."
+        }
+      },
+      "adduser": {
+        "labels": {
+          "users": "Users",
+          "groups": "Groups",
+          "saveAndLogin": "SAVE & LOGIN",
+          "configSuccess": "LDAP ADDED SUCCESSFULLY"
+        },
+        "description" : {
+          "ldapUserFetchError": "Not able to fetch users from LDAP.",
+          "ldapGroupFetchError": "Not able to fetch groups from LDAP"
+        }
+      }
+    },
+    "services": {
+      "labels": {
+        "enabledServices": "Enabled Services",
+        "availableServices": "Available Services",
+        "smartSenseId": "SMARTSENSE ID",
+        "enabled": "ENABLED",
+        "enable": "ENABLE",
+        "install": "Install",
+        "notInstalled":"Not Installed",
+        "knowMore":"Know More",
+        "next": "Next",
+        "verify": "Verify",
+        "verifySmartSenseId": "Verify SmartSense ID",
+        "verified": "VERIFIED",
+        "lastUpdated": "Last Updated",
+        "serviceSummary": "SERVICE STATUS SUMMARY",
+        "action": "Action",
+        "installationSteps": "Steps for Installation:",
+        "installationLink":"Installation Steps.",
+        "installationStepsDoc":"http://horton.works/dps100_h0007a",
+        "dependentServicesLabel":"DEPENDENT SERVICES:",
+        "syncFailed":"Cluster Information could not be fetched",
+        "serviceEnabled":"Service Enabled successfully",
+        "optional":"Optional",
+        "addOptionalServices":"Add Optional Services",
+        "dpServices": "DATAPLANE SERVICES",
+        "serviceNotInstalled": "Service Not Installed"
+      },
+      "description": {
+        "verificationWelcome": "Welcome to {{serviceName}} Enablement Wizard. Please begin with verifying your SmartSense ID.",
+        "manualInstall" : "Service <b>{{serviceName}}</b> is not enabled on cluster <b>{{clusterName}}</b> as one or more of the dependent services have not been enabled.",
+        "installOptionalService":"Service <b>{{serviceName}}</b> is enabled on cluster <b>{{clusterName}}</b>. However one or more of the optional services have not been enabled.",
+        "installDependentService":"Please enable the dependent services on the cluster using the documentation link.",
+        "verifyDependency":"After all the dependent services are installed on the cluster, please click on the verification check box.",
+        "enableError": "Service could not be enabled.",
+        "verificationPageLoadError":"This Service is not installed as a part of DataPlane Services. Go to <a href='/infra/services'>Services page</a> for more information",
+        "verificationError": "Incorrect SmartSense ID format",
+        "installationConfirmation":"All the dependent services have been installed on cluster <b>{{clusterName}}.</b>",
+        "installationLink": "For detailed steps on the installation process, please visit ",
+        "verifyingStatus": "Verifying dependent services status on the cluster...",
+        "allDependenciesMet":"All the service dependencies are met. Please click Next to continue.",
+        "mandatoryDependenciesMet":"All the mandatory service dependencies are met.",
+        "optionalInstallation":"Optionally, you can install the following services to perform additional functions on the cluster.",
+        "errorStatus":"The following dependent service(s) information is not present on the cluster. Please install them to continue.",
+        "serviceEnabled": "All the authorized users of {{serviceName}} service, should re-login to be able to access the service.",
+        "dlmInstallationLink":"https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/ch05s02.html",
+        "dssInstallationLink":"https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/ch05s02.html",
+        "serviceNotInstalled":"{{serviceName}} is not installed as a part DataPlane Services. Please follow this <a href={{installationStepsLink}} target='_blank'>link</a> to know more information on how services can be added to DataPlane Services",
+        "serviceNotHealthy":"{{serviceName}} has been added as a DataPlane Service, but it is not running. You can still enable this service but the users might not be able to access the service. Click OK to continue."
+      }
+    },
+    "settings": {
+      "labels": {
+        "settings" : "Settings",
+        "settingsPageTitle":"Certificate Settings",
+        "upload":"Upload",
+        "certificateName":"Certificate Name",
+        "certificate" : "Certificate",
+        "certificateFile":"Certificate File",
+        "uploading":"Uploading.."
+      },
+      "description" : {
+        "certificateName" : "Name of the certificate",
+        "uploadSuccessMessage":"Certificate uploaded successfully!!",
+        "uploadFailureMessage":"Certificate could not be uploaded!!",
+        "validationErrorMessage":"Please fill all the fields marked with (*)!",
+        "fileReadErrorMessage":"Error occurred while reading the file!"
+      }
+    },
+    "infra": {
+      "topnav": {
+        "cluster-link": "CLUSTERS"
+      },
+      "labels": {
+        "nodes": "Nodes",
+        "uptime": "Uptime",
+        "services": "Services",
+        "allServices": "All Services",
+        "less": "Less",
+        "hdfsUsed": "HDFS Used",
+        "hdfsTotal": "HDFS Total",
+        "addButton": "Add Cluster",
+        "addCluster": "Add Your Cluster",
+        "goToAmbari":"Go to Ambari",
+        "ambariUrl": "Ambari URL",
+        "ambariUsername": "Ambari Username",
+        "ambariPassword": "Ambari Password",
+        "knoxUrl": "Knox URL",
+        "clusterName": "Cluster Name",
+        "ipAddress": "IP Address",
+        "clusterLocation": "Cluster Location",
+        "dataCenter": "Data Center",
+        "clusterAddSuccess": "Cluster Added successfully",
+        "connectionFailed": "Unable to connect, please retry",
+        "clusterAddError": "Failed to Add Cluster",
+        "emptyClusters": "No Clusters.",
+        "addUser": "ADD USER",
+        "addGroup": "ADD GROUP",
+        "username": "Username",
+        "addUserNames": "Usernames",
+        "groupName": "Group Name",
+        "addGroupNames": "Group Names",
+        "roles": "Roles",
+        "usernameorgroup": "Username/Group",
+        "active": "Active",
+        "inactive": "Inactive",
+        "additionalConfigs": "Additional Configs",
+        "editCluster": "Edit Cluster",
+        "duplicateRole": "Duplicate values in Roles Input - ",
+        "duplicateUser": "Duplicate values in Users Input - ",
+        "duplicateGroup": "Duplicate values in Groups Input - ",
+        "noMatch": "No Match",
+        "ldapUrl": "Ldap URL",
+        "confirmRemove": "Remove Confirmation",
+        "hdpVersion":"HDP Version",
+        "registeredBy": "Registered By",
+        "securityType": "Security Type",
+        "noOfServices": "No of Services",
+        "dataNodes": "DataNodes",
+        "nameNodeHeapSize": "NameNode Heap Size",
+        "hdfsDiskSpace": "HDFS Disk Space",
+        "nodeManagers": "NodeManagers",
+        "resourceManagerHeapSize": "ResourceManager Heap Size",
+        "resourceManagerUptime": "ResourceManager Uptime",
+        "onlyAllowTrusted": "Validate the SSL certificate and only allow trusted connections",
+        "onlyAllowTrusted-hint": "DataPlane will attempt to confirm that the SSL certificate is valid. If your cluster has been configured with a self-signed certificate, you need to either disable this validation (uncheck this box), or upload the certificate to DataPlane prior to cluster registration (certificate upload is available under Admin > Settings).",
+        "behindGateway": "Ambari and Cluster Services behind Knox Gateway",
+        "behindGateway-hint": "If Ambari and your cluster services are configured behind a Knox Gateway, you should check this box. This enables DataPlane to establish connections to the cluster services via the Knox Gateway."
+      },
+      "description": {
+        "ambariUrlHint":"Enter URL to connect to Ambari (direct or via Knox Gateway if in use)",
+        "editCluster": "Please update your Ambari managed cluster (already added to DataPlane) here.",
+        "addCluster": "Please add Ambari managed cluster to DataPlane. DataPlane will auto-discover cluster information such as the cluster name, active services & important metrics running.",
+        "datalake": "This cluster has been identified as a Datalake since it has data management services,  {{serviceNames}} running.",
+        "clusterLocation": "Geographical location of the cluster",
+        "dataCenter": "Data Center of the cluster",
+        "tags": "Tags for the cluster",
+        "description": "Description of the cluster",
+        "clusterAddSuccess": "Your cluster has been added to DataPlane.",
+        "duplicateDataCenter": "A cluster with the same name already exists in the given data center. Please select a different cluster, or specify a different data center name.",
+        "connectionFailed": "Unable to establish a connection from DataPlane to your cluster. Check the following:",
+        "connectionFailureReasons": {
+          "ambariServerDown": "Check if the Ambari server is up and running in the given url",
+          "insufficientAccessRights": "Make sure that you have right access rights to the ambari server"
+        },
+        "clusterAlreadyExists": "Cluster already exists in DataPlane",
+        "userManagement": "You can manage the users or groups added to DataPlane through User Management. This page is available for the DataPlane Adminsitrator. You can add new users or groups and assign them roles by clicking on ADD USER or ADD GROUP button. To activate/deactivate to edit their roles, click on the username in the list below or click on the menu icon on the displayed rows.",
+        "additionalConfigs": "Please provide these additional configurations required by DataPlane to discover the cluster information",
+        "knoxUrl": "Please enter the URL of the Knox Service on the HDP cluster which is configured to work with DataPlane.",
+        "ldapError": "Not able to fetch users from LDAP",
+        "addUserError": "The following users could not be saved. Please check if they have already been added.",
+        "updateUserError": "Not able to update user",
+        "addGroupError": "The following groups could not be saved. Please check if they have already been added.",
+        "updateGroupError": "Not able to update group",
+        "invalidRoleInput": "One or more roles are invalid. You must select a role from the Roles dropdown or dropdown options that appear as you type in the Roles field.",
+        "invalidAmbariUrl":"Invalid Ambari URL. Please enter a valid URL of the form http[s]://hostname[:port][/path].",
+        "invalidLocation" : "Not a valid location. Please select a location from dropdown.",
+        "invalidUserInput": "One or more usernames are invalid. You must select a name from the dropdown options that appear as you type in the Usernames field.",
+        "invalidGroupInput": "One or more group names are invalid. You must select a name from the dropdown options that appear as you type in the Group Names field.",
+        "loadServiceError": "Could not fetch Data Plane Services information from Ambari",
+        "backenderrors":{
+          "General": "DataPlane could not connect to the Ambari cluster. Information may not be up to date."
+        },
+        "rolesOverrideWarning":"This will override any roles the user acquired as part of groups",
+        "clusterDeleteWarning":"Removing a cluster causes loss of data such as associated pairings, policies and asset collections. Please delete those objects first before deleting a cluster. This action cannot be undone. Please confirm if you want to go ahead.",
+        "deleteFailed": "Cluster could not be deleted",
+        "onlyAllowTrusted": "Check this option to let DataPlane validate SSL certificates if your cluster is SSL enabled",
+        "behindGateway": "Check this option if Ambari and your cluster services are accessed via a Knox Gateway.",
+        "ambariBehindKnoxWarning":"It appears Ambari and your cluster services are behind a Knox Gateway but you did not check the Knox Gateway option. We will proceed and register this cluster as using a Knox Gateway. Click Proceed to continue.",
+        "ambariNotBehindKnoxWarning":"You checked that your Ambari and cluster services are behind a Knox Gateway but we have determined that is not the case. We will proceed and register this cluster as not using a Knox Gateway. Click Proceed to continue"
+      }
+    },
+    "dataset": {
+      "asset-query": {
+        "filter": {
+          "source": "Select Source",
+          "string": "Enter Text",
+          "boolean": "Select",
+          "date": "YYYY-MM-DD",
+          "tag": "Start typing to refine"
+        }
+      },
+      "topnav": {
+        "unclassified": "Unclassified",
+        "assets": "Assets",
+        "audits": "Audits"
+      },
+      "labels": {
+        "confirmDelete": "Delete Confirmation",
+        "messageDelete": "Are you sure you want to delete asset collection <strong>{{datasetName}}</strong>?",
+        "successfullyDeleted": "<strong>{{datasetName}}</strong> was successfully deleted.",
+        "newDataset": "Add Asset Collection",
+        "addFavourites": "Add to Favourites",
+        "removeFavourites": "Remove from Favourites",
+        "creator": "Creator",
+        "hive": "Hive",
+        "files": "Files",
+        "name": "Name",
+        "createdBy": "Created By",
+        "hdfsFiles": "HDFS Files",
+        "hiveTables": "Hive Tables",
+        "emptySearchResult": "There are no asset collection that match your search.",
+        "source": "Source",
+        "owner": "Owner",
+        "createdTime": "Created Time",
+        "noOfRows": "Number Of Rows",
+        "datatype": "Data Type",
+        "selectOperator": "Select Operator",
+        "addAssets": "Add Assets",
+        "description": "Description",
+        "belongsTo": "Belongs To",
+        "dbName": "Database Name",
+        "resourceBasedPolicies": "Resource Based Policies",
+        "tagBasedPolicies": "Tag Based Policies"
+      },
+      "ds-editor": {
+        "ds-description": "Organize your hive assets into logical groups for subsequent usage.",
+        "information": "Information",
+        "assets": "Assets",
+        "summary": "Summary",
+        "fillMandatoryMsg": "Please fill mandatory fields",
+        "tagDescription": "Add tags to your asset collection for context and subsequent lookup",
+        "asset-description": "Add related data assets into your asset collection, by searching across this Data-Lake",
+        "create-error": "Unable to create asset collection:",
+        "action": {
+          "next": "Next",
+          "save": "Save",
+          "cancel": "Cancel",
+          "edit": "Edit",
+          "addAssets": "Add Assets",
+          "removeAll": "Remove All",
+          "addMoreAssets": "Add More Assets"
+        },
+        "errors": {
+          "unique": "An asset collection with this name already exists. Please choose a different name."
+        }
+      },
+      "asset-search": {
+        "search": "Search",
+        "advanced": "Advanced",
+        "filter": "Filter",
+        "reset": "Reset",
+        "emptySearchMsg": "Empty Search not allowed",
+        "noSearchMsg": "Please search for assets above or use Advanced Search",
+        "noResultsMsg": "No Results!!",
+        "noMoreResultsMsg": "No More Results!!",
+        "cancel": "Cancel",
+        "done": "Done"
+      },
+      "asset-list": {
+        "starAssetmessage": "Few assets listed above already belong to asset collection, and cannot be used in any other asset collection"
+      },
+      "dashboard": {
+        "tag-nav": {
+          "tagSearchPlaceHolder": "Tags"
+        },
+        "actions": {
+          "addToFav": "Add to Favourites",
+          "remFromFav": "Remove from Favourites"
+        }
+      }
+    },
+    "comments": {
+      "collaborate": "Collaborate",
+      "fetchErrorMsg": "Could not fetch related Comments",
+      "noComments": "No Comments yet"
+    },
+    "analytics": {
+      "workspace": {
+        "title": "Workspaces",
+        "create-workspace": "Create Workspace",
+        "assets": {
+          "add-assets": "Add Assets",
+          "add-assets-desc": "Add related data assets into your workspace, by searching across the Data-Lake"
+        }
+      },
+      "add-workspace": {
+        "title": "Add Workspace"
+      }
+    },
+    "profile": {
+      "change_password": {
+        "current_password": "Current password",
+        "new_password": "New password",
+        "confirm_new_password": "Confirm new password",
+        "submit_and_logout": "Change & Logout",
+        "errors": {
+          "noMatch": "New password does not match re-entered password."
+        }
+      }
+    },
+    "not_found": {
+      "message": "This page does not exist.",
+      "link_text": "Click here to return to home page."
+    }
+  },
+  "routes": {
+    "dss": "Data Steward",
+    "dss.assets.cAsset": "Asset Details",
+    "dss.collections": "Asset Collections",
+    "dss.collections.add": "Add",
+    "dss.collections.cCollection": "Details",
+    "dss.collections.cCollection.edit": "Edit",
+
+    "infra": "Admin",
+    "infra.clusters": "Clusters",
+    "infra.clusters.add": "Add",
+    "infra.clusters.cCluster": "Details",
+    "infra.clusters.cCluster.edit": "Edit",
+    "infra.services": "Services",
+    "infra.services.add": "Add",
+    "infra.services.cService.verify": "Verify",
+    "infra.access.users": "Users",
+    "infra.access.groups": "Groups",
+    "infra.access.identity_provider_edit": "Edit LDAP",
+    "infra.settings":"Settings",
+
+    "onboard": "Onboard",
+    "onboard.welcome": "Welcome",
+    "onboard.identity_provider": "Configure LDAP",
+    "onboard.users_and_groups": "Configure Access",
+
+    "profile": "Profile",
+    "profile.password_change": "Change password",
+
+    "not_found": "Not Found",
+    "unauthorized": "Unauthorized",
+    "service_not_enabled": "Service not enabled"
+  },
+  "titles": {
+    "core": "DataPlane Service",
+    "dss": "Data Steward Studio"
+  },
+  "error": {
+    "cluster.ambari.status.unreachable-host-error": "Host is unreachable. Please check if Ambari is up and reachable from DataPlane host. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1946' target=\"_blank\">Learn More</a>",
+    "cluster.ambari.status.dns-error": "Unable to resolve host. Please verify that the DataPlane host can reach the domain specified in the URL and it is configured correctly in your corporate or public DNS.<a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1946' target=\"_blank\">Learn More</a>",
+    "cluster.ambari.status.invalid-json-response": "Unable to deserialize JSON. Please verify the exact errors from DataPlane logs.",
+    "cluster.ambari.status.unexpected-response-hd-insight": "We received an unexpected response from cluster. Please verify the exact errors from DataPlane logs.",
+    "cluster.ambari.status.unexpected-response-for-prereq-call": "Unexpected Response from Ambari, expected 403 or 401. Please verify the exact errors from DataPlane logs.",
+    "cluster.ambari.status.connection-refused": "Connection to remote address was refused. Please check if Ambari is up and reachable from DataPlane host. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1946' target=\"_blank\">Learn More</a>",
+
+    "cluster.ambari.status.detail.0-clusters-on-ambari": "There are no clusters attached to this Ambari instance. Please check logs for more information.",
+    "cluster.ambari.status.detail.more-than-1-clusters-on-ambari": "There are more than one clusters attached to this Ambari instance. Please check logs for more information.",
+    "cluster.ambari.status.detail.access-detail-rights-unavailable": "User does not have required rights to access this cluster. Please ask your Ambari administrator to grant required rights.",
+    "cluster.ambari.status.detail.missing-data": "Unknown error: One of Knox URL or Token is unavailable.. Please check logs for more information.",
+
+    "cluster.ambari.status.knox.public-key-corrupted-or-bad-auth": "We were unable to authenticate the logged-in user with Knox on HDP cluster. Please verify that trust between Knox and DataPlane has been setup correctly. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1995' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.knox.ranger-rights-unavailable": "User does not have required rights to access Knox on this HDP cluster. Please ensure that logged-in user has required privileges granted. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1995' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.knox.configuration-error": "Knox has not been setup for DataPlane correctly. Please verify Knox gateway logs on HDP cluster for more information. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1995' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.knox.public-key-corrupted": "We were unable to authenticate the logged-in user with Knox on HDP cluster. Please verify Knox gateway logs on HDP cluster for more information. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1995' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.knox.connection-refused": "Connection to remote address was refused. Please check if Knox is up and reachable from DataPlane host. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1946' target=\"_blank\">",
+    "cluster.ambari.status.knox.jwt-token-missing": "This operation is not supported for non-LDAP users. Please log-in as an LDAP user to add this cluster.",
+    "cluster.ambari.status.knox.tls-error": "TLS error. Please ensure your Knox server has been configured with a correct keystore. If you are using self-signed certificates, you would need to get it added to Dataplane truststore. ",
+    "cluster.ambari.status.knox.genric": "Unknown error. Server returned an unexpected response. Please check DataPlane logs for more information.",
+
+    "cluster.ambari.status.raw.credential-not-found": "There is no credential configured for Ambari default user. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1971' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.raw.unauthorized": "We were unable to authenticate the logged-in user with Knox on HDP cluster. Please verify that Knox has been setup and configured correctly for DataPlane. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1971' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.raw.forbidden": "We were unable to authenticate the logged-in user with Knox on HDP cluster. Please verify that Knox has been setup and configured correctly for DataPlane. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1971' target=\"blank\">Learn More</a>",
+    "cluster.ambari.status.raw.not-found": "We were unable to find the endpoint you were querying.",
+    "cluster.ambari.status.raw.server-error": "An internal server error occurred. Please check DataPlane logs for more information.",
+    "cluster.ambari.status.raw.connection-refused": "Connection to remote address was refused. Please check if Ambari is up and reachable from DataPlane host. <a href='https://docs.hortonworks.com/HDPDocuments/DPS1/DPS-1.0.0/bk_dps-installation/content/troubleshooting_dps_installation.html#d6e1946' target=\"blank\">Learn More</a> ",
+    "cluster.ambari.status.raw.tls-error": "TLS error. Please ensure your Ambari server has been configured with a correct keystore. If you are using self-signed certificates, you would need to get it added to Dataplane truststore.",
+    "cluster.ambari.status.raw.generic": "Unknown error while communicating with Ambari. Please check DataPlane logs for more information.",
+
+    "cluster.ambari.status.generic": "Generic error while communicating to Ambari. Please check DataPlane logs for more information.",
+
+    "core.ambari.status.already-added": "This Ambari cluster has already been added.",
+
+    "database.generic": "An unexpected error occurred with database. Please check DataPlane logs for more information.",
+
+    "generic": "An unexpected error occurred. Please check DataPlane logs for more information.",
+
+    "cluster.connection-refused.reasons": {
+      "enable.knox.access":"If you are using a Knox Gateway, confirm your DataPlane environment has network access to the Gateway, and that you enabled the Knox Gateway checkbox option.",
+      "enable.network.access":"If you are not using a Knox Gateway, confirm your DataPlane environment has network access to Ambari.",
+      "upload.certificate":"If you are using a self-signed certificate, disable certificate validation, or upload your certificate to DataPlane (available under Admin > Settings)."
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "category": "ENTITY",
+  "guid": "25fe148f-0478-4186-8556-c539bb724bb2",
+  "createTime": 1490027486853,
+  "updateTime": 1490027486853,
+  "version": 1,
+  "name": "hive_table",
+  "typeVersion": "1.1",
+  "options": {
+    "schemaElementsAttribute": "columns"
+  },
+  "attributeDefs": [
+    {
+      "name": "db",
+      "typeName": "hive_db",
+      "isOptional": false,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "createTime",
+      "typeName": "date",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "lastAccessTime",
+      "typeName": "date",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "comment",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "retention",
+      "typeName": "int",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "sd",
+      "typeName": "hive_storagedesc",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ]
+    },
+    {
+      "name": "partitionKeys",
+      "typeName": "array<hive_column>",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ]
+    },
+    {
+      "name": "aliases",
+      "typeName": "array<string>",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "columns",
+      "typeName": "array<hive_column>",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ]
+    },
+    {
+      "name": "parameters",
+      "typeName": "map<string,string>",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "viewOriginalText",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "viewExpandedText",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "tableType",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false
+    },
+    {
+      "name": "temporary",
+      "typeName": "boolean",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": true
+    }
+  ],
+  "superTypes": [
+    "DataSet"
+  ]
+}

@@ -1,0 +1,74 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<router-outlet name="sidebar"></router-outlet>
+<dp-common-top-row></dp-common-top-row>
+<div class="container">
+  <div class="mdl-grid mdl-grid--no-spacing action-bar">
+    <div class="mdl-cell mdl-cell--2-col">
+      <dp-tabs data-se="users__user-group-tab" [tabEnum]="tabs" [activeTabName]="tabs[tabs.USERS]" [tabType]="tabType.UNDERLINE" (selected)="switchView($event)"> </dp-tabs>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="padding-top-10">
+      <div class="search-input">
+        <input id="search" name="search-input" type="text" placeholder="{{'common.search' | translate}}" [(ngModel)]="searchTerm"
+        (keyup)="onSearch($event)"/>
+        <i aria-hidden="true" class="fa fa-search dp-input__icon"></i>
+      </div>
+      <button id="add-user" data-se="users__addUserButton" class="mdl-button btn-hwx-primary" (click)="addUser()"> {{"pages.infra.labels.addUser" | translate}}</button>
+    </div>
+  </div>
+  <div style="clear: both"></div>
+  <div class="table-container" >
+    <table class="mdl-data-table mdl-js-data-table" dp-config-table>
+      <thead>
+        <th class="mdl-data-table__cell--non-numeric">{{"pages.infra.labels.username" | translate}}</th>
+        <th class="mdl-data-table__cell--non-numeric">{{"pages.infra.labels.roles" | translate}}</th>
+        <th class="mdl-data-table__cell--non-numeric">{{"common.status" | translate}}</th>
+        <th class="mdl-data-table__cell--non-numeric"></th>
+      </thead>
+      <tbody>
+        <tr data-se-group="users__users-list" *ngFor="let user of users">
+          <td class="mdl-data-table__cell--non-numeric key-column" data-se="users__users-list__username" [attr.id]="'edit_'+user.id" (click)="editUser(user.userName)">{{user.userName}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{rolesMap.get(user.id)}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{user.active? 'Active' : 'Inactive'}}</td>
+          <td>
+            <button data-se="users__users-list__row-menu" [attr.id]="'dropDown_'+user.id" class="mdl-button mdl-js-button mdl-button--icon hwx-button-icon">
+              <i class="fa fa-ellipsis-v fa__fa-ellipsis-h--icon"></i></button>
+            <ul mdl class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" [attr.for]="'dropDown_'+user.id">
+              <li data-se-group="users__users-list__row-menu-items" [attr.id]="'edit_'+user.id+'_li'" class="mdl-menu__item" (click)="editUser(user.userName)"><i class="fa fa-edit menu-icon"></i>{{"common.edit" | translate}}</li>
+            </ul>
+          </td>
+        </tr>
+        <tr *ngIf="users.length === 0">
+         <td class="center" colspan="5">{{"common.noResults" | translate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <simple-pagination *ngIf="users"
+    [pageSize]="pageSize"
+    [pageStartIndex]="start"
+    [count]="total"
+    (onPageSizeChange)="onPageSizeChange($event)"
+    (onPageChange)="onPageChange($event)"></simple-pagination>
+</div>
