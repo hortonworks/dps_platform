@@ -1,0 +1,41 @@
+{
+  "id": 1,
+  "prefix": "/dlm",
+  "name": "dlm",
+  "label": "Data Lifecycle Manager",
+  "version": "1.1.0",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_ADMIN",
+  "roles": [],
+  "require_platform_roles": [
+    "INFRAADMIN",
+    "DLM_ADMIN",
+    "DLM_USER"
+  ],
+  "require_cluster_services": [
+    {
+      "name": "BEACON",
+      "type": "REQUIRED",
+      "label": "DLM Engine",
+      "is_agent": true
+    },
+    {
+      "name": "HIVE",
+      "type": "REQUIRED"
+    },
+    {
+      "name": "HDFS",
+      "type": "REQUIRED"
+    }
+  ],
+  "require_ambari_version": [{
+    "min": "2.6.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/dlm-logo-top-nav.png",
+    "enablement": "/assets/images/dlm-logo-blue.png"
+  }
+}

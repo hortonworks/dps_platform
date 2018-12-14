@@ -1,0 +1,59 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+// directory
+$roboto-npm-webfont-dir:"..//node_modules/roboto-npm-webfont/fonts" !default;
+
+// font"s array configuration un comment these as an we need
+$roboto-npm-webfont-fonts: (
+                ("Roboto Thin",           "Roboto-Thin",          "robotothin",           100,    normal),
+                //("Roboto Thin Italic",    "Roboto-ThinItalic",    "robotothinitalic",     100,    italic),
+                ("Roboto Light",          "Roboto-Light",         "robotolight",          300,    normal),
+                //("Roboto Light Italic",   "Roboto-LightItalic",   "robotolightitalic",    300,    italic),
+                ("Roboto",                "Roboto-Regular",       "roboto",               400,    normal),
+                //("Roboto Italic",         "Roboto-RegularItalic", "robotoregularitalic",  400,    italic),
+                ("Roboto Medium",         "Roboto-Medium",        "robotomedium",         500,    normal),
+                //("Roboto Medium Italic",  "Roboto-MediumItalic",  "robotomediumitalic",   500,    italic),
+                ("Roboto Bold",           "Roboto-Bold",          "robotobold",           700,    normal),
+                //("Roboto Bold Italic",    "Roboto-BoldItalic",    "robotobolditalic",     700,    italic),
+                //("Roboto Black",          "Roboto-Black",         "robotoblack",          900,    normal),
+                //("Roboto Black Italic",   "Roboto-BlackItalic",   "robotoblackitalic",    900,    italic)
+);
+
+@each $font in $roboto-npm-webfont-fonts {
+
+  $name:  nth($font, 1);
+  $alias: nth($font, 2);
+  $file:  nth($font, 3);
+
+  @font-face {
+    font-family: "Roboto";
+    src:  local("#{$name}"),
+    local("#{$alias}"),
+    url("#{$roboto-npm-webfont-dir}/#{$file}.woff2")  format("woff2"),
+    url("#{$roboto-npm-webfont-dir}/#{$file}.woff")   format("woff"),
+    url("#{$roboto-npm-webfont-dir}/#{$file}.ttf")    format("truetype");
+    font-weight:  nth($font, 4);
+    font-style:   nth($font, 5);
+  }
+
+}

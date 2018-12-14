@@ -1,0 +1,13 @@
+{
+  "name": "db-gen",
+  "version": "1.0.0",
+  "description": "Generates script to import locations",
+  "main": "migrate.js",
+  "scripts": {
+    "generate": "node migrate.js"
+  },
+  "private": true,
+  "dependencies": {
+    "papaparse": "^4.3.5"
+  }
+}

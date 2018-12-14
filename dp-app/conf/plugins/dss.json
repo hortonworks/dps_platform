@@ -1,0 +1,39 @@
+{
+  "id": 2,
+  "prefix": "/dss",
+  "name": "dss",
+  "label": "Data Steward Studio",
+  "version": "1.0.0",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_ADMIN",
+  "roles": [],
+  "require_platform_roles": [
+    "CURATOR"
+  ],
+  "require_cluster_services": [
+    {
+      "name": "ATLAS",
+      "type": "REQUIRED"
+    },
+    {
+      "name": "DPPROFILER",
+      "type": "REQUIRED",
+      "label": "DSS Profiler Service",
+      "is_agent": true
+    },
+    {
+      "name": "RANGER",
+      "type": "OPTIONAL"
+    }
+  ],
+  "require_ambari_version": [{
+    "min": "2.6.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/steward-logo.png",
+    "enablement": "/assets/images/dss-logo-blue.png"
+  }
+}

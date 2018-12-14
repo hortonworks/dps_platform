@@ -1,0 +1,177 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="page-container">
+  <div *ngIf="showNotification">
+    <div id="success-notification-bar" class="notification-bar">
+      <i class="fa fa-check-circle pull-left"></i>
+      <i id="success-close" class="fa fa-remove pull-right" (click)="closeNotification()"></i>
+      <div id="success-heading" class="text-medium">{{"pages.infra.labels.clusterAddSuccess" | translate}}</div>
+      <div id="success-message" class="text-small-1" data-se="cluster_add__addSuccess">{{"pages.infra.description.clusterAddSuccess" | translate}} </div>
+    </div>
+  </div>
+  <div *ngIf="showError && errorCode.indexOf('connection-refused') === -1">
+    <div id="error-notification-bar" class="error-notification-bar">
+      <i class="fa fa-times-circle pull-left"></i>
+      <i id="e" class="fa fa-remove pull-right" (click)="closeError()"></i>
+      <div id="error-header" class="text-medium">{{"common.failed" | translate}}</div>
+      <div id="error-message" class="text-small-1" data-se="cluster_add__addError" [innerHTML]="errorMessage"></div>
+    </div>
+  </div>
+
+  <div class="icon-container">
+    <div class="hwx-title">{{"pages.infra.labels.addCluster" | translate}}</div>
+    <div class="hwx-desc">{{"pages.infra.description.addCluster" | translate}}</div>
+
+    <div class="spacer-15"> </div>
+
+    <div [hidden]="!showConfig">
+      <dp-config-dialog #config [show]="showConfig" (onCancel)="closeConfig()" (onSave)="getConfigs($event)" [requestAmbariCreds]="_clusterState.requestAmbariCreds" [requestKnoxURL]="_clusterState.requestKnoxURL"></dp-config-dialog>
+    </div>
+
+    <form #clusterForm="ngForm">
+      <div class="form-group">
+        <div class="form-toggle-comments">
+          <input type="checkbox" data-se="cluster_add__behind_gateway" class="dp-input" name="behindGateway" [(ngModel)]="behindGateway" [readonly]="showClusterDetails">
+          <label for="behindGateway">{{"pages.infra.labels.behindGateway" | translate}}</label>
+          <i class="fa fa-info-circle more-information" [attr.title]="'pages.infra.labels.behindGateway-hint' | translate"></i>
+        </div>
+        <div class="hwx-inline-desc">{{"pages.infra.description.behindGateway" | translate}}</div>
+      </div>
+      <div class="form-group">
+        <div class="form-toggle-comments">
+          <input type="checkbox" data-se="cluster_add__allow_only_trusted" class="dp-input" name="onlyAllowTrusted" [(ngModel)]="onlyAllowTrusted" [readonly]="showClusterDetails">
+          <label for="onlyAllowTrusted">{{"pages.infra.labels.onlyAllowTrusted" | translate}}</label>
+          <i class="fa fa-info-circle more-information" [attr.title]="'pages.infra.labels.onlyAllowTrusted-hint' | translate"></i>
+        </div>
+        <div class="hwx-inline-desc">{{"pages.infra.description.onlyAllowTrusted" | translate}}</div>
+      </div>
+      <div class="form-group" #ambariInput>
+        <label class="required">{{"pages.infra.labels.ambariUrl" | translate}} <i class="fa fa-info-circle more-information" [attr.title]="'pages.infra.description.ambariUrlHint' | translate"></i></label>
+        <div class="input-group">
+          <input data-se="cluster_add__ambariUrlInput" required class="dp-input-url" placeholder="Enter URL to connect to Ambari (direct or via Knox Gateway if in use)" name="ambari-url" type="text" [readonly]="showClusterDetails" [ngStyle]="showClusterDetails && {'opacity':'0.6'}" [(ngModel)]="cluster.ambariurl" (keypress)="onKeyPress($event)"/>
+          <button *ngIf="!showClusterDetails" id="go-btn" class="mdl-button btn-hwx-primary" type="button" (click)="getClusterInfo($event)" data-se="cluster_add__goButton">
+            <span *ngIf="_isClusterValidateInProgress"><i class="fa fa-spinner fa-spin"></i></span>
+            <span *ngIf="!_isClusterValidateInProgress">{{"common.go" | translate}}</span>
+          </button>
+          <button *ngIf="showClusterDetails" id="clear-btn" class="mdl-button btn-hwx-primary" type="button" (click)="resetPage()" data-se="cluster_add__clearButton">
+            <span>{{"common.clear" | translate}}</span>
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngIf="((_clusterState.alreadyExists && _isClusterValidateSuccessful && !_isClusterValid) || isInvalidAmbariUrl || (showError && errorCode.indexOf('connection-refused') > -1))"
+           class="error-section validation-error">
+        <div class="error-title">
+          <i class="fa fa-times-circle"></i>
+          <div *ngIf="errorCode.indexOf('connection-refused') > -1" class="title-text">
+            {{"pages.infra.description.connectionFailed" | translate}}</div>
+        </div>
+        <ul class="clearfix">
+          <li *ngFor="let reason of reasons" data-se="cluster_add__failReasons">{{reason}}</li>
+        </ul>
+
+      </div>
+
+      <div *ngIf="showClusterDetails">
+        <div class="cluster-details">
+          <div class="display-group">
+            <label>{{"pages.infra.labels.clusterName" | translate}}</label>
+            <div>{{cluster.name}}</div>
+          </div>
+          <div class="display-group">
+            <label>{{"pages.infra.labels.ipAddress" | translate}}</label>
+            <div>{{getIPAddress(cluster.ipAddress)}}</div>
+          </div>
+          <div class="display-group">
+            <label>{{"pages.infra.labels.services" | translate}}</label>
+            <div class ="extensible-list-h">
+              <div *ngFor="let service of cluster.services; let idx=index" class="services" [ngClass]="{'hide' : (idx >=5 && isServiceHidden)}"><i class="fa fa-check-circle"></i> {{service}}</div>
+              <div *ngIf="isServiceHidden && cluster.services.length > 5" class="show-hide-toggle" (click)="isServiceHidden=false" id="servicesHidden"> <i class="fa fa-angle-double-down"></i> {{"pages.infra.labels.allServices" | translate}}</div>
+              <div *ngIf="!isServiceHidden && cluster.services.length > 5" class="show-hide-toggle" (click)="isServiceHidden=true" id="servicesVisible"> <i class="fa fa-angle-double-up"></i> {{"pages.infra.labels.less" | translate}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isDataLake" class="datalake-indicator callout">
+          <div *ngIf="isDataLake" class="icon-container">
+            <div class="datalake-notification">
+              <div class="hwx-title">{{"common.datalake" | translate}}</div>
+              <div class="hwx-desc"> {{ dLFoundMessage }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="datalake-input">
+              <div class="form-group">
+                <label class="required">{{"pages.infra.labels.clusterLocation" | translate}}</label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.clusterLocation" | translate}}</div>
+                <div style="display: flex;align-items: center">
+                  <div [ngClass]="{'validation-error' : isLocationValid==false}">
+                    <input required class="dp-input" name="location" type="text" autocomplete="off" data-se="cluster_add__location" ngui-auto-complete
+                           (keyup)="setLocation()"
+                           (blur)="setLocationValidity(location)"
+                           (focus)="resetLocationValidity()"
+                           [min-chars]=3
+                           [(ngModel)]="location"
+                           [source]="getLocations.bind(this)"
+                           [value-formatter]="locationFormatter"
+                           [list-formatter]="locationFormatter"
+                           [no-match-found-text]="'No locations found'"
+                           placeholder="Location"
+                           (valueChanged)="onSelectLocation(location)" [(ngModel)]="searchTerm"/>
+                  </div>
+                  <div *ngIf="isLocationValid === false" class="location-error"><i class="fa fa-times-circle-o"></i><span class="location-error-text">{{"pages.infra.description.invalidLocation" | translate}}</span></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">{{"pages.infra.labels.dataCenter" | translate}}</label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.dataCenter" | translate}}</div>
+                <input data-se="cluster_add__dataCenter" required class="dp-input" placeholder="Datacenter" name="datacenter" type="text" [(ngModel)]="cluster.dcName"/>
+              </div>
+              <div class="form-group">
+                <label>{{"common.tags" | translate}} </label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.tags" | translate}}</div>
+                <tagging-widget [searchable]="false" id="tags" [tags]="cluster.tags" [clearOnSearch]="true" (onNewSearch)="onNewTagAddition($event)"></tagging-widget>
+              </div>
+              <div class="form-group">
+                <label>{{"common.description" | translate}}</label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.description" | translate}}</div>
+                <textarea name="desc" [(ngModel)]="cluster.description" data-se="clsuter_add__description"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <dp-map [mapData]="mapData" class="pull-right"  style="padding: 0px;margin-top:0px;margin-right: 0px" [mapSize]="1"></dp-map>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="button-container"  *ngIf="showClusterDetails">
+      <button id="add-btn" class="mdl-button btn-hwx-primary" (click)="onCreate($event)" data-se="cluster_add__addClusterButton">{{"common.add" | translate}}</button>
+      <button id="add-and-new-btn" class="mdl-button btn-hwx-primary" (click)="onCreateAndAdd($event)" data-se="cluster_add__addAndNewClusterButton">{{"common.addAndNew" | translate}}</button>
+      <button id="cancel-btn" class="mdl-button btn-hwx-default" [routerLink]="['/infra']" data-se="cluster_add__cancelButton">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+</div>

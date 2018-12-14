@@ -1,0 +1,103 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="page-container">
+  <div *ngIf="showError">
+    <div id="error-notification-bar" class="error-notification-bar">
+      <i class="fa fa-times-circle pull-left"></i>
+      <i id="e" class="fa fa-remove pull-right" (click)="closeError()"></i>
+      <div id="error-header" class="text-medium">{{"common.failed" | translate}}</div>
+      <div id="error-message" class="text-small-1">{{errorMessage}} </div>
+    </div>
+  </div>
+
+  <div class="icon-container" *ngIf="lake">
+    <div class="hwx-title" data-se="cluster_edit__editLabel">{{"pages.infra.labels.editCluster" | translate}}</div>
+    <div class="hwx-desc">{{"pages.infra.description.editCluster" | translate}} </div>
+
+    <div class="spacer-15"> </div>
+
+    <form #clusterForm="ngForm">
+      <div>
+        <div class="cluster-details">
+          <div class="display-group">
+            <label>{{"pages.infra.labels.clusterName" | translate}}</label>
+            <div>{{lake.name}}</div>
+          </div>
+          <div class="display-group">
+            <label>{{"pages.infra.labels.ambariUrl" | translate}}</label>
+            <div>{{lake.ambariUrl}}</div>
+          </div>
+          <div class="display-group">
+            <label>{{"pages.infra.labels.dataCenter" | translate}}</label>
+            <div>{{lake.dcName}}</div>
+          </div>
+        </div>
+
+        <div class="mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="datalake-input">
+              <div class="form-group">
+                <label class="required">{{"pages.infra.labels.clusterLocation" | translate}}</label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.clusterLocation" | translate}}</div>
+                <div style="display: flex;align-items: center">
+                  <div [ngClass]="{'validation-error' : isLocationValid==false}">
+                    <input required class="dp-input" name="location" type="text" autocomplete="off" ngui-auto-complete
+                           (keyup)="setLocation()"
+                           (blur)="setLocationValidity(location)"
+                           (focus)="resetLocationValidity()"
+                           [min-chars]=3
+                           [(ngModel)]="location"
+                           [source]="getLocations.bind(this)"
+                           [value-formatter]="locationFormatter"
+                           [list-formatter]="locationFormatter"
+                           [no-match-found-text]="'No locations found'"
+                           placeholder="Location"
+                           (valueChanged)="onSelectLocation(location)" [(ngModel)]="searchTerm"/>
+                  </div>
+                  <div *ngIf="isLocationValid === false" class="location-error"><i class="fa fa-times-circle-o"></i><span class="location-error-text">{{"pages.infra.description.invalidLocation" | translate}}</span></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>{{"common.tags" | translate}} </label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.tags" | translate}}</div>
+                <tagging-widget id="tags" [searchable]="false" [tags]="doGetTagsAsStringArray(lake.properties.tags)" [clearOnSearch]="true" (onNewSearch)="onNewTagAddition($event)" (onTagDelete)="onTagDelete($event)"></tagging-widget>
+              </div>
+              <div class="form-group">
+                <label>{{"common.description" | translate}}</label>
+                <div class="hwx-inline-desc">{{"pages.infra.description.description" | translate}}</div>
+                <textarea name="desc" [(ngModel)]="lake.description"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <dp-map [mapData]="mapData" class="pull-right"  style="padding: 0px;margin-top:0px;margin-right: 0px" [mapSize]="1"></dp-map>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="button-container">
+      <button id="add-btn" class="mdl-button btn-hwx-primary" (click)="onUpdate($event)">{{"common.update" | translate}}</button>
+      <button id="cancel-btn" class="mdl-button btn-hwx-default" [routerLink]="['/infra']">{{"common.cancel" | translate}}</button>
+    </div>
+  </div>
+</div>

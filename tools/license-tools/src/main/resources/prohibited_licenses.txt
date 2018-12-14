@@ -1,0 +1,64 @@
+Academic Free License
+AGPLv1
+AGPLv3
+Amazon Software License
+Apache 1.0
+Apache 1.1
+Apple Public Source License
+BitTorrent Open Source License
+BSD-4- Clause/BSD-4- Clause (University of California- Specific)
+CC-BY (all versions)
+CDDL
+CeCILL
+CeCILL-B version 1
+CeCILL-C version 1
+Code Project Open License FSF autoconf license(CPOL)
+Common Public Attribution License
+Common Public License 1.0
+Condor Public License
+Eclipse Public License 1.0
+Eclipse Public License 2.0
+eCos License 2.0
+Eiffel Forum License version 1
+European Union Public License 1.1
+Facebook BSD+Patents license
+GNU All- Permissive License
+Gnuplot License
+GPLv2
+GPLv3
+IBM Public License
+Independent JPEG Group License
+Jabber Open Source License
+JSON License
+LaTeX Project Public License
+LGPLv2.1
+LGPLv3
+License of Perl 5 and below
+Lucent Public License
+Microsoft Public License
+Microsoft Reciprocal License
+Mozilla Public License 1.1
+MS-LPL
+Netizen Opensource License 1.0
+Netscape Public License
+Nokia Open Source License
+Old OpenLDAP License 2.3
+Open Software License
+OpenSSL License
+Original BSD License
+Phorum License
+Python License version 1.6b through 2.1
+Q Public License
+RealNetworks Public Source License
+Sleepycat License
+Sun Community Source License 3.0
+Sun Industry Standards Source License
+Sun Public License
+UnRAR License
+WxWidgets Library License
+WxWindows Library License
+xinetd
+Yahoo! Public License 1.1
+Zend License 2.0
+Zimbra Public License 1.3
+Zope Public License version 1

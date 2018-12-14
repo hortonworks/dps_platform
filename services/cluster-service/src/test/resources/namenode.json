@@ -1,0 +1,131 @@
+{
+  "href" : "http://172.22.72.9:8080/api/v1/clusters/test/components/NAMENODE",
+  "ServiceComponentInfo" : {
+    "CapacityRemaining" : 344475868160,
+    "CapacityTotal" : 367029541888,
+    "CapacityUsed" : 544342016,
+    "DeadNodes" : "{}",
+    "DecomNodes" : "{}",
+    "HeapMemoryMax" : 1060372480,
+    "HeapMemoryUsed" : 121315328,
+    "LiveNodes" : "{\"ashwin-dp-knox-test-1.novalocal:50010\":{\"infoAddr\":\"172.22.72.9:50075\",\"infoSecureAddr\":\"172.22.72.9:0\",\"xferaddr\":\"172.22.72.9:50010\",\"lastContact\":2,\"usedSpace\":544342016,\"adminState\":\"In Service\",\"nonDfsUsedSpace\":0,\"capacity\":367029541888,\"numBlocks\":56,\"version\":\"2.7.3.2.6.0.0-598\",\"used\":544342016,\"remaining\":344475868160,\"blockScheduled\":0,\"blockPoolUsed\":544342016,\"blockPoolUsedPercent\":0.14831014,\"volfails\":0}}",
+    "NonDfsUsedSpace" : 0,
+    "NonHeapMemoryMax" : -1,
+    "NonHeapMemoryUsed" : 87213152,
+    "PercentRemaining" : 93.85507,
+    "PercentUsed" : 0.14831014,
+    "Safemode" : "",
+    "StartTime" : 1489956956063,
+    "TotalFiles" : 181,
+    "UpgradeFinalized" : true,
+    "Version" : "2.7.3.2.6.0.0-598, rce86ece9071d9a495c7e74840226ca2d8e7752b9",
+    "category" : "MASTER",
+    "cluster_name" : "test",
+    "component_name" : "NAMENODE",
+    "display_name" : "NameNode",
+    "init_count" : 0,
+    "install_failed_count" : 0,
+    "installed_count" : 0,
+    "recovery_enabled" : "false",
+    "service_name" : "HDFS",
+    "started_count" : 1,
+    "state" : "STARTED",
+    "total_count" : 1,
+    "unknown_count" : 0
+  },
+  "metrics" : {
+    "dfs" : {
+      "FSNamesystem" : {
+        "BlockCapacity" : 2097152,
+        "BlocksTotal" : 56,
+        "CapacityRemaining" : 344475868160,
+        "CapacityRemainingGB" : 321.0,
+        "CapacityTotal" : 367029541888,
+        "CapacityTotalGB" : 342.0,
+        "CapacityUsed" : 544342016,
+        "CapacityUsedGB" : 1.0,
+        "CorruptBlocks" : 0,
+        "ExcessBlocks" : 0,
+        "ExpiredHeartbeats" : 0,
+        "FilesTotal" : 181,
+        "LastCheckpointTime" : 1490429528934,
+        "LastWrittenTransactionId" : 17657,
+        "MillisSinceLastLoadedEdits" : 0,
+        "MissingBlocks" : 0,
+        "MissingReplOneBlocks" : 0,
+        "PendingDataNodeMessageCount" : 0,
+        "PendingDeletionBlocks" : 0,
+        "PendingReplicationBlocks" : 0,
+        "PostponedMisreplicatedBlocks" : 0,
+        "ScheduledReplicationBlocks" : 0,
+        "Snapshots" : 0,
+        "SnapshottableDirectories" : 0,
+        "StaleDataNodes" : 0,
+        "TotalFiles" : 181,
+        "TotalLoad" : 2,
+        "TransactionsSinceLastCheckpoint" : 601,
+        "TransactionsSinceLastLogRoll" : 601,
+        "UnderReplicatedBlocks" : 56
+      },
+      "namenode" : {
+        "CorruptFiles" : "[]",
+        "DeadNodes" : "{}",
+        "DecomNodes" : "{}",
+        "Free" : 344475868160,
+        "LiveNodes" : "{\"ashwin-dp-knox-test-1.novalocal:50010\":{\"infoAddr\":\"172.22.72.9:50075\",\"infoSecureAddr\":\"172.22.72.9:0\",\"xferaddr\":\"172.22.72.9:50010\",\"lastContact\":2,\"usedSpace\":544342016,\"adminState\":\"In Service\",\"nonDfsUsedSpace\":0,\"capacity\":367029541888,\"numBlocks\":56,\"version\":\"2.7.3.2.6.0.0-598\",\"used\":544342016,\"remaining\":344475868160,\"blockScheduled\":0,\"blockPoolUsed\":544342016,\"blockPoolUsedPercent\":0.14831014,\"volfails\":0}}",
+        "NameDirStatuses" : "{\"active\":{\"/hadoop/hdfs/namenode\":\"IMAGE_AND_EDITS\",\"/grid/0/hadoop/hdfs/namenode\":\"IMAGE_AND_EDITS\"},\"failed\":{}}",
+        "NonDfsUsedSpace" : 0,
+        "PercentRemaining" : 93.85507,
+        "PercentUsed" : 0.14831014,
+        "Safemode" : "",
+        "Threads" : 231,
+        "Total" : 367029541888,
+        "TotalBlocks" : 56,
+        "TotalFiles" : 181,
+        "UpgradeFinalized" : true,
+        "Used" : 544342016,
+        "Version" : "2.7.3.2.6.0.0-598, rce86ece9071d9a495c7e74840226ca2d8e7752b9"
+      }
+    },
+    "jvm" : {
+      "GcCountConcurrentMarkSweep" : 2,
+      "GcTimeMillisConcurrentMarkSweep" : 144,
+      "gcCount" : 565,
+      "gcTimeMillis" : 8395,
+      "logError" : 0,
+      "logFatal" : 0,
+      "logInfo" : 485016,
+      "logWarn" : 20,
+      "memHeapCommittedM" : 1011.25,
+      "memHeapUsedM" : 115.07864,
+      "memMaxM" : 1011.25,
+      "memNonHeapCommittedM" : 85.83594,
+      "memNonHeapUsedM" : 83.17294,
+      "threadsBlocked" : 0,
+      "threadsNew" : 0,
+      "threadsRunnable" : 7,
+      "threadsTerminated" : 0,
+      "threadsTimedWaiting" : 216,
+      "threadsWaiting" : 8
+    },
+    "rpc" : {
+      "client" : {
+        "NumOpenConnections" : 3,
+        "ReceivedBytes" : 129062312,
+        "RpcProcessingTimeAvgTime" : 1.3333333333333333,
+        "RpcQueueTimeAvgTime" : 0.3333333333333333,
+        "SentBytes" : 14140396
+      }
+    }
+  },
+  "host_components" : [
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal/host_components/NAMENODE",
+      "HostRoles" : {
+        "cluster_name" : "test",
+        "component_name" : "NAMENODE",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    }
+  ]
+}

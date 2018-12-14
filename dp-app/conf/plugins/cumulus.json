@@ -1,0 +1,29 @@
+{
+  "id": 6,
+  "prefix": "/cumulus",
+  "name": "cumulus",
+  "label": "Cumulus",
+  "version": "0.0.1-latest",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_ADMIN",
+  "roles": [],
+  "require_platform_roles": [
+    "INFRAADMIN"
+  ],
+  "require_cluster_services": [
+    {
+      "name": "HDFS",
+      "type": "REQUIRED"
+    }
+  ],
+  "require_ambari_version": [{
+    "min": "2.7.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/infra-logo-white.png",
+    "enablement": "/assets/images/dps-logo-400.png"
+  }
+}

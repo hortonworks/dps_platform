@@ -1,0 +1,199 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../../../styles/variables";
+
+.padding-top15{
+  padding-top: 15px
+}
+
+.title-container {
+  padding: 10px 20px;
+  border-bottom: 1px solid $silver;
+}
+
+.dialog1x {
+  width: 400px;
+  border-top: 1px solid $silver;
+}
+
+.slider-container {
+  padding: 10px 20px;
+}
+
+.mdl-chip {
+  border-radius: 2px;
+  background-color: $eastern-blue;
+  padding: 2px;
+  margin: 0px;
+  height: 14px;
+}
+
+.mdl-chip__text {
+  vertical-align: top;
+  line-height: 1;
+  color: $white;
+}
+
+
+.dp-input {
+  margin: 15px 0px;
+  label {
+    display: block;
+  }
+}
+
+:host /deep/ .user-tags .taggingWidget {
+  width: 360px !important;
+  min-height: 120px !important;
+  padding: 0px;
+  border-radius: 0px !important;
+  input {
+    font-size: 12px !important;
+  }
+}
+
+:host /deep/ .role-tags .taggingWidget{
+  width: 360px !important;
+  min-height: 34px !important;
+  padding: 0px;
+  border-radius: 0px !important;
+  input {
+    font-size: 12px !important;
+  }
+}
+
+:host /deep/ .role-edit-tags .taggingWidget{
+  width: 270px !important;
+  min-height: 34px !important;
+  padding: 0px;
+  border-radius: 0px !important;
+  input {
+    font-size: 12px !important;
+  }
+}
+
+.margin-top-20{
+  margin-top: 20px;
+}
+
+.close-icon{
+  float: right;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+:host /deep/ .mdl-switch__thumb {
+  background: $alabaster;
+  height: 12px;
+  width: 12px;
+  top: 7px;
+  left: 2px
+}
+
+:host /deep/ .mdl-switch__track {
+  background: $shuttle-gray;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 16px;
+  width: 26px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+:host /deep/ .mdl-switch.is-checked .mdl-switch__thumb {
+  background: $alabaster;
+  left: 12px;
+}
+
+:host /deep/ .mdl-switch.is-checked .mdl-switch__track {
+  background: $forest-green-1
+}
+
+:host /deep/ .mdl-switch__label {
+  font-size: 13px;
+  line-height: 2;
+  left: 5px;
+}
+
+.mdl-switch__input{
+  visibility: hidden !important;
+}
+
+.error-notification-bar {
+  padding: 15px;
+  background: $concrete;
+  margin-bottom: 20px;
+  .fa-times-circle {
+    font-size: 16px;
+    color: $roman-red;
+  }
+  .fa-remove {
+    color: $dusty-gray;
+    cursor: pointer;
+  }
+  .error-title {
+    font-size: 12px;
+    color: $roman-red;
+  }
+  .error-text {
+    font-size: 12px;
+    padding: 3px 10px;
+    margin-left: 10px;
+  }
+}
+
+.drop-down-icon {
+  position: absolute;
+  margin-top: -6%;
+  left: 90%;
+  color: $dove-gray;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.warning {
+  color: $roman-red;
+}
+
+.option-list {
+  position: absolute;
+  z-index: 1000;
+  background: $white;
+  border-radius: 0 0 2px 2px;
+  border: 1px solid $iron;
+  box-shadow: 1px 2px 3px $iron;
+  max-height: 200px;
+  overflow: auto;
+  width: 260px;
+}
+
+.option-list > div:hover, .option-list > div:focus {
+  background: $color_celeste_approx;
+  outline: none;
+}
+
+.option-list > div {
+  padding: 5px 20px;
+  cursor: pointer;
+}

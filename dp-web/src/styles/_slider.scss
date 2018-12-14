@@ -1,0 +1,150 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "_variables";
+
+$edit-child-background: $white;
+$edit-background-border: $white;
+
+$dialog-1x-width: 340px;
+$dialog-2x-width: 680px;
+$dialog-4x-width: 1380px;
+
+.dp-slider-pane-details
+{
+  display: inline-block;
+  float: right;
+  word-wrap: break-word;
+  height: auto;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  background: $edit-child-background;
+  border: 1px solid $edit-background-border;
+  z-index: 11;
+  box-sizing: border-box;
+
+  .close-button
+  {
+    &:before {
+      font-family: FontAwesome;
+      content: '\f00d';
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dp-slider-pane-editable
+{
+  @extend .dp-slider-pane-details;
+
+  height: auto;
+  background: $white;
+  border-left: 1px solid $silver;
+}
+
+@media only screen and (min-width: 500px) {
+  .dialog1x {
+    width: $dialog-1x-width;
+  }
+  .dialog2x {
+    width: $dialog-2x-width;
+  }
+}
+
+@media only screen and (min-width: 2020px) {
+  .dialog1x {
+    width: $dialog-2x-width;
+  }
+  .dialog2x {
+    width: $dialog-4x-width;
+  }
+}
+
+@mixin keyframes($animation-name, $start, $end) {
+  @-webkit-keyframes #{$animation-name} {
+    0% {
+      --webkit-transform: translateX(#{$start});
+    }
+    100% {
+      -webkit-transform: translateX(#{$end});
+    }
+  }
+  @-moz-keyframes #{$animation-name} {
+    0% {
+      -moz-transform: translateX(#{$start});
+    }
+    100% {
+      -moz-transform: translateX(#{$end});
+    }
+  }
+  @-ms-keyframes #{$animation-name} {
+    0% {
+      -ms-transform: translateX(#{$start});
+    }
+    100% {
+      -ms-transform: translateX(#{$end});
+    }
+  }
+  @-o-keyframes #{$animation-name} {
+    0% {
+      -o-transform: translateX(#{$start});
+    }
+    100% {
+      -o-transform: translateX(#{$end});
+    }
+  }
+  @keyframes #{$animation-name} {
+    0% {
+      transform: translateX(#{$start});
+    }
+    100% {
+      transform: translateX(#{$end});
+    }
+  }
+}
+
+@mixin animation($name, $duration, $function)
+{
+  -moz-animation: #{$name} #{$duration} #{$function};
+  -webkit-animation: #{$name} #{$duration} #{$function};
+  animation: #{$name} #{$duration} #{$function};
+}
+
+@include keyframes("keyframe-dialog-rtl", "320px", "0px")
+.load-right-to-left {
+  @include animation("keyframe-dialog-rtl", "0.5s", "linear");
+
+  right: 0;
+  float: right;
+}
+
+@include keyframes("keyframe-dialog-ltr", "-320px", "0px")
+.load-left-to-right {
+  @include animation("keyframe-dialog-ltr", "0.5s", "linear")
+}
+
+.load-right-to-left-slider {
+  @extend  .load-right-to-left;
+  @extend .dp-slider-pane-editable;
+}

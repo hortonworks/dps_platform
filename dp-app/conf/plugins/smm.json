@@ -1,0 +1,43 @@
+{
+  "id": 4,
+  "prefix": "/smm",
+  "name": "smm",
+  "label": "Streams Messaging Manager",
+  "version": "1.0.0",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_ADMIN",
+  "roles": [],
+  "require_platform_roles": [
+    "KAFKADEVOPS"
+  ],
+  "require_cluster_services": [
+    {
+      "name": "ZOOKEEPER",
+      "type": "REQUIRED"
+    },
+    {
+      "name": "KAFKA",
+      "type": "REQUIRED"
+    },
+    {
+      "name": "STREAMSMSGMGR",
+      "type": "REQUIRED",
+      "label": "Streams Messaging Manager",
+      "is_agent": true
+    },
+    {
+      "name": "LOGSEARCH",
+      "type": "OPTIONAL"
+    }
+  ],
+  "require_ambari_version": [{
+    "min": "2.6.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/logo-smm-42.png",
+    "enablement": "/assets/images/logo-smm-42.png"
+  }
+}

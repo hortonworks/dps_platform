@@ -1,0 +1,117 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="container">
+  <div class="top-section clearfix">
+    <div class="pull-left">
+      <div class="hwx-title">{{"common.services" | translate}}</div>
+    </div>
+  </div>
+  <div class="flex-grid">
+    <div class="tiles vertical-column">
+      <div class="tile" [ngClass]="{'active':i === selectedIndex}" *ngFor="let service of availableServices; let i = index"
+        (click)="getClusters(service, i)" [attr.id]="service.name+'-service-tile'">
+        <div class="tile-heading">
+          <div class="service-logo">
+            <img [attr.src]="service.logo_endpoints.enablement" alt="{{ service.name }}"/>
+          </div>
+          <div class="service-info">
+            <div class="service-name">
+              <span *ngIf="!pluginStatus.get(service.name)">
+                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+              </span>
+              <span *ngIf="pluginStatus.get(service.name) && !pluginStatus.get(service.name).installed">
+                <i class="fa fa-circle status-down" aria-hidden="true"></i>
+              </span>
+              <span *ngIf="pluginStatus.get(service.name) && pluginStatus.get(service.name).installed">
+                <i class="fa fa-circle status-up" aria-hidden="true"></i>
+              </span>
+              {{ service.label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedService" class="details-container">
+      <div class="tile">
+        <div class="tile-heading">
+          <div class="service-logo">
+            <img [attr.src]="selectedService.logo_endpoints.enablement" alt="{{ selectedService.name }}"/>
+          </div>
+          <div class="service-info">
+            <div class="service-name">{{ selectedService.label }}</div>
+          </div>
+          <div class="show-hide-toggle">
+            <input type="checkbox" id="ShowClusters" [(ngModel)]="showAll" (change)="filter()">
+            <label for="ShowClusters">{{"pages.services.labels.showAllClusters" | translate}}</label>
+          </div>
+        </div>
+      </div>
+      <table class="clusters-list-table">
+        <thead>
+        <tr>
+          <th class="sortable-column"><span>{{"pages.services.labels.clusterName" | translate}}</span></th>
+          <th class="sortable-column"><span>{{"pages.services.labels.dataCenter" | translate}}</span></th>
+          <th class="sortable-column"><span>{{"pages.services.labels.platform" | translate}}</span></th>
+          <th class="sortable-column"><span>{{"pages.services.labels.clusterAgent" | translate}}</span></th>
+          <th class="sortable-column">{{"common.actions" | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="!fetchingClustersInProgress && filteredClusters.length === 0"><td style="text-align: center" colspan="5">{{"pages.services.labels.noClusters" | translate}}</td></tr>
+        <tr *ngIf="fetchingClustersInProgress"><td style="text-align: center" colspan="5">{{"common.loading" | translate}}..</td></tr>
+        <tr *ngFor="let cluster of filteredClusters">
+          <td><i class="fa fa-circle status-{{cluster.clusterStatus.toLowerCase()}} ico-status"></i> {{cluster.name}}</td>
+          <td>{{cluster.dcName}}</td>
+          <td>{{cluster.cluster.properties.version}}</td>
+          <td>{{cluster.compatible ? getAgentsOfPlugin(selectedService):'NA'}}</td>
+          <td>
+            <span [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-enabled-txt'" *ngIf="cluster.enabled">{{"pages.services.labels.enabled" | translate}}</span>
+            <button [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-enable-btn'"
+              [ngClass]="{'btn-disabled': !pluginStatus.get(selectedService.name) || !pluginStatus.get(selectedService.name).installed, 'btn-enabled':pluginStatus.get(selectedService.name) && pluginStatus.get(selectedService.name).installed}"
+              *ngIf="cluster.compatible && !cluster.enabled" class="mdl-button btn-hwx-primary" (click)="enableServiceOnCluster(cluster)">
+              {{"pages.services.labels.enable" | translate}}
+            </button>
+            <span class="warning" [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-not-available-btn'"
+              *ngIf="cluster.compatible && !cluster.enabled && (!pluginStatus.get(selectedService.name) || !pluginStatus.get(selectedService.name).installed)">
+              <i class="fa fa-info-circle info-icon"></i>
+              <div [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-info-dialog'" class="info-dialog">
+                <div [innerHTML]="'pages.services.description.serviceNA'| translate: {serviceName: selectedService.label, clusterName: cluster.name}"></div>
+              </div>
+            </span>
+            <span class="warning" [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-incompatible-btn'" *ngIf="!cluster.compatible">{{"pages.services.labels.notCompatible" | translate}}
+              <i class="fa fa-info-circle info-icon info-icon-incompatible"></i>
+              <div [attr.id]="cluster.name+'-'+cluster.dcName+'-'+selectedService.name+'-info-dialog'" class="info-dialog">
+                <div [innerHTML]="'pages.services.description.serviceIncompatible'| translate: {serviceName: selectedService.label, clusterName: cluster.name}"></div>
+                <div class="dep-service" *ngFor="let depService of getRequiredServices(selectedService)">
+                  <i class="fa fa-times-circle service-unavailable-icon"></i>&nbsp;&nbsp;
+                  <span class="hwx-subtitle">{{(("common.serviceNameMappings."+depService | translate) !== "common.serviceNameMappings."+depService)? ("common.serviceNameMappings."+depService | translate).toUpperCase() : depService}}</span>
+                </div>
+              </div>
+            </span>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

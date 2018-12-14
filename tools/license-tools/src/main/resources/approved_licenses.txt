@@ -1,0 +1,44 @@
+Adobe Postcript(R) AFM files
+Apache 2.0
+Boost Software License
+BSD 2 Clause
+BSD 3 clause
+CC0
+Creative Commons Copyright-Only Dedication
+Cryptix General License
+DejaVu Fonts (Bitstream Vera/Arev licenses)
+Educational Community License
+Eiffel Forum License version 2
+Expat License FreeBSD License
+Freetype Project License
+FSF autoconf license
+Historical Permission Notice and Disclaimer
+imlib2
+Intel Open Source License
+ISC License
+License of the iMatrix Standard Function Library
+MIT
+Modified BSD License
+Mozilla Public License 2.0
+NCSA/University of Illinois Open Source License
+OpenLDAP
+Public Domain Python
+Ruby
+Service+Component+ Architecture+Specifications
+SGI Free Software License B 2.0
+SIL Open Font License
+Standard ML of New Jersey Copyright
+The Clear BSD License
+The Unlicense
+Ubuntu Font License Version 1.0
+Unicode License Agreement for Data Files and Software
+UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
+Universal Permissive License
+W3C Software Notice and License
+WebM
+WTFPL
+X.Net
+X11
+XFree86 1.1
+ZLib
+Zope Public License, version 2.0 and 2.1

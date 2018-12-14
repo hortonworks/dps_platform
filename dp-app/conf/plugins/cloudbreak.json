@@ -1,0 +1,24 @@
+{
+  "id": 3,
+  "prefix": "/cloudbreak",
+  "name": "cloudbreak",
+  "label": "Cloudbreak",
+  "version": "1.0.0",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_DEFAULT",
+  "roles": [],
+  "require_platform_roles": [
+    "INFRAADMIN"
+  ],
+  "require_cluster_services": [],
+  "require_ambari_version": [{
+    "min": "2.6.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/cloudbreak-logo.png",
+    "enablement": "/assets/images/cloudbreak-logo-blue.png"
+  }
+}

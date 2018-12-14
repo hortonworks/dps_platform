@@ -1,0 +1,153 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+ @import "../../../styles/variables";
+
+ .container {
+   padding: 0 25px;
+ }
+
+ .page-title {
+   padding: 18px 0px;
+   line-height: 34px;
+ }
+
+ .action-pane {
+   margin-top: 25px
+ }
+
+ .margin-left-10 {
+   margin-left: 10px;
+ }
+
+ .margin-right-10 {
+   margin-right: 10px;
+ }
+
+ .dp-input {
+   margin: 15px 0px;
+   label {
+     display: block;
+   }
+   input[type="text"], input[type="password"] {
+     display: block;
+     height: 34px;
+     padding: 6px 10px;
+     width: 440px;
+     border-radius: 2px;
+     font-size: 13px;
+   }
+ }
+
+ .notification-bar {
+   padding: 5px 5px;
+   margin: 10px 10px 10px 25px;
+   border: 1px solid $burnt-cienna-red;
+ }
+
+ .text-medium {
+   font-size: 15px;
+ }
+
+ .fileContainer {
+   overflow: hidden;
+   position: relative;
+   width: 440px;
+ }
+
+ .fileContainer [type=file] {
+   cursor: inherit;
+   display: block;
+   filter: alpha(opacity=0);
+   min-height: 100%;
+   min-width: 100%;
+   opacity: 0;
+   position: absolute;
+   right: 0;
+   text-align: right;
+   top: 0;
+ }
+
+ .upload-btn {
+   width: 84px ;
+   display: inline;
+   border-top: 1px solid $iron !important;
+   float: left;
+   border-right: none;
+   border-bottom-right-radius: 0;
+   border-top-right-radius: 0;
+ }
+
+ .file-name-input {
+   width: 315px;
+   border-top-left-radius: 0;
+   border-bottom-left-radius: 0;
+ }
+
+ .sub-title {
+   padding: 15px 0;
+ }
+
+ .upload-form-container {
+   background-color: $white;
+   padding: 5px 10px;
+ }
+
+ .action-pane {
+   margin-top: 10px;
+ }
+
+ .progress {
+   font-size: 16px;
+   padding: 25px 0;
+ }
+
+ .cert-data {
+   width: 300px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ .success-notification {
+   font-size: 16px;
+   padding: 25px;
+   color: $forest-green-1;
+ }
+
+ .error-notification {
+   font-size: 16px;
+   padding: 25px;
+   color: $burnt-cienna-red;
+ }
+
+ .error {
+   padding: 10px 0;
+   color: $burnt-cienna-red;
+ }
+
+ .center {
+   text-align: center !important;
+ }
+
+ .upload-btn-wrapper {
+   display: flex;
+ }

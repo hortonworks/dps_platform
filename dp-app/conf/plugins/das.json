@@ -1,0 +1,35 @@
+{
+  "id": 5,
+  "prefix": "/das",
+  "name": "das",
+  "label": "Data Analytics Studio",
+  "version": "das-1.0.0-Final",
+  "flow_type": "PROXY",
+  "enablement_type": "BY_ADMIN",
+  "roles": [],
+  "require_platform_roles": [
+    "DASUSER"
+  ],
+  "require_cluster_services": [
+    {
+      "name": "HIVE",
+      "type": "REQUIRED"
+    },
+    {
+      "name": "DATA_ANALYTICS_STUDIO",
+      "type": "REQUIRED",
+      "label": "Data Analytics Studio",
+      "is_agent": true
+    }
+  ],
+  "require_ambari_version": [{
+    "min": "2.7.0",
+    "max": "3.0.0"
+  }],
+  "platform_events_endpoint": "/events",
+  "health_check_endpoint": "/health",
+  "logo_endpoints": {
+    "switcher": "/assets/images/das-logo-white-42.png",
+    "enablement": "/assets/images/das-logo-color-72.png"
+  }
+}

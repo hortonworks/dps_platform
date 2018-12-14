@@ -1,0 +1,187 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../../styles/variables";
+
+.content-pane {
+  padding: 0 25px;
+}
+
+.page-title {
+  padding: 18px 0px;
+  line-height: 34px;
+}
+
+.title-pane {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.page-title, .search {
+  flex: 0 0 auto;
+  padding-top: 18px;
+}
+
+.filter-labels {
+  flex: 1 1 auto;
+  text-align: right;
+  padding: 18px 5px 5px;
+}
+
+.search-input {
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  width: 250px;
+  box-sizing: border-box;
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .dp-input__icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: $dove-gray;
+    font-size: 14px;
+  }
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-hwx-primary {
+  float: right;
+}
+
+.mdl-typography--text-center {
+  text-align: center;
+}
+
+.status-up {
+  color: $forest-green-1;
+}
+
+.status-down {
+  color: $roman-red;
+}
+
+.status-waiting {
+  color: $forest-green-1;
+}
+
+.status-na {
+  color: $shuttle-gray;
+}
+
+.mdl-menu__item {
+  padding: 3px 0;
+
+  a, span {
+    padding: 0 20px;
+    color: $dove-gray;
+    text-decoration: none;
+    font-weight: normal;
+    display: block;
+  }
+  .fa {
+    padding: 0 8px;
+  }
+}
+
+.option-list {
+  position: absolute;
+  z-index: 1000;
+  background: $white;
+  border-radius: 0 0 2px 2px;
+  border: 1px solid $iron;
+  box-shadow: 1px 2px 3px $iron;
+  max-height: 100px;
+  overflow: auto;
+  width: 250px;
+  right: 160px;
+}
+
+.option-title {
+  font-weight: 500;
+  padding: 5px;
+}
+
+.option-value {
+  font-weight: normal;
+  padding: 3px 15px;
+  cursor: pointer;
+}
+
+.filter-tags {
+  .title {
+    font-weight: 500;
+  }
+  .value {
+    line-height: 14px !important;
+    font-weight: normal;
+  }
+  .close {
+    margin: 10px;
+    cursor: pointer;
+    font-weight: normal;
+    color: $dusty-gray;
+  }
+
+}
+
+:host /deep/ .mdl-chip {
+  background-color: $alto-1;
+  height: 14px;
+  line-height: 14px !important;
+  padding: 4px 0 4px 12px;
+  border-radius: 3px;
+  margin: 5px;
+  align-self: flex-start;
+}
+
+:host /deep/ .mdl-chip + .mdl-chip {
+  margin-left: 5px;
+}
+
+:host /deep/ .mdl-chip__text {
+  vertical-align: unset;
+}
+
+.highlighted-filter{
+  background-color: $gallery;
+}
+
+.option-value:hover,
+.option-value:focus {
+  outline: none;
+}
+
+.disabled, .disabled > * {
+  color: rgba(0,0,0, 0.26) !important;
+  cursor: default;
+  background-color: transparent;
+  pointer-events: none;
+}

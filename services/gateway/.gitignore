@@ -1,0 +1,17 @@
+/RUNNING_PID
+/logs/
+/project/*-shim.sbt
+/project/project/
+/project/target/
+/target/
+.gradle/
+gradle/
+.idea/
+out/
+bin/
+build/
+gradlew
+gradlew.bat
+.project
+.classpath
+.settings/

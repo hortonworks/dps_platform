@@ -1,0 +1,45 @@
+{
+  "routePerms":
+  [
+    {
+      "path":"/test",
+      "roles": ["admin","steward"]
+
+    },
+    {
+      "path":"/status",
+      "roles": ["admin"]
+
+    },
+    {
+      "path":"/",
+      "roles": ["steward"]
+
+    },
+    {
+      "path":"/health",
+      "roles": ["*"]
+
+    },
+    {
+      "path":"/secret",
+      "roles": []
+
+    },
+    {
+      "path":"/secret/key",
+      "roles": []
+
+    },
+    {
+      "path":"/dss",
+      "roles": ["admin"]
+
+    },
+    {
+      "path":"/dss/Clusters/add",
+      "roles": ["admin"]
+
+    }
+  ]
+}

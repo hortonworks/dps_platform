@@ -1,0 +1,90 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="lake-stats">
+  <div class="lake-stats__meta">
+    <div class="lake-stats__info">
+      <div class="lake-stats__title" [style.color]="cHealth && cHealth.status.state === 'STARTED' ? 'green' : 'red' ">
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        {{lake.name}}
+      </div>
+      <div class="lake-stats__item">
+        <span class="lake-stats__item-label mdl-color-text--grey-500">Description:</span>
+        <span class="lake-stats__item-detail mdl-color-text--grey-600">
+          {{lake.description}}
+        </span>
+        </div>
+      <div class="lake-stats__item">
+        <span class="lake-stats__item-label mdl-color-text--grey-500">Ambari:</span>
+        <span class="lake-stats__item-detail mdl-color-text--grey-600">
+          {{cCluster.ambariurl}}
+        </span>
+      </div>
+    </div>
+    <div class="lake-stats__location-wrapper">
+      <div class="lake-stats__location">
+        <div class="lake-stats__location-item mdl-color-text--grey-600">ONPREM</div>
+        <div class="lake-stats__location-item mdl-color-text--grey-600" *ngIf="!!location">{{location.city}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="lake-stats__health">
+    <div class="lake-stats__health-item" *ngIf="!!cHealth">
+      <div>
+        <div class="lake-stats__health-label mdl-color-text--grey-500">NODES</div>
+        <div class="lake-stats__health-detail mdl-color-text--grey-600">{{cHealth.nodes}}</div>
+      </div>
+    </div>
+    <div class="lake-stats__health-item" *ngIf="!!cHealth">
+      <div>
+        <div class="lake-stats__health-label mdl-color-text--grey-500">UP TIME</div>
+        <div class="lake-stats__health-detail mdl-color-text--grey-600">{{doGetUptime(cHealth.status.since)}}</div>
+      </div>
+    </div>
+    <div class="lake-stats__health-item" *ngIf="!!cHealth">
+      <div>
+        <div class="lake-stats__health-label mdl-color-text--grey-500">HDFS USAGE</div>
+        <div class="lake-stats__health-detail mdl-color-text--grey-600">{{cHealth.usedSize}}</div>
+      </div>
+    </div>
+    <div class="lake-stats__health-item" *ngIf="!!cHealth">
+      <div>
+        <div class="lake-stats__health-label mdl-color-text--grey-500">HDFS TOTAL</div>
+        <div class="lake-stats__health-detail mdl-color-text--grey-600">{{cHealth.totalSize}}</div>
+      </div>
+    </div>
+    <div class="lake-stats__health-item lake-stats__health-spacer"></div>
+    <div class="lake-stats__health-item lake-stats__health-action">
+      <span>ACTION</span>
+      <button [attr.id]="'lake_stats_action_' + lake.id" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </button>
+
+      <ul mdl class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" [attr.for]="'lake_stats_action_' + lake.id">
+        <li class="mdl-menu__item">Some Action</li>
+        <li class="mdl-menu__item">Another Action</li>
+        <li disabled class="mdl-menu__item">Disabled Action</li>
+        <li class="mdl-menu__item">Yet Another Action</li>
+      </ul>
+    </div>
+  </div>
+</div>

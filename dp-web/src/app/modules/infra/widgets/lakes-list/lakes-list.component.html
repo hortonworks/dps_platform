@@ -1,0 +1,99 @@
+<!--
+  ~   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+  ~
+  ~   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+  ~
+  ~   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+  ~   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+  ~   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+  ~   properly licensed third party, you do not have any rights to this code.
+  ~
+  ~   If this code is provided to you under the terms of the AGPLv3:
+  ~   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+  ~   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+  ~     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+  ~   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+  ~     FROM OR RELATED TO THE CODE; AND
+  ~   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+  ~     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+  ~     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+  ~     OR LOSS OR CORRUPTION OF DATA.
+  -->
+
+<div class="content-pane">
+  <div class="title-pane">
+    <div class="page-title" data-se="cluster_add__title">
+      <span class="hwx-title">{{"common.clusters" | translate}}</span>
+    </div>
+    <div class="filter-labels">
+      <ng-container *ngFor="let filter of filters">
+        <span class="mdl-chip filter-tags">
+           <span class="mdl-chip__text">
+             <span class="title">{{filter.display}}:</span>
+             <span class="value">&nbsp;{{filter.value}}</span>
+             <span class="close" (click)="removeFilter(filter)"><i class="fa fa-times"></i></span>
+           </span>
+        </span>
+      </ng-container>
+    </div>
+    <div class="search">
+      <div class="search-input">
+       <input type="text" placeholder="{{'common.search' | translate}}" [(ngModel)]="searchText" name="search-input" id="search" (focus)="showOptions($event)" (keyup)="showOptions($event)" />
+        <i class="fa fa-filter dp-input__icon" aria-hidden="true"></i>
+      </div>
+      <div *ngIf="showFilterListing" id="filter-option-list" class="option-list">
+        <div class="option-value" *ngIf="filterOptions.length === 0"> {{"pages.infra.labels.noMatch" | translate}} </div>
+        <div *ngFor="let filterOption of filterOptions">
+          <div class="option-title">{{filterOption.displayName}}</div>
+          <div class="option-value" (keyup)="handleKeyboardEvents($event, filterOption.displayName, filterOption.key, value)" *ngFor="let value of filterOption.values" tabindex="0" (click)="addToFilter(filterOption.displayName, filterOption.key, value)">{{value}}</div>
+        </div>
+    </div>
+    <button id="add-btn" class="mdl-button btn-hwx-primary" [routerLink]="['/infra/clusters/add']" data-se="cluster_add__addButton"> {{"pages.infra.labels.addButton" | translate}} </button></div>
+  </div>
+  <table class="mdl-data-table mdl-js-data-table" dp-config-table (onSort)="onSort($event)">
+      <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric mdl-data-table__cell--placeholder"> {{"common.connectivity" | translate}}</th>
+        <th class="mdl-data-table__cell--non-numeric">
+            <dp-config-sorter [sortBy]="'name'">  {{"common.name" | translate}} </dp-config-sorter>
+        </th>
+        <th class="mdl-data-table__cell--non-numeric">
+          <dp-config-sorter [sortBy]="'city'">  {{"common.location" | translate}} </dp-config-sorter>
+        </th>
+        <th class="mdl-data-table__cell--non-numeric">
+          <dp-config-sorter [sortBy]="'dataCenter'">  {{"pages.infra.labels.dataCenter" | translate}} </dp-config-sorter>
+        </th>
+        <th class="mdl-data-table__cell--non-numeric">
+            <dp-config-sorter [type]="'number'" [sortBy]="'nodes'"> {{"pages.infra.labels.nodes" | translate}} </dp-config-sorter>
+        </th>
+
+        <th class="mdl-data-table__cell--non-numeric actions"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lakeInfo of lakesList">
+          <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--placeholder status-{{statusEnum[lakeInfo.status].toLowerCase()}}">
+              <span *ngIf="lakeInfo.status !== statusEnum.WAITING"><i class="fa fa-circle" aria-hidden="true"></i></span>
+              <span *ngIf="lakeInfo.status === statusEnum.WAITING"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric key-column mdl-data-table__cell--width15" [routerLink]="['/infra/clusters/', lakeInfo.lakeId]">{{lakeInfo.name}}</td>
+          <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">{{getLocationInfo(lakeInfo)}}</td>
+          <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">{{lakeInfo.dataCenter}}</td>
+          <td class="mdl-data-table__cell--non-numeric mdl-data-table__cell--non-clickable">{{lakeInfo.nodes}}</td>
+          <td class="mdl-data-table__cell--non-numeric actions">
+                <button [attr.id]="'dropDown_'+lakeInfo.id" [ngClass]="{'disabled':lakeInfo.status === statusEnum.WAITING}" class="mdl-button mdl-js-button mdl-button--icon hwx-button-icon"
+                        [attr.data-se]="(lakeInfo.status !== statusEnum.WAITING) && 'lake_list__dropDownEn_'+lakeInfo.ambariIpAddress || 'lake_list__dropDown_'+lakeInfo.ambariIpAddress">
+                <i class="fa fa-ellipsis-v fa__fa-ellipsis-h--icon"></i></button>
+                <ul mdl class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" [attr.for]="'dropDown_'+lakeInfo.id">
+                    <li class="mdl-menu__item" [ngClass]="{'disabled':lakeInfo.status === statusEnum.DOWN}"><a href="{{lakeInfo.ambariUrl | redirectTo:lakeInfo.id}}" target="_blank" [attr.data-se]="'lake_list__goTo_'+lakeInfo.ambariIpAddress"><i class="fa fa-external-link"></i>{{"pages.infra.labels.goToAmbari" | translate}}</a></li>
+                    <li class="mdl-menu__item" (click)="refresh(lakeInfo)" [attr.data-se]="'lake_list__refresh_'+lakeInfo.ambariIpAddress"><span><i class="fa__fa-close--icon fa fa-refresh"></i>{{"common.refresh" | translate}}</span></li>
+                    <li class="mdl-menu__item"><a [routerLink]="['/infra/clusters', lakeInfo.id, 'edit']" [attr.data-se]="'lake_list__edit_'+lakeInfo.ambariIpAddress"><i class="fa__fa-close--icon fa fa-edit"></i>{{"common.edit" | translate}}</a></li>
+                </ul>
+          </td>
+      </tr>
+      <tr *ngIf="lakesList.length === 0">
+          <td class="mdl-typography--text-center" colspan="8" >{{"pages.infra.labels.emptyClusters" | translate}}</td>
+      </tr>
+      </tbody>
+  </table>
+</div>

@@ -1,0 +1,260 @@
+/*!
+ *   HORTONWORKS DATAPLANE SERVICE AND ITS CONSTITUENT SERVICES
+ *
+ *   (c) 2016-2018 Hortonworks, Inc. All rights reserved.
+ *
+ *   This code is provided to you pursuant to your written agreement with Hortonworks, which may be the terms of the
+ *   Affero General Public License version 3 (AGPLv3), or pursuant to a written agreement with a third party authorized
+ *   to distribute this code.  If you do not have a written agreement with Hortonworks or with an authorized and
+ *   properly licensed third party, you do not have any rights to this code.
+ *
+ *   If this code is provided to you under the terms of the AGPLv3:
+ *   (A) HORTONWORKS PROVIDES THIS CODE TO YOU WITHOUT WARRANTIES OF ANY KIND;
+ *   (B) HORTONWORKS DISCLAIMS ANY AND ALL EXPRESS AND IMPLIED WARRANTIES WITH RESPECT TO THIS CODE, INCLUDING BUT NOT
+ *     LIMITED TO IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+ *   (C) HORTONWORKS IS NOT LIABLE TO YOU, AND WILL NOT DEFEND, INDEMNIFY, OR HOLD YOU HARMLESS FOR ANY CLAIMS ARISING
+ *     FROM OR RELATED TO THE CODE; AND
+ *   (D) WITH RESPECT TO YOUR EXERCISE OF ANY RIGHTS GRANTED TO YOU FOR THE CODE, HORTONWORKS IS NOT LIABLE FOR ANY
+ *     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO,
+ *     DAMAGES RELATED TO LOST REVENUE, LOST PROFITS, LOSS OF INCOME, LOSS OF BUSINESS ADVANTAGE OR UNAVAILABILITY,
+ *     OR LOSS OR CORRUPTION OF DATA.
+ */
+
+@import "../../../../../styles/variables";
+
+.container {
+  padding: 20px 25px;
+}
+
+.flex-grid {
+  display: flex;
+  margin-top: 30px;
+}
+
+.tiles {
+  margin-right: 10px;
+  width: 400px;
+}
+
+.vertical-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.tiles .tile.active {
+  border-left-color: #3daf2e;
+}
+
+.tiles .tile + .tile {
+  margin-top: 10px;
+}
+
+.tiles .tile {
+  border-radius: 4px;
+  background: $white;
+  border-left: 5px solid transparent;
+  padding: 20px;
+  cursor: pointer;
+}
+.heading {
+  display: flex;
+  align-items: center;
+}
+
+.service-logo {
+  height: 40px;
+  line-height: 40px;
+}
+
+.service-info
+ {
+  flex-grow: 1;
+  text-transform: uppercase;
+}
+
+.tiles .tile.active {
+  border-left-color: $forest-green-1;
+}
+
+.tiles .tile {
+  border-radius: 4px;
+  background: $white;
+  border-left: 5px solid transparent;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.service-logo img {
+  max-height: 40px;
+  max-width: 40px;
+  margin-right: 20px;
+}
+
+.service-name {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #333;
+}
+
+.service-version {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.details-container {
+  background: $white;
+  padding: 15px;
+  flex-grow: 1
+}
+
+.tile-heading {
+  display: flex;
+  align-items: center;
+}
+
+.service-info
+ {
+  flex-grow: 1;
+  text-transform: uppercase;
+}
+
+.show-hide-toggle{
+  align-self: flex-end
+}
+
+.clusters-list-table {
+  width: 100%;
+  margin: 15px 0;
+  border-collapse:collapse
+}
+
+.clusters-list-table th.sortable-column {
+  cursor: pointer;
+  white-space: nowrap;
+}
+.clusters-list-table th {
+  color: $dusty-gray;
+  font-weight: normal;
+  height: auto !important;
+}
+.clusters-list-table th, .clusters-list-table td {
+  text-align: left;
+  padding: 9px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #edeced;
+  height: 34px;
+}
+
+.clusters-list-table tr:first-child th {
+  border-color: $silver;
+}
+
+.clusters-list-table tr:last-child td {
+  border-color: $silver;
+}
+
+input[type="checkbox"] {
+  line-height: 1;
+  margin: 5px;
+}
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.status-synced {
+  color: $forest-green-1;
+}
+
+.status-sync_error {
+  color: $roman-red;
+}
+
+.status-sync_in_progress {
+  color: $shuttle-gray;
+}
+
+.info-icon {
+  width: 10px;
+  height: 12px;
+  padding: 10px;
+  color: $jaffa;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.info-icon-incompatible {
+  margin-left: 12px !important;
+}
+
+.info-dialog:before {
+  content: '';
+  position: absolute;
+  display: block;
+  right: 20px;
+  top: -7px;
+  width: 12px;
+  height: 12px;
+  background: $shalimar;
+  border: 1px solid $alto;
+  border-right: transparent;
+  border-bottom: transparent;
+  transform: rotate(45deg);
+}
+
+.info-dialog {
+  display: none;
+  position: absolute;
+  background: $shalimar;
+  padding: 10px;
+  width: 200px;
+  font-size: 12px;
+  line-height: 1.2;
+  border: 1px solid $alto;
+  margin-left: -80px;
+  margin-top: 4px;
+  z-index: 1;
+}
+
+.info-icon:hover + .info-dialog {
+  display: block;
+}
+
+.info-dialog:hover {
+  display: block;
+}
+
+.dep-service {
+  margin-top: 5px;
+}
+
+.service-unavailable-icon {
+  color: $jaffa;
+  font-size: 12px;
+}
+
+.status-up {
+  color: $forest-green-1;
+  font-size: 14px !important;
+}
+
+.status-down {
+  color: $roman-red;
+  font-size: 14px !important;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btn-enabled {
+  opacity: 1;
+  pointer-events: all;
+}

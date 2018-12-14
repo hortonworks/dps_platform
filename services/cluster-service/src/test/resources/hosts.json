@@ -1,0 +1,12 @@
+{
+  "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/",
+  "items" : [
+    {
+      "href" : "http://172.22.72.9:8080/api/v1/clusters/test/hosts/ashwin-dp-knox-test-1.novalocal",
+      "Hosts" : {
+        "cluster_name" : "test",
+        "host_name" : "ashwin-dp-knox-test-1.novalocal"
+      }
+    }
+  ]
+}
